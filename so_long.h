@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/05 15:37:26 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/06 14:13:35 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 # include <stdbool.h> //for what?
 # include <fcntl.h> //for o_rdonly
 
-#define WIDTH 512
-#define HEIGHT 512
+# define IMG_SIZE 64
 
 static mlx_image_t* image;
 
@@ -33,7 +32,15 @@ typedef struct s_game
 	int		start;
 	int		move_count;
 	char	**map;
+	void	*ground;
+	void	*wall;
+	void	*player;
+	void	*exit;
+	void	*collect;
 	void	*mlx;
+	void	*window;
 }	t_game;
+
+void ft_controls(void* param);
 
 #endif

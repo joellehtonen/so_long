@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:19:11 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/05 15:05:13 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/06 11:45:55 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_walls_horizontal(t_game *game)
 	y = 0;
 	while (x <= game->width)
 	{
-		if (game->map[x][y] != '1')
+		if (game->map[y][x] != '1')
 			return (0);
 		x++;
 	}
@@ -29,7 +29,7 @@ int	check_walls_horizontal(t_game *game)
 	y = game->height;
 	while (x <= game->width)
 	{
-		if (game->map[x][y] != '1')
+		if (game->map[y][x] != '1')
 			return (0);
 		x++;
 	}
@@ -45,7 +45,7 @@ int	check_walls_vertical(t_game *game)
 	y = 0;
 	while (y <= game->height)
 	{
-		if (game->map[x][y] != '1')
+		if (game->map[y][x] != '1')
 			return (0);
 		y++;
 	}
@@ -53,7 +53,7 @@ int	check_walls_vertical(t_game *game)
 	y = 0;
 	while (y <= game->height)
 	{
-		if (game->map[x][y] != '1')
+		if (game->map[y][x] != '1')
 			return (0);
 		x++;
 	}
@@ -69,13 +69,13 @@ int check_rectangular(t_game *game)
 	y = 0;
 	while (y <= game->height)
 	{
-		if (game->map[x + 1][y] != '\0')
+		if (game->map[y][x + 1] != '\0')
 			return (0);
 		y++;
 	}
 	while (x >= 0)
 	{
-		if (game->map[x][y + 1] != '\0')
+		if (game->map[y + 1][x] != '\0')
 			return (0);
 		x--;//will this cause issues at the edge of the map?
 	}
