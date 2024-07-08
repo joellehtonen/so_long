@@ -1,6 +1,8 @@
 flood fill to check if map is invalid (if you can reach exit and all the collectibles)
 
+reset button to reset the game?
 
+could the game crash if move_count goes above int_max?
 
 
     mlx_init: Initialises the MLX library. Must be called before using any other functions.

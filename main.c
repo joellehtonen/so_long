@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/06 13:34:03 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:45:32 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void initialize_variables(t_game *game)
 
 int main(int argc, char **argv)
 {
-	mlx_t		*mlx;
-	mlx_image_t *image;
 	t_game 		game;
 
 	if (argc != 2)
@@ -35,12 +33,12 @@ int main(int argc, char **argv)
 	map_checker(&game);
 	game.mlx = mlx_init(); //initiate game?
 	//image = mlx_new_image(); //start a window?
-	game.window = mlx_new_window(game.mlx, *game->width, game->height, "FOX");
+	//game.window = mlx_new_window(game.mlx, *game->width, game->height, "FOX");
 	add_graphics(&game);
 	//mlx_image_to_window(mlx, image, 0, 0);
-	mlx_loop_hook(mlx, ft_controls, mlx); //initiate controls?
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
+	mlx_loop_hook((&game)->mlx, ft_controls, (&game)->mlx); //control input/output
+	mlx_loop((&game)->mlx);
+	mlx_terminate((&game)->mlx);
 	return (1);
 }
 
