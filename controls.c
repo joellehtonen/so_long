@@ -14,7 +14,7 @@
 
 t_bool	move_up(t_game *game)
 {
-	if ()//no wall
+	if (check_collision(player, wall) = FALSE)
 	{
 		game->imgs->player->instances[0].y -= 5;
 		game->move_count++;
