@@ -12,9 +12,34 @@
 
 #include "so_long.h"
 
-void	ft_flood_fill(t_game *game)
+void	character_counter;
 {
+	if 
+
+}
+
+void	character_replacer
+{
+	if 'P'
+		'p';
+	else if 'C'
+		'c';
+	else if 'E'
+		'e';
+	else if '0'
+		'o';
 	
+}
+
+void	fill()
+{
+
+
+}
+
+void	flood_fill(t_game *game)
+{
+	fill(game->map, 
 }
 
 int check_path(t_game *game)
