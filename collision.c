@@ -6,13 +6,25 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:28:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/08 16:44:45 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/09 09:42:54 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_bool check_collision(box a, box b)
+t_bool check_collision(t_box a, t_box b)
 {
-	
+	t_bool not_left;
+	t_bool not_right;
+	t_bool not_above;
+	t_bool not_below;
+
+	not_left = a.x < b.x + b.width;
+	not_right = a.x + a.width > b.x;
+	not_above = a.y < b.y + b.height;
+	not_below = a.y + a.height > b.y;
+	if (not_left && not_right && not_above && not_below)
+		return (TRUE);
+	else
+		return (FALSE);
 }

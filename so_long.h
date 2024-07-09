@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/08 16:42:22 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/09 09:49:10 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,18 @@
 # define PLAYER_WIDTH 32
 # define PLAYER HEIGHT 32
 
+typedef struct s_player
+{
+	
+}	t_player;
+
 typedef struct s_box
 {	
 	int x;
 	int y;
 	int width;
 	int height;
-}	t_box
+}	t_box;
 
 typedef enum e_bool
 {
