@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:57:03 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/05 15:07:46 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/10 08:02:26 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,21 @@ int	map_maker(t_game *game)
 		x = 0;
 		while (x <= game->width)
 		{
-			if (game->map[x][y] == '0')
+			if (game->map[y][x] == '0')
 				add_graphic();
-			else if (game->map[x][y] == '1')
+			else if (game->map[y][x] == '1')
 				add_graphic();
-			else if (game->map[x][y] == 'C')
+			else if (game->map[y][x] == 'C')
 			{
 				add_graphic();
 				game->collectables++;
 			}
-			else if (game->map[x][y] == 'E')
+			else if (game->map[y][x] == 'E')
 			{
 				add_graphic();
 				game->exit++;
 			}
-			else if (game->map[x][y] == 'P')
+			else if (game->map[y][x] == 'P')
 			{
 				add_graphic();
 				game->start++;

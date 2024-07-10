@@ -1,8 +1,17 @@
-flood fill to check if map is invalid (if you can reach exit and all the collectibles)
+DONE flood fill to check if map is invalid (if you can reach exit and all the collectibles)
 
 reset button to reset the game?
 
 could the game crash if move_count goes above int_max?
+
+after checking the map, blow it out by multiplying it by 32. 
+that way you can move smoothly with +- 5 increments
+- add limit that the map doesnt expand too much (more than screen size)
+
+probably no need for player_box. just x and y coordinates and add TILE_SIZE to get the other side
+maybe remove ghost box too? or at least TILE_SIZE from it
+
+checker to check if input characters are valid
 
 
     mlx_init: Initialises the MLX library. Must be called before using any other functions.

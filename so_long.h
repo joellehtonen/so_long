@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/09 09:49:10 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/10 12:44:07 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,13 @@
 
 //define error messages here
 
-# define TILE_SIZE 64
-# define PLAYER_WIDTH 32
-# define PLAYER HEIGHT 32
+# define TILE_SIZE 32
 
-typedef struct s_player
+typedef enum e_bool
 {
-	
-}	t_player;
+	TRUE = 1,
+	FALSE = 0
+}	t_bool;
 
 typedef struct s_box
 {	
@@ -38,11 +37,10 @@ typedef struct s_box
 	int height;
 }	t_box;
 
-typedef enum e_bool
+typedef struct s_player
 {
-	TRUE = 1,
-	FALSE = 0
-}	t_bool;
+
+}	t_player;
 
 typedef struct s_textures
 {
@@ -66,16 +64,18 @@ typedef struct s_game
 {
 	struct s_textures *txts;
 	struct s_images *imgs;
+	struct s_player player;
 	int 	width;
 	int 	height;
 	int 	collectables;
 	int		exit;
-	int		start;
+	int		player;
 	int		move_count;
 	char	**map;
+	void 	*start;
 	mlx_t	*mlx;
 }	t_game;
 
-void ft_controls(t_game *game)
+void ft_controls(t_game *game);
 
 #endif
