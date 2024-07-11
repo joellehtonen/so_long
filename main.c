@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/11 09:10:44 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:10:33 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void free_and_exit(t_game *game, int error)
 	free(game->map);
 	if (error == 1)
 	{
-		ft_putstr_fd("Error\n");//define error messages later
+		ft_putstr_fd("Error\n", 1);//define error messages later
 		exit(1);
 	}
 	exit(0);
@@ -61,8 +61,8 @@ int main(int argc, char **argv)
 	ft_memset(image->pixels, 200, image->width * image->height * sizeof(int32_t) );
 	add_graphics(&game);
 	mlx_image_to_window(game.mlx, image, 0, 0);
-	mlx_loop_hook((&game)->mlx, ft_controls, (&game)->mlx); //control input/output
-	mlx_loop((&game)->mlx);
+	mlx_loop_hook(game.mlx, &controls, &game); //control input/output
+	mlx_loop(game.mlx);
 	free_and_exit(&game, 0);
 	return (1);
 }

@@ -14,6 +14,8 @@
   },
   "terminal.integrated.defaultProfile.linux": "fp-zsh",
   "files.associations": {
-    "so_long.h": "c"
+    "so_long.h": "c",
+    "libft.h": "c",
+    "mlx42.h": "c"
   },
 }

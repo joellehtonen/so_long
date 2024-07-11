@@ -6,47 +6,11 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:57:03 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/11 09:06:23 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:42:19 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	map_maker(t_game *game)
-{
-	int x;
-	int y;
-	
-	y = 0;
-	while (y <= game->height)
-	{
-		x = 0;
-		while (x <= game->width)
-		{
-			if (game->map[y][x] == '0')
-				add_graphic();
-			else if (game->map[y][x] == '1')
-				add_graphic();
-			else if (game->map[y][x] == 'C')
-			{
-				add_graphic();
-				game->collectables++;
-			}
-			else if (game->map[y][x] == 'E')
-			{
-				add_graphic();
-				game->exit++;
-			}
-			else if (game->map[y][x] == 'P')
-			{
-				add_graphic();
-				game->start++;
-			}
-			x++;
-		}
-		y++;
-	}
-}
 
 int	add_line(t_game *game, char *line)
 {
@@ -62,9 +26,8 @@ int	add_line(t_game *game, char *line)
 	new_map = ft_realloc(game->map, old_size, new_size);
 	if (!new_map)
 	{
-		free_map(game->map);//do this later
 		free(line);
-		return (0);
+		free_and_exit(game, 1);
 	}
 	new_map[game->height - 1] = line;
 	new_map[game->height] = NULL;
@@ -79,10 +42,7 @@ int map_reader(t_game *game, char **argv)
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-	{
-		perror("Error in reading the map.");//update this
-		return (0);
-	}
+		free_and_exit(game, 1);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -90,7 +50,7 @@ int map_reader(t_game *game, char **argv)
 		free(line);
 		line = get_next_line(fd);
 	}
-	game->width = ft_strlen(line[0]);
+	game->width = ft_strlen(&line[0]);
 	close(fd);
 	return (1);
 }

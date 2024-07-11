@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/11 08:56:23 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:51:17 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 # define SO_LONG_H
 
 # include "MLX42/include/MLX42/MLX42.h"
-# include <stdio.h> //for what?
-# include <stdlib.h> //for what? malloc?
-# include <stdbool.h> //for what? boolean?
-# include <fcntl.h> //for o_rdonly
+# include "library/libft/libft.h"
+# include "library/printf/ft_printf.h"
+# include "library/get_next_line/get_next_line.h"
+# include <stdlib.h>
+# include <stdbool.h>
+# include <fcntl.h>
 
 //define error messages here
 
@@ -69,14 +71,13 @@ typedef struct s_game
 	int 	height;
 	int 	collectables;
 	int		exit;
-	int		player;
+	int		start;
 	int		move_count;
 	char	**map;
-	void 	*start;
 	mlx_t	*mlx;
 }	t_game;
 
-void	ft_controls(t_game *game);
+void	controls(void *content);
 void	flood_fill(t_game *game, int y, int x);
 int		*find_start(t_game *game);
 t_bool	check_path(t_game *game);
@@ -96,7 +97,6 @@ int		check_walls_vertical(t_game *game);
 int		check_rectangular(t_game *game);
 int		check_count(t_game *game);
 void	map_checker(t_game *game);
-int		map_maker(t_game *game);
 int		add_line(t_game *game, char *line);
 int		map_reader(t_game *game, char **argv);
 void	initialize_variables(t_game *game);

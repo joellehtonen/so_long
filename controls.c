@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:04 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/10 15:39:38 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:20:22 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_bool	move_left(t_game *game)
 		game->imgs->player->instances[0].x -= 5;
 		game->move_count++;
 		//update animation
-		return (TRUE)
+		return (TRUE);
 	}
 	else
 		return (FALSE);
@@ -96,10 +96,12 @@ t_bool	move_right(t_game *game)
 		return (FALSE);
 }
 
-void ft_controls(t_game *game)
+void controls(void *content)
 {
 	t_bool	movement;
+	t_game	*game;
 
+	game = (t_game *)content;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_UP))
@@ -112,5 +114,5 @@ void ft_controls(t_game *game)
 		movement = move_right(game);
 	if (movement)
 		ft_printf("MOVES: %d\n", game->move_count);
-	check_collect(game);
+	collect_stuff(game);
 }

@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:19:11 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/06 11:45:55 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:30:32 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,11 @@ int	check_count(t_game *game)
 void map_checker(t_game *game)
 {
 	if (!check_walls_horizontal(game)
-		|| !check_wall_vertical(game)
+		|| !check_walls_vertical(game)
 		|| !check_rectangular(game)
 		|| !check_count(game)
 		|| !check_path(game))
 	{
-		free_and_exit();//do this later
+		free_and_exit(game, 1);
 	}
 }

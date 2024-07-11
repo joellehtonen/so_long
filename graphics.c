@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:35:53 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/10 10:17:33 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:39:41 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	get_textures(t_game *game)
 
 void	get_images(t_game *game)
 {
-	get_textures(&game);
+	get_textures(game);
 	game->imgs = ft_calloc(1, sizeof(t_images));
 	game->imgs->wall = mlx_texture_to_image(game->mlx, game->txts->wall);
 	game->imgs->exit = mlx_texture_to_image(game->mlx, game->txts->exit);
@@ -40,15 +40,15 @@ void	add_graphics(t_game *game)
 	int x;
 	int y;
 
-	get_images(&game);
+	get_images(game);
 	y = 0;
 	while (y <= game->height)
 	{
 		x = 0;
 		while (x <= game->width)
 		{
-			if (game->map[y][x] == '0')
-				mlx_image_to_window(game->mlx, game->imgs->ground, x * 32, y * 32);
+			// if (game->map[y][x] == '0')
+			// 	mlx_image_to_window(game->mlx, game->imgs->ground, x * 32, y * 32);
 			if (game->map[y][x] == '1')
 				mlx_image_to_window(game->mlx, game->imgs->wall, x * 32, y * 32);
 			if (game->map[y][x] == 'E')

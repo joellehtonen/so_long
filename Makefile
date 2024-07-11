@@ -4,13 +4,21 @@ CFLAGS		= -Wextra -Wall -Werror -Wunreachable-code -Ofast
 LIBMLX		= ./MLX42
 LIBFT	 	= ./library/libft/
 GNL			= ./library/get_next_line/
-HEADERS		= -I ./include -I $(LIBMLX)/include -I $(LIBFT) -I $(GNL)
-LIBS		= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
-SRCS 		= *.c
-MLX_SRCS	= $(shell find ./MLX42/src -iname "*.c")
-OBJS		= ${SRCS:.c=.o}
+PRINTF		= ./library/printf
+HEADERS		= -I ./include -I $(LIBMLX)/include -I $(LIBFT) -I $(GNL) -I $(PRINTF)
+LIBS		= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm -L$(LIBFT) -lft -L$(GNL) -lgnl -L$(PRINTF) -lftprintf
+SRCS 		= main.c \
+				check_path.c \
+				collecting.c \
+				collision.c \
+				controls.c \
+				ft_realloc.c \
+				graphics.c \
+				map_checker.c \
+				map_reader.c
+OBJS		= $(SRCS:.c=.o)
 
-all: libft gnl libmlx $(NAME)
+all: libft gnl printf libmlx $(NAME)
 
 libmlx:
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
@@ -20,6 +28,9 @@ libft:
 
 gnl:
 	@$(MAKE) -C $(GNL)
+
+printf:
+	@$(MAKE) -C $(PRINTF)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
@@ -32,15 +43,17 @@ clean:
 	@rm -rf $(LIBMLX)/build
 	@$(MAKE) -C $(LIBFT) clean
 	@$(MAKE) -C $(GNL) clean
+	@$(MAKE) -C $(PRINTF) clean
 
 fclean: clean
 	@rm -rf $(NAME)
 	@$(MAKE) -C $(LIBFT) fclean
 	@$(MAKE) -C $(GNL) fclean
+	@$(MAKE) -C $(PRINTF) fclean
 
-re: clean all
+re: fclean all
 
-.PHONY: all, clean, fclean, re, libmlx, libft
+.PHONY: all, clean, fclean, re, libmlx, libft, gnl, ftprintf
 
 
 
