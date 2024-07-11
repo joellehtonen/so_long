@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:46:04 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/11 12:39:57 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:40:20 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*create_new_pile(char *pile)
 	size_t	len;
 	char	*new_pile;
 
-	len = ft_strlen(pile);
+	len = ft_strlen_gnl(pile);
 	index_a = find_newline(pile);
 	if (!pile[index_a])
 	{
@@ -77,7 +77,7 @@ static char	*add_to_pile(char *pile, char *text)
 	index = 0;
 	if (text == NULL || *text == '\0')
 		return (pile);
-	len = ft_strlen(pile) + ft_strlen(text);
+	len = ft_strlen_gnl(pile) + ft_strlen_gnl(text);
 	new_pile = (char *)malloc(sizeof(char) * (len + 1));
 	if (!new_pile)
 	{

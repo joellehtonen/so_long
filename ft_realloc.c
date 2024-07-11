@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 10:46:36 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/05 10:58:49 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/11 14:31:18 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void *ft_realloc(void *old_ptr, size_t old_size, size_t new_size)
 	if (new_size == 0)
 	{
 		free(old_ptr);
-		return (NULL);
+		return (old_ptr);
 	}
 	if (old_ptr == NULL)
 	{

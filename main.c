@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/11 11:10:33 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:24:36 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void initialize_variables(t_game *game)
 	game->exit = 0;
 	game->start = 0;
 	game->move_count = 0;
+	game->map = NULL;
 }
 
 int main(int argc, char **argv)

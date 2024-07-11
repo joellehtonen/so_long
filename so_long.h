@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/11 11:51:17 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:25:26 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int		check_walls_vertical(t_game *game);
 int		check_rectangular(t_game *game);
 int		check_count(t_game *game);
 void	map_checker(t_game *game);
-int		add_line(t_game *game, char *line);
+void	add_line(t_game *game, char *line);
 int		map_reader(t_game *game, char **argv);
 void	initialize_variables(t_game *game);
 void 	free_and_exit(t_game *game, int error);
