@@ -13,6 +13,8 @@ maybe remove ghost box too? or at least TILE_SIZE from it
 
 checker to check if input characters are valid
 
+resizing missing
+
 
     mlx_init: Initialises the MLX library. Must be called before using any other functions.
     mlx_new_window: Creates a new window instance.

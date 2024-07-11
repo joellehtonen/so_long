@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:16:24 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/10 15:30:11 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/11 08:56:06 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void reach_exit(t_game *game, int position_x, int position_y)
 	{
 		if (game->collectables == 0)
 		{
-			mlx_close_window(game->mlx);	
+			free_and_exit(game, 0);
 		}
 		else
 			return ;

@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/10 12:44:07 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/11 08:56:23 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,30 @@ typedef struct s_game
 	mlx_t	*mlx;
 }	t_game;
 
-void ft_controls(t_game *game);
+void	ft_controls(t_game *game);
+void	flood_fill(t_game *game, int y, int x);
+int		*find_start(t_game *game);
+t_bool	check_path(t_game *game);
+void	reach_exit(t_game *game, int position_x, int position_y);
+void	delete_collected(t_game *game, int x, int y);
+void	collect_stuff(t_game *game);
+t_bool	is_wall(t_game *game, int x, int y);
+t_bool	is_collectable(t_game *game, int x, int y);
+t_bool	is_exit(t_game *game, int x, int y);
+t_bool	check_collision(t_box a, t_box b);
+void 	*ft_realloc(void *old_ptr, size_t old_size, size_t new_size);
+void	get_textures(t_game *game);
+void	get_images(t_game *game);
+void	add_graphics(t_game *game);
+int		check_walls_horizontal(t_game *game);
+int		check_walls_vertical(t_game *game);
+int		check_rectangular(t_game *game);
+int		check_count(t_game *game);
+void	map_checker(t_game *game);
+int		map_maker(t_game *game);
+int		add_line(t_game *game, char *line);
+int		map_reader(t_game *game, char **argv);
+void	initialize_variables(t_game *game);
+void 	free_and_exit(t_game *game, int error);
 
 #endif

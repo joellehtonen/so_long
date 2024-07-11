@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:57:03 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/10 08:02:26 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/11 09:06:23 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int map_reader(t_game *game, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 	{
-		perror("Error in reading the map.");
+		perror("Error in reading the map.");//update this
 		return (0);
 	}
 	line = get_next_line(fd);
