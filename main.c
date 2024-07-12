@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/11 15:24:36 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/12 13:11:57 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void free_and_exit(t_game *game, int error)
 	int	i;
 
 	i = 0;
+	//remember to free the lines of gnl
 	mlx_terminate(game->mlx);
 	//free(game->txts); is this necessary anymore?
 	free(game->imgs);
@@ -32,7 +33,6 @@ void free_and_exit(t_game *game, int error)
 		exit(1);
 	}
 	exit(0);
-	
 }
 
 void initialize_variables(t_game *game)
@@ -64,6 +64,7 @@ int main(int argc, char **argv)
 	mlx_image_to_window(game.mlx, image, 0, 0);
 	mlx_loop_hook(game.mlx, &controls, &game); //control input/output
 	mlx_loop(game.mlx);
+	//mlx_terminate(game.mlx);
 	free_and_exit(&game, 0);
 	return (1);
 }
