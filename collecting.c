@@ -6,13 +6,13 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:16:24 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/11 08:56:06 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/15 14:51:03 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void reach_exit(t_game *game, int position_x, int position_y)
+static void reach_exit(t_game *game, int position_x, int position_y)
 {
 	if (is_exit(game, position_x, position_y) == TRUE
 		|| is_exit(game, position_x + TILE_SIZE, position_y) == TRUE
@@ -28,7 +28,7 @@ void reach_exit(t_game *game, int position_x, int position_y)
 	}
 }
 
-void delete_collected(t_game *game, int x, int y)
+static void delete_collected(t_game *game, int x, int y)
 {
 	int	i;
 	

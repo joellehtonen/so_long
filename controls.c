@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:04 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/15 14:43:23 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:39:27 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,5 +114,5 @@ void controls(void *content)
 		movement = move_right(game);
 	if (movement == 1)
 		ft_printf("MOVES: %d\n", game->move_count);
-	//collect_stuff(game);
+	collect_stuff(game);
 }

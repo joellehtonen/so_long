@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/15 14:42:23 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/15 16:53:28 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_box
 
 typedef struct s_player
 {
-
+	//add animation here?
 }	t_player;
 
 typedef struct s_textures
@@ -83,8 +83,6 @@ void	controls(void *content);
 void	flood_fill(t_game *game, int y, int x);
 int		*find_start(t_game *game);
 int		check_path(t_game *game);
-void	reach_exit(t_game *game, int position_x, int position_y);
-void	delete_collected(t_game *game, int x, int y);
 void	collect_stuff(t_game *game);
 t_bool	is_wall(t_game *game, int x, int y);
 t_bool	is_collectable(t_game *game, int x, int y);
@@ -95,7 +93,6 @@ void	get_textures(t_game *game);
 void	get_images(t_game *game);
 void	add_graphics(t_game *game);
 void	map_checker(t_game *game);
-//void	add_line(t_game *game, char *line);
 void	map_reader(t_game *game, char **argv);
 void	initialize_variables(t_game *game);
 void 	free_and_exit(t_game *game, int error);

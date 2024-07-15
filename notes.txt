@@ -15,6 +15,8 @@ checker to check if input characters are valid
 
 segfaults when returning from map_checker functions
 
+ESC causes some issues
+
 resizing missing
 
 

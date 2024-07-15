@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:11:05 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/15 14:03:55 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/15 16:52:13 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int check_path(t_game *game)
 	int x;
 	int y;
 
-	ft_printf("inside check_path\n");
 	start = find_start(game);
 	flood_fill(game, start[0], start[1]);
+	ft_printf("CHECK PATH: \n");
 	int i = 0;
 	while (i < game->height)
 	{
@@ -85,6 +85,5 @@ int check_path(t_game *game)
 		}
 		y++;
 	}
-	ft_printf("exiting check_path\n");
 	return (1);
 }
