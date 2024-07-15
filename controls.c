@@ -6,13 +6,13 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:04 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/11 11:20:22 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/15 14:43:23 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_bool	move_up(t_game *game)
+static int	move_up(t_game *game)
 {
 	t_box	ghost_box;
 	int		x;
@@ -28,12 +28,12 @@ t_bool	move_up(t_game *game)
 		game->imgs->player->instances[0].y -= 5;
 		game->move_count++;
 		// update animation
-		return (TRUE);
+		return (1);
 	}
 	else
-		return (FALSE);
+		return (0);
 }
-t_bool	move_down(t_game *game)
+static int	move_down(t_game *game)
 {
 	t_box	ghost_box;
 	int		x;
@@ -48,13 +48,13 @@ t_bool	move_down(t_game *game)
 		game->imgs->player->instances[0].y += 5;
 		game->move_count++;
 		//update animation
-		return (TRUE);
+		return (1);
 	}
 	else
-		return (FALSE);
+		return (0);
 }
 
-t_bool	move_left(t_game *game)
+static int	move_left(t_game *game)
 {
 	t_box	ghost_box;
 	int		new_x;
@@ -69,13 +69,13 @@ t_bool	move_left(t_game *game)
 		game->imgs->player->instances[0].x -= 5;
 		game->move_count++;
 		//update animation
-		return (TRUE);
+		return (1);
 	}
 	else
-		return (FALSE);
+		return (0);
 }
 
-t_bool	move_right(t_game *game)
+static int	move_right(t_game *game)
 {
 	t_box	ghost_box;
 	int		new_x;
@@ -90,15 +90,15 @@ t_bool	move_right(t_game *game)
 		game->imgs->player->instances[0].x += 5;
 		game->move_count++;
 		//update animation
-		return (TRUE);
+		return (1);
 	}
 	else
-		return (FALSE);
+		return (0);
 }
 
 void controls(void *content)
 {
-	t_bool	movement;
+	int	movement;
 	t_game	*game;
 
 	game = (t_game *)content;
@@ -112,7 +112,7 @@ void controls(void *content)
 		movement = move_left(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		movement = move_right(game);
-	if (movement)
+	if (movement == 1)
 		ft_printf("MOVES: %d\n", game->move_count);
-	collect_stuff(game);
+	//collect_stuff(game);
 }

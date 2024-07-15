@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/12 12:42:46 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/15 14:42:23 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ typedef struct s_game
 	struct s_textures *txts;
 	struct s_images *imgs;
 	struct s_player player;
+	int		texture_content;
+	int		image_content;
 	int 	width;
 	int 	height;
 	int 	collectables;
@@ -80,7 +82,7 @@ typedef struct s_game
 void	controls(void *content);
 void	flood_fill(t_game *game, int y, int x);
 int		*find_start(t_game *game);
-t_bool	check_path(t_game *game);
+int		check_path(t_game *game);
 void	reach_exit(t_game *game, int position_x, int position_y);
 void	delete_collected(t_game *game, int x, int y);
 void	collect_stuff(t_game *game);
@@ -92,10 +94,6 @@ void	*ft_realloc(void *old_ptr, size_t new_size);
 void	get_textures(t_game *game);
 void	get_images(t_game *game);
 void	add_graphics(t_game *game);
-int		check_walls_horizontal(t_game *game);
-int		check_walls_vertical(t_game *game);
-int		check_rectangular(t_game *game);
-int		check_count(t_game *game);
 void	map_checker(t_game *game);
 //void	add_line(t_game *game, char *line);
 void	map_reader(t_game *game, char **argv);

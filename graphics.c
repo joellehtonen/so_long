@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:35:53 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/11 11:39:41 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/15 14:13:13 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	get_textures(t_game *game)
 	game->txts->exit = mlx_load_png("textures/exit.png");
 	game->txts->player = mlx_load_png("textures/player.png");
 	game->txts->collect = mlx_load_png("textures/collect.png");
+	ft_printf("textures got\n");
 }
 
 void	get_images(t_game *game)
@@ -29,10 +30,12 @@ void	get_images(t_game *game)
 	game->imgs->exit = mlx_texture_to_image(game->mlx, game->txts->exit);
 	game->imgs->player = mlx_texture_to_image(game->mlx, game->txts->player);
 	game->imgs->collect = mlx_texture_to_image(game->mlx, game->txts->collect);
+	ft_printf("images got\n");
 	mlx_delete_texture(game->txts->wall);
 	mlx_delete_texture(game->txts->exit);
 	mlx_delete_texture(game->txts->player);
 	mlx_delete_texture(game->txts->collect);
+	ft_printf("textures deleted\n");
 }
 
 void	add_graphics(t_game *game)
@@ -42,10 +45,10 @@ void	add_graphics(t_game *game)
 
 	get_images(game);
 	y = 0;
-	while (y <= game->height)
+	while (y < game->height - 1)
 	{
 		x = 0;
-		while (x <= game->width)
+		while (x < game->width - 1)
 		{
 			// if (game->map[y][x] == '0')
 			// 	mlx_image_to_window(game->mlx, game->imgs->ground, x * 32, y * 32);
@@ -61,4 +64,5 @@ void	add_graphics(t_game *game)
 		}
 		y++;
 	}
+	ft_printf("graphics added\n");
 }

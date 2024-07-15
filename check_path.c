@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:11:05 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/11 10:14:00 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/15 14:03:55 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,26 +56,35 @@ int *find_start(t_game *game)
 	return (start);
 }
 
-t_bool check_path(t_game *game)
+int check_path(t_game *game)
 {
 	int *start;
 	int x;
 	int y;
 
+	ft_printf("inside check_path\n");
 	start = find_start(game);
 	flood_fill(game, start[0], start[1]);
+	int i = 0;
+	while (i < game->height)
+	{
+		ft_printf("%s", game->map[i]);
+	 	i++;
+	}
+	ft_printf("\n");
 	free(start);
 	y = 0;
-	while (game->map[y])
+	while (y < game->height - 1)
 	{
 		x = 0;
-		while (game->map[y][x])
+		while (x < game->width - 1)
 		{
-			if (game->map[y][x] == 'P' || game->map[y][x] == 'C' || game->map[y][x] == 'E')
-				return (FALSE);
+			if (game->map[y][x] == 'C' || game->map[y][x] == 'P' || game->map[y][x] == 'E')
+				return (0);
 			x++;
 		}
 		y++;
 	}
-	return (TRUE);
+	ft_printf("exiting check_path\n");
+	return (1);
 }
