@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:19:11 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/15 16:56:27 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/16 09:48:43 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	check_walls_horizontal(t_game *game)
 	y = 0;
 	while (x < game->width)
 	{
-		if (game->map[0][x] != '1')
+		if (game->map[y][x] != '1')
 			return (0);
 		x++;
 	}

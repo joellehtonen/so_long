@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:28:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/11 10:22:13 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/16 11:24:02 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_bool is_wall(t_game *game, int x, int y)
 {
-	if (game->map[x / TILE_SIZE][y / TILE_SIZE] == '1')
+	if (game->map[y / TILE_SIZE][x / TILE_SIZE] == '1')
 		return (TRUE);
 	else
 		return (FALSE);
@@ -22,7 +22,7 @@ t_bool is_wall(t_game *game, int x, int y)
 
 t_bool is_collectable(t_game *game, int x, int y)
 {
-	if (game->map[x / TILE_SIZE][y / TILE_SIZE] == 'c')
+	if (game->map[y / TILE_SIZE][x / TILE_SIZE] == 'c')
 		return (TRUE);
 	else
 		return (FALSE);
@@ -30,7 +30,7 @@ t_bool is_collectable(t_game *game, int x, int y)
 
 t_bool is_exit(t_game *game, int x, int y)
 {
-	if (game->map[x / TILE_SIZE][y / TILE_SIZE] == 'e')
+	if (game->map[y / TILE_SIZE][x / TILE_SIZE] == 'e')
 		return (TRUE);
 	else
 		return (FALSE);

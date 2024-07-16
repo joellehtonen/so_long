@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/15 16:53:28 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/16 11:36:25 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 //define error messages here
 
 # define TILE_SIZE 32
+# define MOVE_SIZE (TILE_SIZE * 0.9)
 
 typedef enum e_bool
 {

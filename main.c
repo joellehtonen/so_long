@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/15 16:55:37 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/16 11:50:29 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ void free_and_exit(t_game *game, int error)
 	int	i;
 
 	i = 0;
-	ft_printf("into free and exit\n");
+	ft_printf("FREEING AND EXITING\n");
 	//REMEMBER TO FREE THE LINES OF GNL!!
 	if (game->image_content == 1)
 		free(game->imgs);
-	while (i < game->height)
-	{
-		free(game->map[i]);
-		i++;
-	}
+	// while (game->map[i])
+	// {
+	// 	free(game->map[i]);
+	// 	i++;
+	// }
 	free(game->map);
 	//mlx_terminate(game->mlx); //THIS CAUSES SEGFAULT
 	if (error == 1)
@@ -59,11 +59,22 @@ int main(int argc, char **argv)
 	initialize_variables(&game);
 	map_reader(&game, argv);
 	map_checker(&game);
-	game.mlx = mlx_init(1024, 1024, "FOX", true);
+	game.mlx = mlx_init(512, 512, "FOX", true);
 	image = mlx_new_image(game.mlx, 1024, 1024); //start a window?
 	//game.window = mlx_new_window(game.mlx, *game->width, game->height, "FOX");
 	ft_memset(image->pixels, 50, image->width * image->height * sizeof(int32_t));
 	add_graphics(&game);
+	ft_printf("\n");
+	ft_printf("map: \n");
+	// PRINTING MAP
+	int i = 0;
+	while (i < game.height)
+	{
+		ft_printf("%s", game.map[i]);
+		i++;
+	}
+	ft_printf("\n");
+	// END PRINT
 	mlx_image_to_window(game.mlx, image, 0, 0);
 	//ft_printf("image to window done\n");
 	mlx_loop_hook(game.mlx, &controls, &game); //control input/output

@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:35:53 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/15 16:55:14 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/16 11:56:58 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	get_textures(t_game *game)
 {
 	game->txts = ft_calloc(1, sizeof(t_textures));
 	game->txts->wall = mlx_load_png("textures/wall.png");
-	game->txts->exit = mlx_load_png("textures/exit.png");
-	game->txts->player = mlx_load_png("textures/player.png");
-	game->txts->collect = mlx_load_png("textures/collect.png");
+	game->txts->exit = mlx_load_png("textures/exit_1.png");
+	game->txts->player = mlx_load_png("textures/fox.png");
+	game->txts->collect = mlx_load_png("textures/chicken.png");
 }
 
 void	get_images(t_game *game)
@@ -46,28 +46,19 @@ void	add_graphics(t_game *game)
 
 	get_images(game);
 	y = 0;
-	ft_printf("GRAPHICS: \n");
-	int i = 0;
-	while (i < game->height)
-	{
-	 	ft_printf("%s", game->map[i]);
-	  	i++;
-	}
 	ft_printf("\n");
 	while (y < game->height - 1)
 	{
 		x = 0;
-		while (x < game->width - 1)
+		while (x < game->width)
 		{
-			// if (game->map[y][x] == '0')
-			// 	mlx_image_to_window(game->mlx, game->imgs->ground, x * 32, y * 32);
 			if (game->map[y][x] == '1')
 				mlx_image_to_window(game->mlx, game->imgs->wall, x * TILE_SIZE, y * TILE_SIZE);
-			if (game->map[y][x] == 'e')
+			else if (game->map[y][x] == 'e')
 				mlx_image_to_window(game->mlx, game->imgs->exit, x * TILE_SIZE, y * TILE_SIZE);
-			if (game->map[y][x] == 'c')
+			else if (game->map[y][x] == 'c')
 				mlx_image_to_window(game->mlx, game->imgs->collect, x * TILE_SIZE, y * TILE_SIZE);
-			if (game->map[y][x] == 'p')
+			else if (game->map[y][x] == 'p')
 				mlx_image_to_window(game->mlx, game->imgs->player, x * TILE_SIZE, y * TILE_SIZE);
 			x++;
 		}
