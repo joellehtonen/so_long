@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:16:24 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/18 15:11:46 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/18 16:46:21 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void delete_collected(t_game *game, int x, int y)
 			game->imgs->collect->instances[i].enabled = false;
 			game->collectables--;
 			ft_printf("collectables left: %d\n", game->collectables);
+			break ;
 		}
 		i++;
 	}
@@ -65,6 +66,8 @@ void collect_stuff(t_game *game)
 
 	position_x = game->imgs->player->instances[0].x;
  	position_y = game->imgs->player->instances[0].y;
+	//ft_printf("%d\n", position_x);
+	//ft_printf("%d\n", position_y);
 	if (is_collectable(game, position_x, position_y) == TRUE)
 		delete_collected(game, position_x, position_y);
 	if (is_collectable(game, position_x + MOVE_SIZE, position_y) == TRUE)

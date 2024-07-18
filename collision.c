@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:28:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/16 11:24:02 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/18 16:53:16 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 t_bool is_wall(t_game *game, int x, int y)
 {
+	
 	if (game->map[y / TILE_SIZE][x / TILE_SIZE] == '1')
 		return (TRUE);
 	else
@@ -22,10 +23,36 @@ t_bool is_wall(t_game *game, int x, int y)
 
 t_bool is_collectable(t_game *game, int x, int y)
 {
-	if (game->map[y / TILE_SIZE][x / TILE_SIZE] == 'c')
-		return (TRUE);
-	else
-		return (FALSE);
+	t_box	collectable;
+	t_box	player;
+	int		i;
+	int		position_x;
+	int		position_y;
+
+	player = (t_box){x, y, MOVE_SIZE, MOVE_SIZE};
+	i = 0;
+	while (i < game->collectables)
+	{
+		if (game->imgs->collect->instances[i].enabled)
+		{
+			position_x = game->imgs->collect->instances[i].x;
+			position_y = game->imgs->collect->instances[i].y;
+			//ft_printf("%d\n", position_x);
+			//ft_printf("%d\n", position_y);
+			collectable = (t_box){position_x, position_y, TILE_SIZE, TILE_SIZE};
+			if (check_collision(player, collectable) == TRUE)
+			{
+				//ft_printf("COLLISION DETECTED\n");
+				return (TRUE);
+			}
+		}
+		i++;
+	}
+	return (FALSE);
+	// if (game->map[y / TILE_SIZE][x / TILE_SIZE] == 'c')
+	// 	return (TRUE);
+	// else
+	// 	return (FALSE);
 }
 
 t_bool is_exit(t_game *game, int x, int y)
