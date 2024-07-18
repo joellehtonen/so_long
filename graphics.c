@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:35:53 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/16 11:56:58 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/18 10:25:12 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	add_graphics(t_game *game)
 	get_images(game);
 	y = 0;
 	ft_printf("\n");
-	while (y < game->height - 1)
+	while (y < game->height)
 	{
 		x = 0;
 		while (x < game->width)
