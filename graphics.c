@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:35:53 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/18 10:25:12 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/18 13:49:31 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ void	get_textures(t_game *game)
 {
 	game->txts = ft_calloc(1, sizeof(t_textures));
 	game->txts->wall = mlx_load_png("textures/wall.png");
-	game->txts->exit = mlx_load_png("textures/exit_1.png");
+	game->txts->exit = mlx_load_png("textures/exit_yellow.png");
 	game->txts->player = mlx_load_png("textures/fox.png");
 	game->txts->collect = mlx_load_png("textures/chicken.png");
+	game->txts->ground = mlx_load_png("textures/green.png");
 }
 
 void	get_images(t_game *game)
@@ -29,14 +30,18 @@ void	get_images(t_game *game)
 	game->imgs->exit = mlx_texture_to_image(game->mlx, game->txts->exit);
 	game->imgs->player = mlx_texture_to_image(game->mlx, game->txts->player);
 	game->imgs->collect = mlx_texture_to_image(game->mlx, game->txts->collect);
+	game->imgs->ground = mlx_texture_to_image(game->mlx, game->txts->ground);
 	mlx_resize_image(game->imgs->wall, TILE_SIZE, TILE_SIZE);
 	mlx_resize_image(game->imgs->exit, TILE_SIZE, TILE_SIZE);
 	mlx_resize_image(game->imgs->player, TILE_SIZE, TILE_SIZE);
 	mlx_resize_image(game->imgs->collect, TILE_SIZE, TILE_SIZE);
+	mlx_resize_image(game->imgs->ground, TILE_SIZE * game->width, TILE_SIZE * game->height);
+	//mlx_resize_image(game->imgs->ground, TILE_SIZE, TILE_SIZE);
 	mlx_delete_texture(game->txts->wall);
 	mlx_delete_texture(game->txts->exit);
 	mlx_delete_texture(game->txts->player);
 	mlx_delete_texture(game->txts->collect);
+	mlx_delete_texture(game->txts->ground);
 }
 
 void	add_graphics(t_game *game)
@@ -46,12 +51,13 @@ void	add_graphics(t_game *game)
 
 	get_images(game);
 	y = 0;
-	ft_printf("\n");
+	mlx_image_to_window(game->mlx, game->imgs->ground, 0, 0);
 	while (y < game->height)
 	{
 		x = 0;
 		while (x < game->width)
 		{
+			//mlx_image_to_window(game->mlx, game->imgs->ground, x * TILE_SIZE, y * TILE_SIZE);
 			if (game->map[y][x] == '1')
 				mlx_image_to_window(game->mlx, game->imgs->wall, x * TILE_SIZE, y * TILE_SIZE);
 			else if (game->map[y][x] == 'e')

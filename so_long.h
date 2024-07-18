@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/16 11:36:25 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/18 13:53:28 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,14 @@ typedef struct s_images
 	mlx_image_t *exit;
 	mlx_image_t *player;
 	mlx_image_t *collect;
+	mlx_image_t *color;
 }	t_images;
 
 typedef struct s_game
 {
 	struct s_textures *txts;
 	struct s_images *imgs;
-	struct s_player player;
+	struct s_player *player;
 	int		texture_content;
 	int		image_content;
 	int 	width;

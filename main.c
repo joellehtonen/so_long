@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/18 10:26:19 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/18 12:05:01 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,11 @@ int main(int argc, char **argv)
 	map_reader(&game, argv);
 	map_checker(&game);
 	game.mlx = mlx_init(game.width * TILE_SIZE, game.height * TILE_SIZE, "FOX", true);
+	// if ((!game.mlx))
+	// 	free_and_exit(&game, 1);
 	image = mlx_new_image(game.mlx, game.width * TILE_SIZE, game.height * TILE_SIZE); //start a window?
 	//game.window = mlx_new_window(game.mlx, *game->width, game->height, "FOX");
-	ft_memset(image->pixels, 50, image->width * image->height * sizeof(int32_t));
+	//ft_memset(image->pixels, 150, image->width * image->height * 4);
 	add_graphics(&game);
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	//mlx_set_setting(MLX_MAXIMIZED, 1);
