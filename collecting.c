@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:16:24 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/18 13:56:28 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:11:46 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,20 @@ static void delete_collected(t_game *game, int x, int y)
 			game->imgs->collect->instances[i].enabled = false;
 			game->collectables--;
 			ft_printf("collectables left: %d\n", game->collectables);
-			if (game->collectables == 0)
-			{
-				game->imgs->exit_ready->instances[i].enabled == true;
-			}
-			return ;
 		}
 		i++;
 	}
+	if (game->collectables == 1)
+	{
+		game->imgs->exit->instances[0].enabled = false;
+		//game->imgs->exit_almost->instances[0].enabled = true;
+	}
+	if (game->collectables == 0)
+	{
+		game->imgs->exit_almost->instances[0].enabled = false;
+		//game->imgs->exit_ready->instances[0].enabled = true;
+	}
+	return ;
 }
 
 void collect_stuff(t_game *game)
@@ -62,10 +68,10 @@ void collect_stuff(t_game *game)
 	if (is_collectable(game, position_x, position_y) == TRUE)
 		delete_collected(game, position_x, position_y);
 	if (is_collectable(game, position_x + MOVE_SIZE, position_y) == TRUE)
-		delete_collected(game, position_x + TILE_SIZE, position_y);
+		delete_collected(game, position_x + MOVE_SIZE, position_y);
 	if (is_collectable(game, position_x, position_y + MOVE_SIZE) == TRUE)
-		delete_collected(game, position_x, position_y + TILE_SIZE);
+		delete_collected(game, position_x, position_y + MOVE_SIZE);
 	if (is_collectable(game, position_x + MOVE_SIZE, position_y + MOVE_SIZE) == TRUE)
-		delete_collected(game, position_x + TILE_SIZE, position_y + TILE_SIZE);
+		delete_collected(game, position_x + MOVE_SIZE, position_y + MOVE_SIZE);
 	reach_exit(game, position_x, position_y);
 }
