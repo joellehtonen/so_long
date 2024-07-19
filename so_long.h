@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/18 16:25:08 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/19 12:17:04 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_game
 	int 	width;
 	int 	height;
 	int 	collectables;
+	int		collected;
 	int		exit;
 	int		start;
 	int		move_count;
@@ -91,8 +92,8 @@ int		*find_start(t_game *game);
 int		check_path(t_game *game);
 void	collect_stuff(t_game *game);
 t_bool	is_wall(t_game *game, int x, int y);
-t_bool	is_collectable(t_game *game, int x, int y);
-t_bool	is_exit(t_game *game, int x, int y);
+void	is_collectable(t_game *game, int x, int y);
+void	is_exit(t_game *game, int x, int y);
 t_bool	check_collision(t_box a, t_box b);
 void	*ft_realloc(void *old_ptr, size_t new_size);
 void	get_textures(t_game *game);

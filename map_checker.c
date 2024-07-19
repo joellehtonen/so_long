@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:19:11 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/16 09:48:43 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/19 11:41:50 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static int	check_walls_horizontal(t_game *game)
 			return (0);
 		x++;
 	}
+	ft_printf("horizontal walls\n");
 	return (1);
 }
 
@@ -57,6 +58,7 @@ static int	check_walls_vertical(t_game *game)
 			return (0);
 		y++;
 	}
+	ft_printf("vertical walls\n");
 	return (1);
 }
 
@@ -75,6 +77,7 @@ static int check_rectangular(t_game *game)
 			return (0);
 		y++;
 	}
+	ft_printf("rectangle squared\n");
 	return (1);
 }
 
@@ -102,7 +105,10 @@ static int	check_count(t_game *game)
 	if  (game->exit != 1 || game->start != 1 || game->collectables == 0)
 		return (0);
 	else
+	{
+		ft_printf("counts counted\n");
 		return (1);
+	}
 }
 
 void map_checker(t_game *game)

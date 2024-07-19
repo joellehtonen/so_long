@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:04 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/18 15:34:35 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/19 12:17:23 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ void controls(void *content)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		movement = move_right(game);
 	if (movement == 1)
+	{
 		ft_printf("MOVES: %d\n", game->move_count);
-	collect_stuff(game);
+		collect_stuff(game);
+	}
 }

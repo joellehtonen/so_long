@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:35:53 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/18 17:00:27 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/19 11:49:13 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	get_textures(t_game *game)
 	game->txts->player = mlx_load_png("textures/fox.png");
 	game->txts->collect = mlx_load_png("textures/chicken.png");
 	game->txts->ground = mlx_load_png("textures/green.png");
+	ft_printf("textures got\n");
 }
 
 void	get_images(t_game *game)
@@ -50,6 +51,7 @@ void	get_images(t_game *game)
 	mlx_delete_texture(game->txts->player);
 	mlx_delete_texture(game->txts->collect);
 	mlx_delete_texture(game->txts->ground);
+	ft_printf("images got\n");
 }
 
 void	add_graphics(t_game *game)

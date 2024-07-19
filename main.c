@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/18 14:12:02 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/19 11:57:01 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void initialize_variables(t_game *game)
 	game->width = 0;
 	game->height = 0;
 	game->collectables = 0;
+	game->collected = 0;
 	game->exit = 0;
 	game->start = 0;
 	game->move_count = 0;
@@ -58,12 +59,17 @@ int main(int argc, char **argv)
 		return (0);
 	initialize_variables(&game);
 	map_reader(&game, argv);
+	ft_printf("map read\n");
 	map_checker(&game);
+	ft_printf("map checked\n");
 	game.mlx = mlx_init(game.width * TILE_SIZE, game.height * TILE_SIZE, "FOX", true);
+	ft_printf("mlx\n");
 	// if ((!game.mlx))
 	// 	free_and_exit(&game, 1);
-	image = mlx_new_image(game.mlx, game.width * TILE_SIZE, game.height * TILE_SIZE); //start a window?
+	image = mlx_new_image(game.mlx, game.width * TILE_SIZE, game.height * TILE_SIZE);
+	ft_printf("new image\n");
 	add_graphics(&game);
+	ft_printf("graphics added\n");
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	//mlx_set_setting(MLX_MAXIMIZED, 1);
 	//mlx_set_setting(MLX_DECORATED, 0);

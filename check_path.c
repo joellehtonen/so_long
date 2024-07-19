@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:11:05 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/16 09:21:03 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/19 11:42:19 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,6 @@ int check_path(t_game *game)
 		}
 		y++;
 	}
+	ft_printf("path checked\n");
 	return (1);
 }

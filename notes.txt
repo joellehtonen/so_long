@@ -17,7 +17,9 @@ segfaults when returning from map_checker functions
 
 ESC causes some issues
 
-resizing missing
+move_count updates but doesnt display if pressing 2 keys and hitting wall in one direction
+
+DONE resizing missing
 
 
     mlx_init: Initialises the MLX library. Must be called before using any other functions.
