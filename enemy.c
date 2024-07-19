@@ -6,44 +6,57 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:13:17 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/19 13:56:25 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:02:06 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void enemy_collision(t_game *game, t_box enemy)
+static void enemy_collision(t_game *game, t_box enemy)
 {
+	t_box	player;
+
+	player = (t_box){game->player->x, game->player->y, TILE_SIZE, TILE_SIZE};
+	// if (is_wall(game, game->enemy->x, game->enemy->y) == TRUE) //probably not extensive enough
 	if (check_collision(player, enemy) == TRUE)
-	{
-		if (game->collected == game->collectables)
-			free_and_exit(game, 0);
-	}
+		free_and_exit(game, 0);
 }
 
-void	chase_player(t_game *game)
+static void	chase_player(t_game *game)
 {
 	t_box	enemy;
-	t_box	player;
-	
-	if (game->player->x > game->enemy->x && (game->imgs->enemy->instances[0].enabled = true))
-		game->enemy->x += 6;
-    if (game->player->x < game->enemy->x && (game->imgs->enemy->instances[0].enabled = true))
-		game->enemy->x -= 6;
-    if (game->player->y > game->enemy->y && (game->imgs->enemy->instances[0].enabled = true))
-		game->enemy->y += 6;
-    if (game->player->y < game->enemy->y && (game->imgs->enemy->instances[0].enabled = true))
-		game->enemy->y -= 6;
+
+	if (game->player->x > game->enemy->x)
+		game->enemy->x += 4;
+	if (game->player->x < game->enemy->x)
+		game->enemy->x -= 4;
+	if (game->player->y > game->enemy->y)
+		game->enemy->y += 4;
+	if (game->player->y < game->enemy->y)
+		game->enemy->y -= 4;
 	enemy = (t_box){game->enemy->x, game->enemy->y, TILE_SIZE, TILE_SIZE};
 	enemy_collision(game, enemy);
 }
 
-void	spawn_enemy(t_game *game)
+void	enemy_appears(t_game *game)
 {
-	int time;
+	double time;
 	
-	time = mlx_get_time;
-	if (time = 3)
+	time = mlx_get_time();
+	if (time == 4)
+	{
 		game->imgs->enemy->instances[0].enabled = true;
-	chase_player(game);
+		game->enemy->active = 1;
+	}
+	if (game->enemy->active == 1)
+		chase_player(game);
+}
+
+void	ready_enemy(t_game *game, int x, int y)
+{
+	game->player->x = x * TILE_SIZE;
+	game->player->y = y * TILE_SIZE;
+	game->enemy->x = game->player->x;
+	game->enemy->y = game->player->y;
+	game->imgs->enemy->instances[0].enabled = false;
 }

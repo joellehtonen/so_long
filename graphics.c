@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:35:53 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/19 13:46:04 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:58:15 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	get_textures(t_game *game)
 	game->txts->collect = mlx_load_png("textures/chicken.png");
 	game->txts->ground = mlx_load_png("textures/green.png");
 	game->txts->enemy = mlx_load_png("textures/enemy.png");
+	ft_printf("textures got\n");
 }
 
 void	get_images(t_game *game)
@@ -50,6 +51,7 @@ void	get_images(t_game *game)
 	mlx_delete_texture(game->txts->collect);
 	mlx_delete_texture(game->txts->ground);
 	mlx_delete_texture(game->txts->enemy);
+	ft_printf("images got\n");
 }
 
 void	add_graphics(t_game *game)
@@ -79,14 +81,12 @@ void	add_graphics(t_game *game)
 			{
 				mlx_image_to_window(game->mlx, game->imgs->player, x * TILE_SIZE, y * TILE_SIZE);
 				mlx_image_to_window(game->mlx, game->imgs->enemy, x * TILE_SIZE, y * TILE_SIZE);
-				game->player->x = game->imgs->player->instances[0].x;
-				game->player->y = game->imgs->player->instances[0].y;
-				game->enemy->x = game->imgs->player->instances[0].x;
-				game->enemy->y = game->imgs->player->instances[0].y;
-				game->imgs->enemy->instances[0].enabled = false;
+				ready_enemy(game, x, y);
 			}
 			x++;
+			ft_printf("x is %d\n", x);
 		}
 		y++;
+		ft_printf("y is %d\n", y);
 	}
 }

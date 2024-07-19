@@ -1,27 +1,21 @@
-DONE flood fill to check if map is invalid (if you can reach exit and all the collectibles)
-
 reset button to reset the game?
 
 could the game crash if move_count goes above int_max?
 
-after checking the map, blow it out by multiplying it by 32. 
-that way you can move smoothly with +- 5 increments
-- add limit that the map doesnt expand too much (more than screen size)
-
-probably no need for player_box. just x and y coordinates and add TILE_SIZE to get the other side
-maybe remove ghost box too? or at least TILE_SIZE from it
+add limit that the map doesnt expand too much (more than screen size)
 
 checker to check if input characters are valid
-
-segfaults when returning from map_checker functions
-
-ESC causes some issues
 
 move_count updates but doesnt display if pressing 2 keys and hitting wall in one direction
 
 refactor x and y coordinates of player (since its now stored in a struct)
 
-DONE resizing missing
+add different walls and way to randomize between them
+
+make different error messages
+
+
+
 
 
     mlx_init: Initialises the MLX library. Must be called before using any other functions.

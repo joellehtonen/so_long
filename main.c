@@ -6,13 +6,13 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/19 11:57:01 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:13:57 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void free_and_exit(t_game *game, int error)
+void	free_and_exit(t_game *game, int error)
 {
 	int	i;
 
@@ -36,7 +36,7 @@ void free_and_exit(t_game *game, int error)
 	exit(0);
 }
 
-void initialize_variables(t_game *game)
+void	initialize_variables(t_game *game)
 {
 	game->width = 0;
 	game->height = 0;
@@ -46,8 +46,15 @@ void initialize_variables(t_game *game)
 	game->start = 0;
 	game->move_count = 0;
 	game->map = NULL;
-	game->texture_content = 0;
 	game->image_content = 0;
+	game->enemy->active = 0;
+}
+
+void	initialize_game(t_game *game)
+{
+	game->player = ft_calloc(1, sizeof(t_player));
+	game->enemy = ft_calloc(1, sizeof(t_enemy));
+	initialize_variables(game);
 }
 
 int main(int argc, char **argv)
@@ -57,7 +64,8 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 		return (0);
-	initialize_variables(&game);
+	initialize_game(&game);
+	ft_printf("variables ready\n");
 	map_reader(&game, argv);
 	ft_printf("map read\n");
 	map_checker(&game);

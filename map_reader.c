@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:57:03 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/19 11:53:10 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:29:38 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,13 @@ void map_reader(t_game *game, char **argv)
 		game->height++;
 	}
 	close(fd);
-	// //FOR PRINTING THE MAP
-	// ft_printf("\n");
-	// ft_printf("map: \n");
-	// int i = 0;
-	// while (i < game->height)
-	// {
-	// 	ft_printf("%s", game->map[i]);
-	// 	i++;
-	// }
-	// ft_printf("\n");
+	//FOR PRINTING THE MAP
+	ft_printf("map: \n");
+	int i = 0;
+	while (i < game->height)
+	{
+		ft_printf("%s", game->map[i]);
+		i++;
+	}
+	ft_printf("\n");
 }

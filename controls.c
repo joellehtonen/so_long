@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:04 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/19 13:26:20 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:45:56 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,5 @@ void controls(void *content)
 		ft_printf("MOVES: %d\n", game->move_count);
 		collect_stuff(game);
 	}
-	spawn_enemy(game);
+	enemy_appears(game);
 }

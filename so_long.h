@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/19 13:44:24 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:13:15 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_enemy
 {
 	int	x;
 	int	y;
+	int active;
 	//add animation here?
 }	t_enemy;
 
@@ -103,8 +104,8 @@ int		*find_start(t_game *game);
 int		check_path(t_game *game);
 void	collect_stuff(t_game *game);
 t_bool	is_wall(t_game *game, int x, int y);
-void	is_collectable(t_game *game, t_box player, int x, int y);
-void	is_exit(t_game *game, t_box player, int x, int y);
+void	collectable_collision(t_game *game, t_box player, int x, int y);
+void	exit_collision(t_game *game, t_box player, int x, int y);
 t_bool	check_collision(t_box a, t_box b);
 void	*ft_realloc(void *old_ptr, size_t new_size);
 void	get_textures(t_game *game);
@@ -113,6 +114,9 @@ void	add_graphics(t_game *game);
 void	map_checker(t_game *game);
 void	map_reader(t_game *game, char **argv);
 void	initialize_variables(t_game *game);
+void	initialize_game(t_game *game);
 void 	free_and_exit(t_game *game, int error);
+void	ready_enemy(t_game *game, int x, int y);
+void	enemy_appears(t_game *game);
 
 #endif

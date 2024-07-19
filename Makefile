@@ -15,7 +15,8 @@ SRCS 		= main.c \
 				ft_realloc.c \
 				graphics.c \
 				map_checker.c \
-				map_reader.c
+				map_reader.c \
+				enemy.c
 OBJS		= $(SRCS:.c=.o)
 
 GREEN    	= \033[1;32m
