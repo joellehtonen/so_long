@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:04 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/19 12:17:23 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/19 13:26:20 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static int	move_up(t_game *game)
 		&& is_wall(game, ghost_box.x + MOVE_SIZE, ghost_box.y) == FALSE)
 	{
 		game->imgs->player->instances[0].y -= 4;
+		game->player->y -= 4;
 		game->move_count++;
 		// update animation
 		return (1);
@@ -46,6 +47,7 @@ static int	move_down(t_game *game)
 		&& is_wall(game, ghost_box.x + MOVE_SIZE, ghost_box.y + MOVE_SIZE) == FALSE)
 	{
 		game->imgs->player->instances[0].y += 4;
+		game->player->y += 4;
 		game->move_count++;
 		//update animation
 		return (1);
@@ -67,6 +69,7 @@ static int	move_left(t_game *game)
 		&& is_wall(game, ghost_box.x, ghost_box.y + MOVE_SIZE) == FALSE)
 	{
 		game->imgs->player->instances[0].x -= 4;
+		game->player->x -= 4;
 		game->move_count++;
 		//update animation
 		return (1);
@@ -88,6 +91,7 @@ static int	move_right(t_game *game)
 		&& is_wall(game, ghost_box.x + MOVE_SIZE, ghost_box.y + MOVE_SIZE) == FALSE)
 	{
 		game->imgs->player->instances[0].x += 4;
+		game->player->x += 4;
 		game->move_count++;
 		//update animation
 		return (1);
@@ -117,4 +121,5 @@ void controls(void *content)
 		ft_printf("MOVES: %d\n", game->move_count);
 		collect_stuff(game);
 	}
+	spawn_enemy(game);
 }

@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/19 12:17:04 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/19 13:44:24 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,17 @@ typedef struct s_box
 	int height;
 }	t_box;
 
+typedef struct s_enemy
+{
+	int	x;
+	int	y;
+	//add animation here?
+}	t_enemy;
+
 typedef struct s_player
 {
+	int	x;
+	int y;
 	//add animation here?
 }	t_player;
 
@@ -54,6 +63,7 @@ typedef struct s_textures
 	mlx_texture_t *exit_ready;
 	mlx_texture_t *player;
 	mlx_texture_t *collect;
+	mlx_texture_t *enemy;
 }	t_textures;
 
 typedef struct s_images
@@ -65,7 +75,7 @@ typedef struct s_images
 	mlx_image_t *exit_ready;
 	mlx_image_t *player;
 	mlx_image_t *collect;
-	mlx_image_t *color;
+	mlx_image_t *enemy;
 }	t_images;
 
 typedef struct s_game
@@ -73,6 +83,7 @@ typedef struct s_game
 	struct s_textures *txts;
 	struct s_images *imgs;
 	struct s_player *player;
+	struct s_enemy *enemy;
 	int		texture_content;
 	int		image_content;
 	int 	width;
@@ -92,8 +103,8 @@ int		*find_start(t_game *game);
 int		check_path(t_game *game);
 void	collect_stuff(t_game *game);
 t_bool	is_wall(t_game *game, int x, int y);
-void	is_collectable(t_game *game, int x, int y);
-void	is_exit(t_game *game, int x, int y);
+void	is_collectable(t_game *game, t_box player, int x, int y);
+void	is_exit(t_game *game, t_box player, int x, int y);
 t_bool	check_collision(t_box a, t_box b);
 void	*ft_realloc(void *old_ptr, size_t new_size);
 void	get_textures(t_game *game);

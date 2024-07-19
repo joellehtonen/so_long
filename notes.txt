@@ -19,6 +19,8 @@ ESC causes some issues
 
 move_count updates but doesnt display if pressing 2 keys and hitting wall in one direction
 
+refactor x and y coordinates of player (since its now stored in a struct)
+
 DONE resizing missing
 
 
