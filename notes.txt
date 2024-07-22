@@ -20,6 +20,9 @@ possible leak if player clicks on x in window
 
 enemy "dies" if it hits wall?
 
+add a check in case image loading fails
+
+make a program that flips the images when left was the last key that was pressed
 
 
 

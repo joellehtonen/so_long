@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/22 10:53:37 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/22 14:30:21 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ typedef enum e_bool
 	FALSE = 0
 }	t_bool;
 
+typedef	struct 
+{
+	
+};
+
+
 typedef struct s_box
 {	
 	int x;
@@ -40,54 +46,66 @@ typedef struct s_box
 	int height;
 }	t_box;
 
+typedef struct s_chicken
+{
+	t_images_animation *animate;
+}	t_chicken;
+
 typedef struct s_enemy
 {
 	int	x;
 	int	y;
 	int active;
-	//add animation here?
+	t_images_animation *animate;
 }	t_enemy;
 
 typedef struct s_player
 {
 	int	x;
 	int y;
-	//add animation here?
+	t_images_animation *animate;
 }	t_player;
 
-typedef struct s_textures
+typedef struct s_images_animation
 {
-	mlx_texture_t *ground;
-	mlx_texture_t *wall;
-	mlx_texture_t *exit;
-	mlx_texture_t *exit_ready;
-	mlx_texture_t *player;
-	mlx_texture_t *collect;
-	mlx_texture_t *enemy;
-}	t_textures;
+	mlx_image_t **images_animation;
+}	t_images_animation;
+
+typedef struct s_images_world
+{
+	mlx_image_t **images_world;
+}	t_images_world;
+
+// typedef struct s_textures
+// {
+// 	mlx_texture_t *ground;
+// 	mlx_texture_t *wall;
+// 	mlx_texture_t *exit;
+// 	mlx_texture_t *exit_ready;
+// 	mlx_texture_t *player;
+// 	mlx_texture_t *collect;
+// 	mlx_texture_t *enemy;
+// }	t_textures;
 
 // typedef struct s_images
 // {
-// 	mlx_image_t **images;
+// 	mlx_image_t *ground;
+// 	mlx_image_t *wall;
+// 	mlx_image_t *exit;
+// 	mlx_image_t *exit_ready;
+// 	mlx_image_t *player;
+// 	mlx_image_t *collect;
+// 	mlx_image_t *enemy;
 // }	t_images;
-
-typedef struct s_images
-{
-	mlx_image_t *ground;
-	mlx_image_t *wall;
-	mlx_image_t *exit;
-	mlx_image_t *exit_ready;
-	mlx_image_t *player;
-	mlx_image_t *collect;
-	mlx_image_t *enemy;
-}	t_images;
 
 typedef struct s_game
 {
-	struct s_textures *txts;
-	struct s_images *imgs;
+	//struct s_textures *txts;
+	struct s_images_world *world;
+	struct s_images_animation *animation;
 	struct s_player *player;
 	struct s_enemy *enemy;
+	struct s_chicken *chicken;
 	int		texture_content;
 	int		image_content;
 	int 	width;

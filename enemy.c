@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:13:17 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/22 12:18:23 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/22 15:16:59 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,5 @@ void	ready_enemy(t_game *game, int x, int y)
 	game->player->y = y * TILE_SIZE;
 	game->enemy->x = game->player->x;
 	game->enemy->y = game->player->y;
-	game->imgs->enemy->instances[0].enabled = false;
+	game->animation->images_animation[12]->instances[0].enabled = false;
 }
