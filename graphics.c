@@ -6,18 +6,49 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:35:53 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/19 15:58:15 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/22 10:58:51 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+// void get_images(t_game *game, const char **textures_world, const char **textures_animation)
+// {
+// 	int	i;
+// 	int images_world;
+// 	int	images_animation;
+// 	int images_total;
+// 	mlx_texture_t *texture;
+
+// 	images_world = sizeof(textures_world) / sizeof(const char *);
+// 	images_animation = sizeof(textures_animation) / sizeof(const char *);
+// 	images_total = images_world + images_animation;
+// 	game->imgs = malloc(sizeof(t_images) * images_total);
+// 	if (!game->imgs)
+// 	{
+// 		perror("FAILED TO ALLOCATE MEMORY FOR IMAGES\n");
+// 		exit(1);
+// 	}
+// 	i = 0;
+// 	while (i < images_world)
+// 	{
+// 		texture = mlx_load_png(textures_world[i]);
+// 		game->imgs->images[i] = mlx_texture_to_image(game->mlx, texture);
+// 		mlx_delete_texture(texture);
+// 	}
+// }
+
+// void resize_images()
+// {
+	
+// }
+
 void	get_textures(t_game *game)
 {
 	game->txts = ft_calloc(1, sizeof(t_textures));
-	game->txts->wall = mlx_load_png("textures/wall.png");
+	game->txts->wall = mlx_load_png("textures/wall_1.png");
 	game->txts->exit = mlx_load_png("textures/exit_yellow.png");
-	game->txts->exit_ready = mlx_load_png("textures/exit_kinda_green.png");
+	game->txts->exit_ready = mlx_load_png("textures/exit_green-ish.png");
 	game->txts->player = mlx_load_png("textures/fox.png");
 	game->txts->collect = mlx_load_png("textures/chicken.png");
 	game->txts->ground = mlx_load_png("textures/green.png");
@@ -84,9 +115,7 @@ void	add_graphics(t_game *game)
 				ready_enemy(game, x, y);
 			}
 			x++;
-			ft_printf("x is %d\n", x);
 		}
 		y++;
-		ft_printf("y is %d\n", y);
 	}
 }
