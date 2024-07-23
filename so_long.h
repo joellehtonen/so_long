@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/23 10:57:45 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/23 12:04:04 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <fcntl.h>
+# include <stdio.h>
 
 //define error messages here
 
@@ -117,8 +118,16 @@ void	collectable_collision(t_game *game, t_box player, int x, int y);
 void	exit_collision(t_game *game, t_box player, int x, int y);
 t_bool	check_collision(t_box a, t_box b);
 void	*ft_realloc(void *old_ptr, size_t new_size);
-void	get_textures(t_game *game);
-void	get_images(t_game *game);
+const char *textures_world(void);
+const char *textures_chicken(void);
+const char *textures_fox(void);
+const char *textures_dog(void);
+void	get_images_dog(t_game *game, const char *textures_dog);
+void 	get_images_fox(t_game *game, const char *textures_fox);
+void 	get_images_chicken(t_game *game, const char *textures_chicken);
+void	get_images_world(t_game *game, const char **textures_world);
+void	insert_images_to_map(t_game *game, int x, int y);
+void 	wall_randomizer(t_game *game, int x, int y);
 void	add_graphics(t_game *game);
 void	map_checker(t_game *game);
 void	map_reader(t_game *game, char **argv);
@@ -127,5 +136,6 @@ void	initialize_game(t_game *game);
 void 	free_and_exit(t_game *game, int error);
 void	ready_enemy(t_game *game, int x, int y);
 void	enemy_appears(t_game *game);
+int 	idle_animation(t_game *game);
 
 #endif

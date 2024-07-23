@@ -6,13 +6,13 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:17:27 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/23 11:06:45 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/23 12:03:54 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void get_images_animation_chicken(t_game *game, const char *textures_chicken)
+void get_images_chicken(t_game *game, const char *textures_chicken)
 {
 	int animation_count;
 	mlx_texture_t *texture;
@@ -35,7 +35,7 @@ void get_images_animation_chicken(t_game *game, const char *textures_chicken)
 	}
 }
 
-void get_images_animation_fox(t_game *game, const char *textures_fox)
+void get_images_fox(t_game *game, const char *textures_fox)
 {
 	int animation_count;
 	mlx_texture_t *texture;
@@ -58,7 +58,7 @@ void get_images_animation_fox(t_game *game, const char *textures_fox)
 	}
 }
 
-void get_images_animation_dog(t_game *game, const char *textures_dog)
+void get_images_dog(t_game *game, const char *textures_dog)
 {
 	int animation_count;
 	mlx_texture_t *texture;

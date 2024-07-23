@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:35:53 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/23 11:43:46 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/23 12:05:21 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void get_images_world(t_game *game, const char **textures_world)
 
 void	insert_images_to_map(t_game *game, int x, int y)
 {
-	y = 0;
 	while (y < game->height)
 	{
 		x = 0;
@@ -105,11 +104,14 @@ void	add_graphics(t_game *game)
 {
 	int x;
 	int y;
-	
-	get_images_world(game, texture_names_world());
+
+	x = 0;
+	y = 0;
+	get_images_world(game, textures_world());
+	game->image_content = 1;
 	get_images_chicken(game, textures_chicken());
 	get_images_fox(game, textures_fox());
-	get_images_dog(game, texture_dog());
+	get_images_dog(game, textures_dog());
 	resize_images(game);
 	mlx_image_to_window(game->mlx, game->world->world[0], 0, 0);
 	insert_images_to_map(game, x, y);

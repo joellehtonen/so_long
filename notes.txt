@@ -24,6 +24,8 @@ add a check in case image loading fails
 
 make a program that flips the images when left was the last key that was pressed
 
+do textures need to be static?
+
 
 
 

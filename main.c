@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/23 10:57:52 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:49:08 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,16 @@ void	free_and_exit(t_game *game, int error)
 	ft_printf("FREEING AND EXITING\n");
 	//REMEMBER TO FREE THE LINES OF GNL!!
 	if (game->image_content == 1)
-		free(game->imgs);
+	{
+		while (i++ < 7)
+			free(game->world->world[i]);
+		while (i++ < 4)
+			free(game->chicken->animation[i]);
+		while (i++ < 8)
+			free(game->player->animation[i]);
+		while (i++ < 9)
+			free(game->enemy->animation[i]);
+	}
 	// while (game->map[i])
 	// {
 	// 	free(game->map[i]);

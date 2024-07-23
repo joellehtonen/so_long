@@ -6,13 +6,13 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:41:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/22 15:10:12 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:53:53 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-unsigned int lcg_randomizer(unsigned int seed)
+static unsigned int lcg_randomizer(unsigned int seed)
 {
 	unsigned int a;
     unsigned int c;
@@ -25,7 +25,7 @@ unsigned int lcg_randomizer(unsigned int seed)
 	return ((a * seed + c) & m);
 }
 
-unsigned int get_random_index(unsigned int *seed)
+static unsigned int get_random_index(unsigned int *seed)
 {
 	*seed = lgc_randomizer(*seed);
 	return ((*seed % 4) + 1);
@@ -37,5 +37,5 @@ void wall_randomizer(t_game *game, int x, int y)
 	unsigned int random_index;
 
 	random_index = get_random_index(&value);
-	mlx_image_to_window(game->mlx, game->world->images_world[random_index], x * TILE_SIZE, y * TILE_SIZE);
+	mlx_image_to_window(game->mlx, game->world->world[random_index], x * TILE_SIZE, y * TILE_SIZE);
 }
