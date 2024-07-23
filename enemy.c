@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:13:17 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/23 11:53:31 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:35:40 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ static void enemy_collision(t_game *game, t_box enemy)
 		|| is_wall(game, game->enemy->x + TILE_SIZE, game->enemy->y + TILE_SIZE) == TRUE)
 	
 	{
-		game->enemy->animation = 7;
-		game->enemy->animation = 8;
+		//game->enemy->animation[] = 7;
+		//game->enemy->animation[] = 8;
+		//game->enemy->frame = 7;
 		game->enemy->active = 0;
 		
 	}
@@ -39,25 +40,27 @@ static void enemy_collision(t_game *game, t_box enemy)
 static void	chase_player(t_game *game)
 {
 	t_box	enemy;
+	int 	frame;
 
+	frame = game->enemy->frame;
 	if (game->player->x > game->enemy->x)
 	{
-		game->enemy->animation[0]->instances[0].x += 4;
+		game->enemy->animation[frame]->instances[0].x += 4;
 		game->enemy->x += 4;
 	}
 	if (game->player->x < game->enemy->x)
 	{
-		game->enemy->animation[0]->instances[0].x -= 4;
+		game->enemy->animation[frame]->instances[0].x -= 4;
 		game->enemy->x -= 4;
 	}
 	if (game->player->y > game->enemy->y)
 	{
-		game->enemy->animation[0]->instances[0].y += 4;
+		game->enemy->animation[frame]->instances[0].y += 4;
 		game->enemy->y += 4;
 	}
 	if (game->player->y < game->enemy->y)
 	{
-		game->enemy->animation[0]->instances[0].y -= 4;
+		game->enemy->animation[frame]->instances[0].y -= 4;
 		game->enemy->y -= 4;
 	}
 	enemy = (t_box){game->enemy->x, game->enemy->y, TILE_SIZE, TILE_SIZE};

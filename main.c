@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/23 11:49:08 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:44:07 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	free_and_exit(t_game *game, int error)
 	if (game->image_content == 1)
 	{
 		while (i++ < 7)
-			free(game->world->world[i]);
+			free(game->world->image[i]);
 		while (i++ < 4)
 			free(game->chicken->animation[i]);
 		while (i++ < 8)
@@ -58,6 +58,8 @@ void	initialize_variables(t_game *game)
 	game->image_content = 0;
 	game->enemy->active = 0;
 	game->frame = 0;
+	game->player->frame = 0;
+	game->enemy->frame = 0;
 }
 
 void	initialize_game(t_game *game)
@@ -72,7 +74,7 @@ int main(int argc, char **argv)
 	t_game 		game;
 	mlx_image_t *image;
 
-	if (argc != 2)
+	if (argc > 3)
 		return (0);
 	initialize_game(&game);
 	ft_printf("variables ready\n");
@@ -88,6 +90,7 @@ int main(int argc, char **argv)
 	ft_printf("new image\n");
 	add_graphics(&game);
 	ft_printf("graphics added\n");
+	
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	//mlx_set_setting(MLX_MAXIMIZED, 1);
 	//mlx_set_setting(MLX_DECORATED, 0);

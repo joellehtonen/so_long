@@ -6,70 +6,44 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:35:53 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/23 12:05:21 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:27:58 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void resize_images(t_game *game)
-{
-	int i;
-	int world_count;
-	int animation_count;
-	
-	world_count = sizeof(game->world) / sizeof(const char *);
-	mlx_resize_image(game->world->world[0], TILE_SIZE * game->width, TILE_SIZE * game->height);
-	i = 1;
-	while (i < world_count)
-	{
-		mlx_resize_image(game->world->world[i], TILE_SIZE, TILE_SIZE);
-		i++;
-	}
-	i = 0;
-	animation_count = sizeof(game->chicken) / sizeof(const char *);
-	while (i < animation_count)
-	{
-		mlx_resize_image(game->chicken->animation[i], TILE_SIZE, TILE_SIZE);
-		i++;
-	}
-	i = 0;
-	animation_count = sizeof(game->player) / sizeof(const char *);
-	while (i < animation_count)
-	{
-		mlx_resize_image(game->player->animation[i], TILE_SIZE * 1.5, TILE_SIZE);
-		i++;
-	}
-		i = 0;
-	animation_count = sizeof(game->enemy) / sizeof(const char *);
-	while (i < animation_count)
-	{
-		mlx_resize_image(game->enemy->animation[i], TILE_SIZE * 1.5, TILE_SIZE);
-		i++;
-	}
-}
-
 void get_images_world(t_game *game, const char **textures_world)
 {
 	int	i;
-	int world_count;
+	int sprite_count;
 	mlx_texture_t *texture;
 
-	world_count = sizeof(textures_world) / sizeof(const char *);
-	game->world = malloc(sizeof(t_world) * world_count);
+	sprite_count = 0;
+	while(textures_world[sprite_count])
+		sprite_count++;
+	game->world = malloc(sizeof(t_world)); 
 	if (game->world == NULL)
 	{
-		perror("FAILED TO ALLOCATE MEMORY FOR WORLD IMAGES\n");
+		//error message
+		free(game->enemy);
+		exit(1);
+	}
+	game->world->image = malloc(sizeof(mlx_image_t *) * sprite_count);
+	if (game->world->image == NULL)
+	{
+		//error message
+		//remember to free
 		exit(1);
 	}
 	i = 0;
-	while (i < world_count)
+	while (i < sprite_count)
 	{
 		texture = mlx_load_png(textures_world[i]);
-		game->world->world[i] = mlx_texture_to_image(game->mlx, texture);
+		game->world->image[i] = mlx_texture_to_image(game->mlx, texture);
 		mlx_delete_texture(texture);
 		i++;
 	}
+	ft_printf("world textures got\n");
 }
 
 void	insert_images_to_map(t_game *game, int x, int y)
@@ -80,11 +54,14 @@ void	insert_images_to_map(t_game *game, int x, int y)
 		while (x < game->width)
 		{
 			if (game->map[y][x] == '1')
-				wall_randomizer(game, x, y);
+			{
+				//wall_randomizer(game, x, y);
+				mlx_image_to_window(game->mlx, game->world->image[1], x * TILE_SIZE, y * TILE_SIZE);
+			}
 			else if (game->map[y][x] == 'e')
 			{
-				mlx_image_to_window(game->mlx, game->world->world[5], x * TILE_SIZE, y * TILE_SIZE);
-				mlx_image_to_window(game->mlx, game->world->world[6], x * TILE_SIZE, y * TILE_SIZE);
+				mlx_image_to_window(game->mlx, game->world->image[5], x * TILE_SIZE, y * TILE_SIZE);
+				mlx_image_to_window(game->mlx, game->world->image[6], x * TILE_SIZE, y * TILE_SIZE);
 			}
 			else if (game->map[y][x] == 'c')
 				mlx_image_to_window(game->mlx, game->chicken->animation[0], x * TILE_SIZE, y * TILE_SIZE);
@@ -95,8 +72,10 @@ void	insert_images_to_map(t_game *game, int x, int y)
 				ready_enemy(game, x, y);
 			}
 			x++;
+			//ft_printf("x is %d\n", x);
 		}
 		y++;
+		//ft_printf("y is %d\n", y);
 	}
 }
 
@@ -108,12 +87,12 @@ void	add_graphics(t_game *game)
 	x = 0;
 	y = 0;
 	get_images_world(game, textures_world());
-	game->image_content = 1;
+	mlx_resize_image(game->world->image[0], TILE_SIZE * game->width, TILE_SIZE * game->height);
+	//game->image_content = 1;
 	get_images_chicken(game, textures_chicken());
 	get_images_fox(game, textures_fox());
 	get_images_dog(game, textures_dog());
-	resize_images(game);
-	mlx_image_to_window(game->mlx, game->world->world[0], 0, 0);
+	mlx_image_to_window(game->mlx, game->world->image[0], 0, 0);
 	insert_images_to_map(game, x, y);
 }
 

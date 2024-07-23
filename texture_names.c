@@ -6,15 +6,15 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 09:48:25 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/23 10:13:28 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/23 13:46:57 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-const char *textures_world(void)
+const char **textures_world(void)
 {
-	static const char *textures_world[7];
+	static const char *textures_world[8];
 	
 	textures_world[0] = "textures/green.png";
 	textures_world[1] = "textures/wall_1.png";
@@ -23,23 +23,25 @@ const char *textures_world(void)
 	textures_world[4] = "textures/wall_4.png";
 	textures_world[5] = "textures/exit_green-ish.png";
 	textures_world[6] = "textures/exit_yellow.png";
+	textures_world[7] = NULL;
 	return (textures_world);
 }
 
-const char *textures_chicken(void)
+const char **textures_chicken(void)
 {
-	static const char *textures_chicken[4];
+	static const char *textures_chicken[5];
 
 	textures_chicken[0] = "textures/chicken_sit1.png";
 	textures_chicken[1] = "textures/chicken_sit2.png";
 	textures_chicken[2] = "textures/chicken_die1.png";
 	textures_chicken[3] = "textures/chicken_die2.png";
+	textures_chicken[4] = NULL;
 	return (textures_chicken);
 }
 
-const char *textures_fox(void)
+const char **textures_fox(void)
 {
-	static const char *textures_fox[8];
+	static const char *textures_fox[9];
 
 	textures_fox[0] = "textures/fox_sit1.png";
 	textures_fox[1] = "textures/fox_sit2.png";
@@ -49,12 +51,13 @@ const char *textures_fox(void)
 	textures_fox[5] = "textures/fox_run4.png";
 	textures_fox[6] = "textures/fox_die1.png";
 	textures_fox[7] = "textures/fox_die2.png";
+	textures_fox[8] = NULL;
 	return (textures_fox);
 }
 
-const char *textures_dog(void)
+const char **textures_dog(void)
 {
-	static const char *textures_dog[9];
+	static const char *textures_dog[10];
 
 	textures_dog[0] = "textures/dog_run1.png";
 	textures_dog[1] = "textures/dog_run2.png";
@@ -65,5 +68,6 @@ const char *textures_dog(void)
 	textures_dog[6] = "textures/dog_attack3.png";
 	textures_dog[7] = "textures/dog_die1.png";
 	textures_dog[8] = "textures/dog_die2.png";
+	textures_dog[9] = NULL;
 	return (textures_dog);
 }

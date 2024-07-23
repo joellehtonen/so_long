@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/23 12:04:04 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:09:52 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_enemy
 	int	x;
 	int	y;
 	int active;
+	int	frame;
 	mlx_image_t **animation;
 }	t_enemy;
 
@@ -58,12 +59,13 @@ typedef struct s_player
 {
 	int	x;
 	int y;
+	int	frame;
 	mlx_image_t **animation;
 }	t_player;
 
 typedef struct s_world
 {
-	mlx_image_t **world;
+	mlx_image_t **image;
 }	t_world;
 
 // typedef struct s_textures
@@ -118,13 +120,13 @@ void	collectable_collision(t_game *game, t_box player, int x, int y);
 void	exit_collision(t_game *game, t_box player, int x, int y);
 t_bool	check_collision(t_box a, t_box b);
 void	*ft_realloc(void *old_ptr, size_t new_size);
-const char *textures_world(void);
-const char *textures_chicken(void);
-const char *textures_fox(void);
-const char *textures_dog(void);
-void	get_images_dog(t_game *game, const char *textures_dog);
-void 	get_images_fox(t_game *game, const char *textures_fox);
-void 	get_images_chicken(t_game *game, const char *textures_chicken);
+const char **textures_world(void);
+const char **textures_chicken(void);
+const char **textures_fox(void);
+const char **textures_dog(void);
+void	get_images_dog(t_game *game, const char **textures_dog);
+void 	get_images_fox(t_game *game, const char **textures_fox);
+void 	get_images_chicken(t_game *game, const char **textures_chicken);
 void	get_images_world(t_game *game, const char **textures_world);
 void	insert_images_to_map(t_game *game, int x, int y);
 void 	wall_randomizer(t_game *game, int x, int y);
@@ -136,6 +138,6 @@ void	initialize_game(t_game *game);
 void 	free_and_exit(t_game *game, int error);
 void	ready_enemy(t_game *game, int x, int y);
 void	enemy_appears(t_game *game);
-int 	idle_animation(t_game *game);
+//void	idle_animation(t_game *game);
 
 #endif

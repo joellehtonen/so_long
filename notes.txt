@@ -26,6 +26,10 @@ make a program that flips the images when left was the last key that was pressed
 
 do textures need to be static?
 
+make a separate function for allocating memory
+
+make sure that dog cannot die by hitting edge walls (only inner ones)
+
 
 
 

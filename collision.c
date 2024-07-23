@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:28:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/19 13:50:35 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:11:12 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,25 @@ void collectable_collision(t_game *game, t_box player, int x, int y)
 {
 	t_box	collectable;
 	int		i;
-
+	
 	i = 0;
 	while (i < game->collectables)
 	{
-		if (game->imgs->collect->instances[i].enabled)
+		if (game->chicken->animation[0]->instances[i].enabled)
 		{
-			x = game->imgs->collect->instances[i].x;
-			y = game->imgs->collect->instances[i].y;
+			x = game->chicken->animation[0]->instances[i].x;
+			y = game->chicken->animation[0]->instances[i].y;
 			collectable = (t_box){x, y, TILE_SIZE, TILE_SIZE};
 			if (check_collision(player, collectable) == TRUE)
 			{
-				game->imgs->collect->instances[i].enabled = false;
+				game->chicken->animation[0]->instances[i].enabled = false;
 				game->collected++;
 			}
 		}
 		i++;
 	}
 	if (game->collectables == game->collected)
-		game->imgs->exit->instances[0].enabled = false;
+		game->world->image[6]->instances[0].enabled = false;
 	return ;
 }
 
@@ -50,8 +50,8 @@ void exit_collision(t_game *game, t_box player, int x, int y)
 {
 	t_box exit;
 	
-	x = game->imgs->exit->instances[0].x;
-	y = game->imgs->exit->instances[0].y;
+	x = game->world->image[5]->instances[0].x;
+	y = game->world->image[5]->instances[0].y;
 	exit = (t_box){x, y, TILE_SIZE, TILE_SIZE};
 	if (check_collision(player, exit) == TRUE)
 	{

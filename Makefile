@@ -16,7 +16,10 @@ SRCS 		= main.c \
 				graphics.c \
 				map_checker.c \
 				map_reader.c \
-				enemy.c
+				texture_names.c \
+				enemy.c \
+				animation.c \
+				wall_randomizer.c
 OBJS		= $(SRCS:.c=.o)
 
 GREEN    	= \033[1;32m
