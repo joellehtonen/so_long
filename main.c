@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/19 16:13:57 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/23 10:57:52 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	initialize_variables(t_game *game)
 	game->map = NULL;
 	game->image_content = 0;
 	game->enemy->active = 0;
+	game->frame = 0;
 }
 
 void	initialize_game(t_game *game)

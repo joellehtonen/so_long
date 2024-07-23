@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/22 14:30:21 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/23 10:57:45 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,6 @@ typedef enum e_bool
 	FALSE = 0
 }	t_bool;
 
-typedef	struct 
-{
-	
-};
-
-
 typedef struct s_box
 {	
 	int x;
@@ -48,7 +42,7 @@ typedef struct s_box
 
 typedef struct s_chicken
 {
-	t_images_animation *animate;
+	mlx_image_t **animation;
 }	t_chicken;
 
 typedef struct s_enemy
@@ -56,25 +50,20 @@ typedef struct s_enemy
 	int	x;
 	int	y;
 	int active;
-	t_images_animation *animate;
+	mlx_image_t **animation;
 }	t_enemy;
 
 typedef struct s_player
 {
 	int	x;
 	int y;
-	t_images_animation *animate;
+	mlx_image_t **animation;
 }	t_player;
 
-typedef struct s_images_animation
+typedef struct s_world
 {
-	mlx_image_t **images_animation;
-}	t_images_animation;
-
-typedef struct s_images_world
-{
-	mlx_image_t **images_world;
-}	t_images_world;
+	mlx_image_t **world;
+}	t_world;
 
 // typedef struct s_textures
 // {
@@ -101,12 +90,11 @@ typedef struct s_images_world
 typedef struct s_game
 {
 	//struct s_textures *txts;
-	struct s_images_world *world;
-	struct s_images_animation *animation;
+	struct s_world *world;
 	struct s_player *player;
 	struct s_enemy *enemy;
 	struct s_chicken *chicken;
-	int		texture_content;
+	int		frame;
 	int		image_content;
 	int 	width;
 	int 	height;
