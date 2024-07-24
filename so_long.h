@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/24 14:05:24 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:58:14 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct s_player
 	int y;
 	int	frame;
 	int	dying;
+	int	animation_timer;
 	mlx_image_t **animation;
 }	t_player;
 
@@ -75,7 +76,6 @@ typedef struct s_world
 
 typedef struct s_game
 {
-	//struct s_textures *txts;
 	struct s_world *world;
 	struct s_player *player;
 	struct s_enemy *enemy;
@@ -114,6 +114,7 @@ void	get_images_world(t_game *game, const char **textures_world);
 void	insert_images_to_map(t_game *game, int x, int y);
 void 	wall_randomizer(t_game *game, int x, int y);
 void	upload_player_and_enemy_animations(t_game *game, int x, int y);
+void	upload_chicken_animations(t_game *game, int x, int y);
 void	update_locations(t_game *game, int x, int y);
 void	add_graphics(t_game *game);
 void	map_checker(t_game *game);
@@ -123,6 +124,7 @@ void	initialize_game(t_game *game);
 void 	free_and_exit(t_game *game, int error);
 void	enemy_appears(t_game *game);
 void	update_player_animation(t_game *game, int frame);
-//void	idle_animation(t_game *game);
+void	update_chicken_animation(t_game *game, int number);
+void	idle_animation(t_game *game);
 
 #endif

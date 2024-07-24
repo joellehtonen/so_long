@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:17:27 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/24 13:01:40 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:03:58 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,4 +129,22 @@ void	upload_player_and_enemy_animations(t_game *game, int x, int y)
 		//ft_printf("Uploaded enemy animation %d at (%d, %d)\n", i, x * TILE_SIZE, y * TILE_SIZE);
 		i++;
 	}
+}
+
+void	upload_chicken_animations(t_game *game, int x, int y)
+{
+	int count;
+	int i;
+	
+	i = 0;
+	count = 0;
+	while(game->chicken->animation[count] != NULL)
+		count++;
+	while (i < count)
+	{
+		mlx_image_to_window(game->mlx, game->chicken->animation[i], x * TILE_SIZE, y * TILE_SIZE);
+		game->chicken->animation[i]->instances[0].enabled = false;
+		i++;
+	}
+	game->chicken->animation[0]->instances[0].enabled = true;
 }

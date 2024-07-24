@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 09:48:25 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/23 13:46:57 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:03:13 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ const char **textures_fox(void)
 {
 	static const char *textures_fox[9];
 
-	textures_fox[0] = "textures/fox_sit1.png";
-	textures_fox[1] = "textures/fox_sit2.png";
+	textures_fox[0] = "textures/fox_idle1.png";
+	textures_fox[1] = "textures/fox_idle2.png";
 	textures_fox[2] = "textures/fox_run1.png";
 	textures_fox[3] = "textures/fox_run2.png";
 	textures_fox[4] = "textures/fox_run3.png";

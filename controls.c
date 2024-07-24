@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:04 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/24 14:18:24 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:55:05 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static int	move_up(t_game *game, int movement)
 		game->player->animation[frame]->instances[0].y -= MOVE_SPEED;
 		game->player->y -= MOVE_SPEED;
 		game->move_count++;
-		movement = 0;
-		// if ((game->move_count % 4 == 0 || game->move_count < 4) && movement < 2)
-		// 	update_player_animation(game, frame);
+		//movement = 0;
+		if ((game->move_count % 4 == 0 || game->move_count < 4) && movement < 2)
+		 	update_player_animation(game, frame);
 		return (1);
 	}
 	else
@@ -54,9 +54,9 @@ static int	move_down(t_game *game, int movement)
 		game->player->animation[frame]->instances[0].y += MOVE_SPEED;
 		game->player->y += MOVE_SPEED;
 		game->move_count++;
-		movement = 0;
-		// if ((game->move_count % 4 == 0 || game->move_count < 4) && movement < 2)
-		// 	update_player_animation(game, frame);
+		//movement = 0;
+		if ((game->move_count % 4 == 0 || game->move_count < 4) && movement < 2)
+		 	update_player_animation(game, frame);
 		return (1);
 	}
 	else
@@ -80,9 +80,9 @@ static int	move_left(t_game *game, int movement)
 		game->player->animation[frame]->instances[0].x -= MOVE_SPEED;
 		game->player->x -= MOVE_SPEED;
 		game->move_count++;
-		movement = 0;
-		// if ((game->move_count % 4 == 0 || game->move_count < 4) && movement < 2)
-		// 	update_player_animation(game, frame);
+		//movement = 0;
+		if ((game->move_count % 4 == 0 || game->move_count < 4) && movement < 2)
+		 	update_player_animation(game, frame);
 		return (1);
 	}
 	else
@@ -106,9 +106,9 @@ static int	move_right(t_game *game, int movement)
 		game->player->animation[frame]->instances[0].x += MOVE_SPEED;
 		game->player->x += MOVE_SPEED;
 		game->move_count++;\
-		movement = 0;
-		// if ((game->move_count % 4 == 0 || game->move_count < 4) && movement < 2)
-		// 	update_player_animation(game, frame);
+		//movement = 0;
+		if ((game->move_count % 4 == 0 || game->move_count < 4) && movement < 2)
+		 	update_player_animation(game, frame);
 		return (1);
 	}
 	else
@@ -134,8 +134,8 @@ void controls(void *content)
 		movement += move_right(game, movement);
 	//ft_printf("movement is %d\n", movement);
 	//ft_printf("player's location is %d,%d\n", game->player->x, game->player->y);
-	// else
-	// 	idle_animation(game);
+	//else
+	//	idle_animation(game);
 	if (movement > 0)
 		collect_stuff(game);
 	enemy_appears(game);

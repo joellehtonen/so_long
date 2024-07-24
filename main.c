@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/24 14:05:50 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:22:25 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	initialize_variables(t_game *game)
 	game->enemy->frame = 0;
 	game->enemy->dying = 0;
 	game->enemy->animation_timer = 0;
+	game->player->animation_timer = 0;
 	//game->player->dying = 0;
 	//game->chicken->dying = 0;
 }
@@ -81,6 +82,11 @@ void	initialize_game(t_game *game)
 	if (game->world == NULL)
 		free_and_exit(game, 1);
 	initialize_variables(game);
+	// ft_memset(game, 0, sizeof(game));
+	// ft_memset(game->player, 0, sizeof(game->player));
+	// ft_memset(game->enemy, 0, sizeof(game->enemy));
+	// ft_memset(game->chicken, 0, sizeof(game->chicken));
+	// ft_memset(game->world, 0, sizeof(game->world));
 }
 
 int main(int argc, char **argv)

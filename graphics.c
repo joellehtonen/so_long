@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:35:53 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/24 13:40:35 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:52:30 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,13 @@ void	insert_images_to_map(t_game *game, int x, int y)
 				mlx_image_to_window(game->mlx, game->world->image[6], x * TILE_SIZE, y * TILE_SIZE);
 			}
 			else if (game->map[y][x] == 'c')
-				mlx_image_to_window(game->mlx, game->chicken->animation[0], x * TILE_SIZE, y * TILE_SIZE);
+			{
+				upload_chicken_animations(game, x, y);
+				//mlx_image_to_window(game->mlx, game->chicken->animation[3], x * TILE_SIZE, y * TILE_SIZE);
+				//mlx_image_to_window(game->mlx, game->chicken->animation[0], x * TILE_SIZE, y * TILE_SIZE);
+			}
 			else if (game->map[y][x] == 'p')
 			{
-				// mlx_image_to_window(game->mlx, game->player->animation[0], x * TILE_SIZE, y * TILE_SIZE);
-				// mlx_image_to_window(game->mlx, game->enemy->animation[0], x * TILE_SIZE, y * TILE_SIZE);
 				upload_player_and_enemy_animations(game, x, y);
 				update_locations(game, x, y);
 			}

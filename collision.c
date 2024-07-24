@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:28:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/23 15:11:12 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:57:07 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void collectable_collision(t_game *game, t_box player, int x, int y)
 			collectable = (t_box){x, y, TILE_SIZE, TILE_SIZE};
 			if (check_collision(player, collectable) == TRUE)
 			{
-				game->chicken->animation[0]->instances[i].enabled = false;
+				//game->chicken->animation[0]->instances[i].enabled = false;
+				update_chicken_animation(game, i);
 				game->collected++;
 			}
 		}
@@ -52,7 +53,7 @@ void exit_collision(t_game *game, t_box player, int x, int y)
 	
 	x = game->world->image[5]->instances[0].x;
 	y = game->world->image[5]->instances[0].y;
-	exit = (t_box){x, y, TILE_SIZE, TILE_SIZE};
+	exit = (t_box){x, y, MOVE_SIZE, MOVE_SIZE};
 	if (check_collision(player, exit) == TRUE)
 	{
 		if (game->collected == game->collectables)

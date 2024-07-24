@@ -1,5 +1,3 @@
-reset button to reset the game?
-
 could the game crash if move_count goes above int_max?
 
 add limit that the map doesnt expand too much (more than screen size)
@@ -37,6 +35,8 @@ only approve if map ends with .ber\0 (add function for this check)
 use memset to init all variables to 0
 
 check min size and max size for map
+
+FIX FT_REALLOC
 
 
 /**

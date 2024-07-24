@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:13:17 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/24 14:30:25 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:01:56 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static void enemy_collision(t_game *game, t_box enemy)
 	frame = game->enemy->frame;
 	player = (t_box){game->player->x, game->player->y, TILE_SIZE, TILE_SIZE};
 	if (is_wall(game, game->enemy->x, game->enemy->y) == TRUE
-		|| is_wall(game, game->enemy->x + TILE_SIZE, game->enemy->y) == TRUE
-		|| is_wall(game, game->enemy->x, game->enemy->y + TILE_SIZE) == TRUE
-		|| is_wall(game, game->enemy->x + TILE_SIZE, game->enemy->y + TILE_SIZE) == TRUE)
+		|| is_wall(game, game->enemy->x + MOVE_SIZE, game->enemy->y) == TRUE
+		|| is_wall(game, game->enemy->x, game->enemy->y + MOVE_SIZE) == TRUE
+		|| is_wall(game, game->enemy->x + MOVE_SIZE, game->enemy->y + MOVE_SIZE) == TRUE)
 	
 	{
 		if (game->enemy->dying == 0)
