@@ -19,6 +19,7 @@ SRCS 		= main.c \
 				texture_names.c \
 				enemy.c \
 				animation.c \
+				load_animation.c \
 				wall_randomizer.c
 OBJS		= $(SRCS:.c=.o)
 

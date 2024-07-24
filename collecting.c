@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:16:24 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/23 13:12:55 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:05:43 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void collect_stuff(t_game *game)
 	t_box	player;
 	int		frame;
 	
+	ft_printf("MOVES: %d\n", game->move_count);
 	frame = game->player->frame;
 	position_x = game->player->animation[frame]->instances[0].x;
  	position_y = game->player->animation[frame]->instances[0].y;

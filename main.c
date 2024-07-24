@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/23 15:44:07 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:05:50 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,26 @@ void	initialize_variables(t_game *game)
 	game->frame = 0;
 	game->player->frame = 0;
 	game->enemy->frame = 0;
+	game->enemy->dying = 0;
+	game->enemy->animation_timer = 0;
+	//game->player->dying = 0;
+	//game->chicken->dying = 0;
 }
 
 void	initialize_game(t_game *game)
 {
-	game->player = ft_calloc(1, sizeof(t_player));
-	game->enemy = ft_calloc(1, sizeof(t_enemy));
+	game->player = malloc(sizeof(t_player));
+	if (game->player == NULL)
+		free_and_exit(game, 1);
+	game->enemy = malloc(sizeof(t_enemy));
+	if (game->enemy == NULL)
+		free_and_exit(game, 1);
+	game->chicken = malloc(sizeof(t_chicken));
+	if (game->chicken == NULL)
+		free_and_exit(game, 1);
+	game->world = malloc(sizeof(t_world)); 
+	if (game->world == NULL)
+		free_and_exit(game, 1);
 	initialize_variables(game);
 }
 
@@ -90,7 +104,6 @@ int main(int argc, char **argv)
 	ft_printf("new image\n");
 	add_graphics(&game);
 	ft_printf("graphics added\n");
-	
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	//mlx_set_setting(MLX_MAXIMIZED, 1);
 	//mlx_set_setting(MLX_DECORATED, 0);

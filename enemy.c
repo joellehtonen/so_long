@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:13:17 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/23 15:35:40 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:30:25 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 static void enemy_collision(t_game *game, t_box enemy)
 {
 	t_box	player;
-
+	double 	time;
+	int		frame;
+	
+	time = 0;
+	frame = game->enemy->frame;
 	player = (t_box){game->player->x, game->player->y, TILE_SIZE, TILE_SIZE};
 	if (is_wall(game, game->enemy->x, game->enemy->y) == TRUE
 		|| is_wall(game, game->enemy->x + TILE_SIZE, game->enemy->y) == TRUE
@@ -23,15 +27,32 @@ static void enemy_collision(t_game *game, t_box enemy)
 		|| is_wall(game, game->enemy->x + TILE_SIZE, game->enemy->y + TILE_SIZE) == TRUE)
 	
 	{
-		//game->enemy->animation[] = 7;
-		//game->enemy->animation[] = 8;
-		//game->enemy->frame = 7;
-		game->enemy->active = 0;
-		
+		if (game->enemy->dying == 0)
+		{
+			game->enemy->animation_timer = mlx_get_time();
+			game->enemy->dying = 1;
+			game->enemy->animation[7]->instances[0].x = game->enemy->x;
+            game->enemy->animation[7]->instances[0].y = game->enemy->y;
+			game->enemy->animation[8]->instances[0].x = game->enemy->x;
+            game->enemy->animation[8]->instances[0].y = game->enemy->y;
+			game->enemy->animation[frame]->instances[0].enabled = false;
+			game->enemy->animation[7]->instances[0].enabled = true;
+		}
+		else
+		{
+			time = mlx_get_time();
+			if (time > game->enemy->animation_timer + 1)
+			{
+				game->enemy->animation[7]->instances[0].enabled = false;
+				game->enemy->animation[8]->instances[0].enabled = true;
+				mlx_set_instance_depth(&game->enemy->animation[8]->instances[0], 1);
+				game->enemy->active = 0;
+			}
+		}
 	}
 	if (check_collision(player, enemy) == TRUE)
 	{
-		//ft_printf("PLAYER CAUGHT!\n");
+		ft_printf("PLAYER CAUGHT!\n");
 		//play animation 
 		free_and_exit(game, 0);
 	}
@@ -43,25 +64,25 @@ static void	chase_player(t_game *game)
 	int 	frame;
 
 	frame = game->enemy->frame;
-	if (game->player->x > game->enemy->x)
+	if (game->player->x > game->enemy->x && game->enemy->dying == 0)
 	{
-		game->enemy->animation[frame]->instances[0].x += 4;
-		game->enemy->x += 4;
+		game->enemy->animation[frame]->instances[0].x += MOVE_SPEED;
+		game->enemy->x += MOVE_SPEED;
 	}
-	if (game->player->x < game->enemy->x)
+	if (game->player->x < game->enemy->x && game->enemy->dying == 0)
 	{
-		game->enemy->animation[frame]->instances[0].x -= 4;
-		game->enemy->x -= 4;
+		game->enemy->animation[frame]->instances[0].x -= MOVE_SPEED;
+		game->enemy->x -= MOVE_SPEED;
 	}
-	if (game->player->y > game->enemy->y)
+	if (game->player->y > game->enemy->y && game->enemy->dying == 0)
 	{
-		game->enemy->animation[frame]->instances[0].y += 4;
-		game->enemy->y += 4;
+		game->enemy->animation[frame]->instances[0].y += MOVE_SPEED;
+		game->enemy->y += MOVE_SPEED;
 	}
-	if (game->player->y < game->enemy->y)
+	if (game->player->y < game->enemy->y && game->enemy->dying == 0)
 	{
-		game->enemy->animation[frame]->instances[0].y -= 4;
-		game->enemy->y -= 4;
+		game->enemy->animation[frame]->instances[0].y -= MOVE_SPEED;
+		game->enemy->y -= MOVE_SPEED;
 	}
 	enemy = (t_box){game->enemy->x, game->enemy->y, TILE_SIZE, TILE_SIZE};
 	enemy_collision(game, enemy);
@@ -82,11 +103,10 @@ void	enemy_appears(t_game *game)
 		chase_player(game);
 }
 
-void	ready_enemy(t_game *game, int x, int y)
+void	update_locations(t_game *game, int x, int y)
 {
 	game->player->x = x * TILE_SIZE;
 	game->player->y = y * TILE_SIZE;
 	game->enemy->x = game->player->x;
 	game->enemy->y = game->player->y;
-	game->enemy->animation[0]->instances[0].enabled = false;
 }

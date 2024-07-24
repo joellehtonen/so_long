@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:35:53 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/23 15:27:58 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:40:35 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,13 @@
 void get_images_world(t_game *game, const char **textures_world)
 {
 	int	i;
-	int sprite_count;
+	int image_count;
 	mlx_texture_t *texture;
 
-	sprite_count = 0;
-	while(textures_world[sprite_count])
-		sprite_count++;
-	game->world = malloc(sizeof(t_world)); 
-	if (game->world == NULL)
-	{
-		//error message
-		free(game->enemy);
-		exit(1);
-	}
-	game->world->image = malloc(sizeof(mlx_image_t *) * sprite_count);
+	image_count = 0;
+	while(textures_world[image_count])
+		image_count++;
+	game->world->image = malloc(sizeof(mlx_image_t *) * image_count);
 	if (game->world->image == NULL)
 	{
 		//error message
@@ -36,10 +29,11 @@ void get_images_world(t_game *game, const char **textures_world)
 		exit(1);
 	}
 	i = 0;
-	while (i < sprite_count)
+	while (i < image_count)
 	{
 		texture = mlx_load_png(textures_world[i]);
 		game->world->image[i] = mlx_texture_to_image(game->mlx, texture);
+		mlx_resize_image(game->world->image[i], TILE_SIZE * 0.9, TILE_SIZE * 0.9);
 		mlx_delete_texture(texture);
 		i++;
 	}
@@ -67,9 +61,10 @@ void	insert_images_to_map(t_game *game, int x, int y)
 				mlx_image_to_window(game->mlx, game->chicken->animation[0], x * TILE_SIZE, y * TILE_SIZE);
 			else if (game->map[y][x] == 'p')
 			{
-				mlx_image_to_window(game->mlx, game->player->animation[0], x * TILE_SIZE, y * TILE_SIZE);
-				mlx_image_to_window(game->mlx, game->enemy->animation[0], x * TILE_SIZE, y * TILE_SIZE);
-				ready_enemy(game, x, y);
+				// mlx_image_to_window(game->mlx, game->player->animation[0], x * TILE_SIZE, y * TILE_SIZE);
+				// mlx_image_to_window(game->mlx, game->enemy->animation[0], x * TILE_SIZE, y * TILE_SIZE);
+				upload_player_and_enemy_animations(game, x, y);
+				update_locations(game, x, y);
 			}
 			x++;
 			//ft_printf("x is %d\n", x);

@@ -4,7 +4,7 @@ could the game crash if move_count goes above int_max?
 
 add limit that the map doesnt expand too much (more than screen size)
 
-checker to check if input characters are valid
+checker to check if input characters are valid (maybe during inputting graphics)
 
 move_count updates but doesnt display if pressing 2 keys and hitting wall in one direction
 
@@ -29,6 +29,30 @@ do textures need to be static?
 make a separate function for allocating memory
 
 make sure that dog cannot die by hitting edge walls (only inner ones)
+
+with make, mlx42 rebuilds every time
+
+only approve if map ends with .ber\0 (add function for this check)
+
+use memset to init all variables to 0
+
+check min size and max size for map
+
+
+/**
+ * Sets the size limits of the specified window.
+ * Will force the window to not be resizable past or below the given values.
+ * 
+ * Pass -1 for no limit to any of the min/max parameters to ignore that boundary.
+ * For instance if you want a min window size but the max window size can be whatever.
+ *
+ * @param[in] mlx The MLX instance handle.
+ * @param[in] min_w The min width of the window.
+ * @param[in] max_w The max width of the window.
+ * @param[in] min_h The min height of the window.
+ * @param[in] max_h The max height of the window.
+ */
+void mlx_set_window_limit(mlx_t* mlx, int32_t min_w, int32_t min_h, int32_t max_w, int32_t max_h);
 
 
 

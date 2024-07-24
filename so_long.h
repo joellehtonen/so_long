@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/23 15:09:52 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:05:24 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@
 
 //define error messages here
 
-# define TILE_SIZE 32
+# define TILE_SIZE 64
 # define MOVE_SIZE (TILE_SIZE * 0.9)
+# define MOVE_SPEED 4
 
 typedef enum e_bool
 {
@@ -43,6 +44,7 @@ typedef struct s_box
 
 typedef struct s_chicken
 {
+	int	dying;
 	mlx_image_t **animation;
 }	t_chicken;
 
@@ -52,6 +54,8 @@ typedef struct s_enemy
 	int	y;
 	int active;
 	int	frame;
+	int	dying;
+	int animation_timer;
 	mlx_image_t **animation;
 }	t_enemy;
 
@@ -60,6 +64,7 @@ typedef struct s_player
 	int	x;
 	int y;
 	int	frame;
+	int	dying;
 	mlx_image_t **animation;
 }	t_player;
 
@@ -67,28 +72,6 @@ typedef struct s_world
 {
 	mlx_image_t **image;
 }	t_world;
-
-// typedef struct s_textures
-// {
-// 	mlx_texture_t *ground;
-// 	mlx_texture_t *wall;
-// 	mlx_texture_t *exit;
-// 	mlx_texture_t *exit_ready;
-// 	mlx_texture_t *player;
-// 	mlx_texture_t *collect;
-// 	mlx_texture_t *enemy;
-// }	t_textures;
-
-// typedef struct s_images
-// {
-// 	mlx_image_t *ground;
-// 	mlx_image_t *wall;
-// 	mlx_image_t *exit;
-// 	mlx_image_t *exit_ready;
-// 	mlx_image_t *player;
-// 	mlx_image_t *collect;
-// 	mlx_image_t *enemy;
-// }	t_images;
 
 typedef struct s_game
 {
@@ -130,14 +113,16 @@ void 	get_images_chicken(t_game *game, const char **textures_chicken);
 void	get_images_world(t_game *game, const char **textures_world);
 void	insert_images_to_map(t_game *game, int x, int y);
 void 	wall_randomizer(t_game *game, int x, int y);
+void	upload_player_and_enemy_animations(t_game *game, int x, int y);
+void	update_locations(t_game *game, int x, int y);
 void	add_graphics(t_game *game);
 void	map_checker(t_game *game);
 void	map_reader(t_game *game, char **argv);
 void	initialize_variables(t_game *game);
 void	initialize_game(t_game *game);
 void 	free_and_exit(t_game *game, int error);
-void	ready_enemy(t_game *game, int x, int y);
 void	enemy_appears(t_game *game);
+void	update_player_animation(t_game *game, int frame);
 //void	idle_animation(t_game *game);
 
 #endif
