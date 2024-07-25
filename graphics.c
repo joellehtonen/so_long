@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:35:53 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/25 15:48:51 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:39:51 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void get_images_world(t_game *game, const char **textures_world)
 		mlx_delete_texture(texture);
 		i++;
 	}
-	ft_printf("world images got\n");
+	//ft_printf("world images got\n");
 }
 
 void	insert_images_to_map(t_game *game, int x, int y, int i)

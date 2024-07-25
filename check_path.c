@@ -6,13 +6,13 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:11:05 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/19 11:42:19 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:40:01 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	flood_fill(t_game *game, int y, int x)
+static void	flood_fill(t_game *game, int y, int x)
 {
 	if (game->map[y][x] == '1' || game->map[y][x] == 'p' || game->map[y][x] == 'c' || game->map[y][x] == 'e' || game->map[y][x] == 'o')
 		return ;
@@ -30,14 +30,11 @@ void	flood_fill(t_game *game, int y, int x)
 	flood_fill(game, y, x - 1);
 }
 
-int *find_start(t_game *game)
+static int *find_start(t_game *game, int x, int y)
 {
-	int x;
-	int y;
 	int *start;
 	
 	start = ft_calloc(2, sizeof(int));
-	y = 0;
 	while (game->map[y])
 	{
 		x = 0;
@@ -56,24 +53,13 @@ int *find_start(t_game *game)
 	return (start);
 }
 
-int check_path(t_game *game)
+int check_path(t_game *game, int x, int y)
 {
 	int *start;
-	int x;
-	int y;
 
-	start = find_start(game);
+	start = find_start(game, x, y);
 	flood_fill(game, start[0], start[1]);
-	// ft_printf("CHECK PATH: \n");
-	// int i = 0;
-	// while (i < game->height)
-	// {
-	// 	ft_printf("%s", game->map[i]);
-	//  	i++;
-	// }
-	// ft_printf("\n");
 	free(start);
-	y = 0;
 	while (y < game->height - 1)
 	{
 		x = 0;
@@ -85,6 +71,6 @@ int check_path(t_game *game)
 		}
 		y++;
 	}
-	ft_printf("path checked\n");
+	//ft_printf("path checked\n");
 	return (1);
 }

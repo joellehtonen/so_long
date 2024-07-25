@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/25 13:52:44 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:40:16 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_and_exit(t_game *game, int error)
 	int	i;
 
 	i = 0;
-	ft_printf("FREEING AND EXITING\n");
+	//ft_printf("FREEING AND EXITING\n");
 	//REMEMBER TO FREE THE LINES OF GNL!!
 	if (game->image_content == 1)
 	{
@@ -39,10 +39,23 @@ void	free_and_exit(t_game *game, int error)
 	//mlx_terminate(game->mlx); //THIS CAUSES SEGFAULT
 	if (error == 1)
 	{
-		ft_putstr_fd("Error\n", 1);//define error messages later
+		ft_putstr_fd("Error\n", 1);
 		exit(1);
 	}
 	exit(0);
+}
+
+void	display_error(t_game *game, int e)
+{
+	if (e == 1)
+		ft_printf("The map must be closed/surrounded by walls.\n");
+	if (e == 2)
+		ft_printf("The map must be rectangular.\n");
+	if (e == 3)
+		ft_printf("Invalid characters OR invalid amount of characters.\n");
+	if (e == 4)
+		ft_printf("No valid path in the map.\n");
+	free_and_exit(game, 1);
 }
 
 void	initialize_variables(t_game *game)
@@ -101,19 +114,19 @@ int main(int argc, char **argv)
 	if (argc > 3)
 		return (0);
 	initialize_game(&game);
-	ft_printf("variables ready\n");
+	//ft_printf("variables ready\n");
 	map_reader(&game, argv);
-	ft_printf("map read\n");
+	//ft_printf("map read\n");
 	map_checker(&game);
-	ft_printf("map checked\n");
+	//ft_printf("map checked\n");
 	game.mlx = mlx_init(game.width * TILE_SIZE, game.height * TILE_SIZE, "FOX", true);
-	ft_printf("mlx\n");
+	//ft_printf("mlx\n");
 	// if ((!game.mlx))
 	// 	free_and_exit(&game, 1);
 	image = mlx_new_image(game.mlx, game.width * TILE_SIZE, game.height * TILE_SIZE);
-	ft_printf("new image\n");
+	//ft_printf("new image\n");
 	add_graphics(&game);
-	ft_printf("graphics added\n");
+	//ft_printf("graphics added\n");
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	//mlx_set_setting(MLX_MAXIMIZED, 1);
 	//mlx_set_setting(MLX_DECORATED, 0);

@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:17:27 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/25 15:25:53 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:39:41 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void get_images_chicken(t_game *game, const char **textures_chicken)
 		i++;
 	}
 	 game->chicken->animation[i] = NULL;
-	ft_printf("chicken images got\n");
+	//ft_printf("chicken images got\n");
 }
 
 void get_images_fox(t_game *game, const char **textures_fox)
@@ -67,7 +67,7 @@ void get_images_fox(t_game *game, const char **textures_fox)
 		i++;
 	}
 	game->player->animation[i] = NULL;
-	ft_printf("fox images got\n");
+	//ft_printf("fox images got\n");
 }
 
 void get_images_fox_reverse(t_game *game, const char **textures_fox_reverse)
@@ -96,7 +96,7 @@ void get_images_fox_reverse(t_game *game, const char **textures_fox_reverse)
 		i++;
 	}
 	game->player->reverse_animation[i] = NULL;
-	ft_printf("reverse fox images got\n");
+	//ft_printf("reverse fox images got\n");
 }
 
 void get_images_dog(t_game *game, const char **textures_dog)
@@ -125,7 +125,7 @@ void get_images_dog(t_game *game, const char **textures_dog)
 		i++;
 	}
 	game->enemy->animation[i] = NULL;
-	ft_printf("dog images got\n");
+	//ft_printf("dog images got\n");
 }
 
 void get_images_dog_reverse(t_game *game, const char **textures_dog_reverse)
@@ -154,5 +154,5 @@ void get_images_dog_reverse(t_game *game, const char **textures_dog_reverse)
 		i++;
 	}
 	game->enemy->reverse_animation[i] = NULL;
-	ft_printf("reverse dog images got\n");
+	//ft_printf("reverse dog images got\n");
 }

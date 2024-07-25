@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/25 15:29:21 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:33:15 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,7 @@ typedef struct s_game
 }	t_game;
 
 void	controls(void *content);
-void	flood_fill(t_game *game, int y, int x);
-int		*find_start(t_game *game);
-int		check_path(t_game *game);
+int 	check_path(t_game *game, int x, int y);
 void	collect_stuff(t_game *game);
 t_bool	is_wall(t_game *game, int x, int y);
 void	collectable_collision(t_game *game, t_box player, int x, int y);
@@ -133,6 +131,7 @@ void	map_reader(t_game *game, char **argv);
 void	initialize_variables(t_game *game);
 void	initialize_game(t_game *game);
 void 	free_and_exit(t_game *game, int error);
+void	display_error(t_game *game, int e);
 void	enemy_appears(t_game *game);
 void	update_player_animation(t_game *game, int frame);
 void	update_chicken_animation(t_game *game, int number);

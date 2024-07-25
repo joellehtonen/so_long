@@ -12,15 +12,15 @@ add different walls and way to randomize between them
 
 make different error messages
 
-enemy needs alternative moves in case of a collision
+DONE enemy needs alternative moves in case of a collision
 
 possible leak if player clicks on x in window
 
-enemy "dies" if it hits wall?
+DONE enemy "dies" if it hits wall?
 
 add a check in case image loading fails
 
-make a program that flips the images when left was the last key that was pressed
+DONE make a program that flips the images when left was the last key that was pressed
 
 do textures need to be static?
 
