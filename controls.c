@@ -6,13 +6,13 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:04 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/25 11:46:16 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:42:14 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	move_up(t_game *game, int movement)
+static int	move_up(t_game *game)
 {
 	t_box	ghost_box;
 	int		x;
@@ -29,15 +29,13 @@ static int	move_up(t_game *game, int movement)
 		game->player->animation[frame]->instances[0].y -= MOVE_SPEED;
 		game->player->y -= MOVE_SPEED;
 		game->move_count++;
-		//movement = 0;
-		if ((game->move_count % 3 == 0 || game->move_count < 4) && movement < 2)
-		 	update_player_animation(game, frame);
 		return (1);
 	}
 	else
 		return (0);
 }
-static int	move_down(t_game *game, int movement)
+
+static int	move_down(t_game *game)
 {
 	t_box	ghost_box;
 	int		x;
@@ -54,22 +52,20 @@ static int	move_down(t_game *game, int movement)
 		game->player->animation[frame]->instances[0].y += MOVE_SPEED;
 		game->player->y += MOVE_SPEED;
 		game->move_count++;
-		//movement = 0;
-		if ((game->move_count % 3 == 0 || game->move_count < 4) && movement < 2)
-		 	update_player_animation(game, frame);
 		return (1);
 	}
 	else
 		return (0);
 }
 
-static int	move_left(t_game *game, int movement)
+static int	move_left(t_game *game)
 {
 	t_box	ghost_box;
 	int		new_x;
  	int		y;
 	int 	frame;
 	
+	game->player->left = 1;
 	frame = game->player->frame;
 	y = game->player->animation[frame]->instances[0].y;
  	new_x = game->player->animation[frame]->instances[0].x - MOVE_SPEED;
@@ -80,22 +76,20 @@ static int	move_left(t_game *game, int movement)
 		game->player->animation[frame]->instances[0].x -= MOVE_SPEED;
 		game->player->x -= MOVE_SPEED;
 		game->move_count++;
-		//movement = 0;
-		if ((game->move_count % 3 == 0 || game->move_count < 4) && movement < 2)
-		 	update_player_animation(game, frame);
 		return (1);
 	}
 	else
 		return (0);
 }
 
-static int	move_right(t_game *game, int movement)
+static int	move_right(t_game *game)
 {
 	t_box	ghost_box;
 	int		new_x;
  	int		y;
 	int 	frame;
 	
+	game->player->left = 0;
 	frame = game->player->frame;
 	y = game->player->animation[frame]->instances[0].y;
  	new_x = game->player->animation[frame]->instances[0].x + MOVE_SPEED;
@@ -105,10 +99,7 @@ static int	move_right(t_game *game, int movement)
 	{
 		game->player->animation[frame]->instances[0].x += MOVE_SPEED;
 		game->player->x += MOVE_SPEED;
-		game->move_count++;\
-		//movement = 0;
-		if ((game->move_count % 3 == 0 || game->move_count < 4) && movement < 2)
-		 	update_player_animation(game, frame);
+		game->move_count++;
 		return (1);
 	}
 	else
@@ -125,15 +116,15 @@ void controls(void *content)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(game->mlx);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_UP))
-		movement += move_up(game, movement);
+		movement += move_up(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_DOWN))
-		movement += move_down(game, movement);
+		movement += move_down(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
-		movement += move_left(game, movement);
+		movement += move_left(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-		movement += move_right(game, movement);
-	//ft_printf("movement is %d\n", movement);
-	//ft_printf("player's location is %d,%d\n", game->player->x, game->player->y);
+		movement += move_right(game);
+	if (game->move_count % 3 == 0)
+		update_player_animation(game, game->player->frame);
 	if (movement == 0)
 		idle_animation(game);
 	if (movement > 0)

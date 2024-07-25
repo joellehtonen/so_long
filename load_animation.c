@@ -6,97 +6,37 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:17:27 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/25 10:09:29 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:27:59 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void get_images_chicken(t_game *game, const char **textures_chicken)
+void	upload_player_and_enemy_animations_reverse(t_game *game, int x, int y)
 {
-	int animation_count;
-	mlx_texture_t *texture;
+	int count;
 	int i;
-
-	animation_count = 0;
-	while(textures_chicken[animation_count])
-		animation_count++;
-	game->chicken->animation = malloc(sizeof(mlx_image_t *) * animation_count + 1);
-	if (game->chicken->animation == NULL)
-	{
-		//error message
-		//remember to free
-		exit(1);
-	}
+	
 	i = 0;
-	while (i < animation_count)
+	count = 0;
+	while(game->player->reverse_animation[count] != NULL)
+		count++;
+	while (i < count)
 	{
-		texture = mlx_load_png(textures_chicken[i]);
-		game->chicken->animation[i] = mlx_texture_to_image(game->mlx, texture);
-		mlx_resize_image(game->chicken->animation[i], TILE_SIZE * 1.5, TILE_SIZE);
-		mlx_delete_texture(texture);
+		mlx_image_to_window(game->mlx, game->player->reverse_animation[i], x * TILE_SIZE, y * TILE_SIZE);
+		game->player->reverse_animation[i]->instances[0].enabled = false;
 		i++;
 	}
-	 game->chicken->animation[i] = NULL;
-	ft_printf("chicken images got\n");
-}
-
-void get_images_fox(t_game *game, const char **textures_fox)
-{
-	int animation_count;
-	mlx_texture_t *texture;
-	int i;
-
-	animation_count = 0;
-	while(textures_fox[animation_count])
-		animation_count++;
-	game->player->animation = malloc(sizeof(mlx_image_t *) * animation_count + 1);
-	if (game->player->animation == NULL)
-	{
-		//error message
-		//remember to free
-		exit(1);
-	}
 	i = 0;
-	while (i < animation_count)
+	count = 0;
+	while(game->enemy->reverse_animation[count] != NULL)
+		count++;
+	while (i < count)
 	{
-		texture = mlx_load_png(textures_fox[i]);
-		game->player->animation[i] = mlx_texture_to_image(game->mlx, texture);
-		mlx_resize_image(game->player->animation[i], TILE_SIZE * 1.5, TILE_SIZE);
-		mlx_delete_texture(texture);
+		mlx_image_to_window(game->mlx, game->enemy->reverse_animation[i], x * TILE_SIZE, y * TILE_SIZE);
+		game->enemy->reverse_animation[i]->instances[0].enabled = false;
 		i++;
 	}
-	game->player->animation[i] = NULL;
-	ft_printf("fox images got\n");
-}
-
-void get_images_dog(t_game *game, const char **textures_dog)
-{
-	int animation_count;
-	mlx_texture_t *texture;
-	int i;
-
-	animation_count = 0;
-	while(textures_dog[animation_count])
-		animation_count++;
-	game->enemy->animation = malloc(sizeof(mlx_image_t *) * animation_count + 1);
-	if (game->enemy->animation == NULL)
-	{
-		//error message
-		//remember to free
-		exit(1);
-	}
-	i = 0;
-	while (i < animation_count)
-	{
-		texture = mlx_load_png(textures_dog[i]);
-		game->enemy->animation[i] = mlx_texture_to_image(game->mlx, texture);
-		mlx_resize_image(game->enemy->animation[i], TILE_SIZE * 1.5, TILE_SIZE);
-		mlx_delete_texture(texture);
-		i++;
-	}
-	game->enemy->animation[i] = NULL;
-	ft_printf("dog images got\n");
 }
 
 void	upload_player_and_enemy_animations(t_game *game, int x, int y)
@@ -122,13 +62,13 @@ void	upload_player_and_enemy_animations(t_game *game, int x, int y)
 	while (i < count)
 	{
 		mlx_image_to_window(game->mlx, game->enemy->animation[i], x * TILE_SIZE, y * TILE_SIZE);
-		//mlx_set_instance_depth(&game->enemy->animation[1]->instances[0], 2);
 		game->enemy->animation[i]->instances[0].enabled = false;
 		i++;
 	}
+	upload_player_and_enemy_animations_reverse(game, x, y);
 }
 
-void	upload_chicken_animations(t_game *game, int x, int y)
+void	upload_chicken_animations(t_game *game, int x, int y, int number)
 {
 	int count;
 	int i;
@@ -140,8 +80,8 @@ void	upload_chicken_animations(t_game *game, int x, int y)
 	while (i < count)
 	{
 		mlx_image_to_window(game->mlx, game->chicken->animation[i], x * TILE_SIZE, y * TILE_SIZE);
-		game->chicken->animation[i]->instances[0].enabled = false;
+		game->chicken->animation[i]->instances[number].enabled = false;
 		i++;
 	}
-	game->chicken->animation[0]->instances[0].enabled = true;
+	game->chicken->animation[0]->instances[number].enabled = true;
 }

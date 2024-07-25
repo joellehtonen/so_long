@@ -14,9 +14,11 @@ SRCS 		= main.c \
 				controls.c \
 				ft_realloc.c \
 				graphics.c \
+				get_images.c \
 				map_checker.c \
 				map_reader.c \
 				texture_names.c \
+				texture_names_reverse.c \
 				enemy.c \
 				animation.c \
 				load_animation.c \

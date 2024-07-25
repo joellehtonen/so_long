@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:57:03 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/24 15:18:33 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/25 12:54:23 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void map_reader(t_game *game, char **argv)
 	game->width = ft_strlen(line) - 1;
 	while (line != NULL)
 	{
-		game->map = realloc(game->map, (sizeof(char *) * game->height + 1)); //remember to change to ft_realloc
+		game->map = ft_realloc(game->map, (sizeof(char *) * game->height + 1)); //remember to change to ft_realloc
 		game->map[game->height] = line;
 		//ft_printf("new line: \n%s", game->map[game->height]);
 		//free(line);

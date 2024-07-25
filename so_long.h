@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/25 12:06:37 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:29:21 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ typedef struct s_enemy
 	int	dying;
 	int animation_timer;
 	int move_count;
+	int	left;
 	mlx_image_t **animation;
-	mlx_image_t **flipped_animation;
+	mlx_image_t **reverse_animation;
 }	t_enemy;
 
 typedef struct s_player
@@ -69,8 +70,9 @@ typedef struct s_player
 	int	frame;
 	int	dying;
 	int	animation_timer;
+	int	left;
 	mlx_image_t **animation;
-	mlx_image_t **flipped_animation;
+	mlx_image_t **reverse_animation;
 }	t_player;
 
 typedef struct s_world
@@ -111,14 +113,19 @@ const char **textures_world(void);
 const char **textures_chicken(void);
 const char **textures_fox(void);
 const char **textures_dog(void);
+const char **textures_fox_reverse(void);
+const char **textures_dog_reverse(void);
 void	get_images_dog(t_game *game, const char **textures_dog);
+void	get_images_dog_reverse(t_game *game, const char **textures_dog_reverse);
 void 	get_images_fox(t_game *game, const char **textures_fox);
+void 	get_images_fox_reverse(t_game *game, const char **textures_fox_reverse);
 void 	get_images_chicken(t_game *game, const char **textures_chicken);
 void	get_images_world(t_game *game, const char **textures_world);
-void	insert_images_to_map(t_game *game, int x, int y);
+void	insert_images_to_map(t_game *game, int x, int y, int i);
 void 	wall_randomizer(t_game *game, int x, int y);
 void	upload_player_and_enemy_animations(t_game *game, int x, int y);
-void	upload_chicken_animations(t_game *game, int x, int y);
+void	upload_player_and_enemy_animations_reverse(t_game *game, int x, int y);
+void	upload_chicken_animations(t_game *game, int x, int y, int number);
 void	update_locations(t_game *game, int x, int y);
 void	add_graphics(t_game *game);
 void	map_checker(t_game *game);

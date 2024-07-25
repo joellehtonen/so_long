@@ -38,6 +38,7 @@ check min size and max size for map
 
 FIX FT_REALLOC
 
+add reverse death animation for dog
 
 /**
  * Sets the size limits of the specified window.

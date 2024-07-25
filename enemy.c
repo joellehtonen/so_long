@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:13:17 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/25 11:52:38 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:50:40 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ static void	enemy_death(t_game *game, int frame, double time, int i)
 		game->enemy->animation[i]->instances[0].enabled = false;
 		game->enemy->animation[i]->instances[0].x = game->enemy->x;
    		game->enemy->animation[i]->instances[0].y = game->enemy->y;
+		game->enemy->reverse_animation[i]->instances[0].enabled = false;
 		mlx_set_instance_depth(&game->enemy->animation[i]->instances[0], 2);
 		i++;
 	}
-	//game->enemy->animation[frame]->instances[0].enabled = false;
 	frame = 8;
 	game->enemy->animation[frame]->instances[0].enabled = true;
 	time = mlx_get_time();
@@ -36,14 +36,12 @@ static void	enemy_death(t_game *game, int frame, double time, int i)
 		game->enemy->animation[frame]->instances[0].enabled = false;
 		frame++;
 		game->enemy->animation[frame]->instances[0].enabled = true;
-		printf("time is %f\n", time);
 	}
 	if (time > game->enemy->animation_timer + 0.6)
 	{
 		game->enemy->animation[frame]->instances[0].enabled = false;
 		frame++;
 		game->enemy->animation[frame]->instances[0].enabled = true;
-		printf("time is %f\n", time);
 	}
 	if (time > game->enemy->animation_timer + 0.7)
 	{
@@ -52,7 +50,6 @@ static void	enemy_death(t_game *game, int frame, double time, int i)
 		game->enemy->animation[frame]->instances[0].enabled = true;
 		mlx_set_instance_depth(&game->enemy->animation[frame]->instances[0], 1);
 		game->enemy->active = 0;
-		printf("time is %f\n", time);
 	}
 }
 
@@ -95,11 +92,13 @@ static void	chase_player(t_game *game)
 		{
 			game->enemy->animation[frame]->instances[0].x += MOVE_SPEED;
 			game->enemy->x += MOVE_SPEED;
+			game->enemy->left = 0;
 		}
 		if (game->player->x < game->enemy->x)
 		{
 			game->enemy->animation[frame]->instances[0].x -= MOVE_SPEED;
 			game->enemy->x -= MOVE_SPEED;
+			game->enemy->left = 1;
 		}
 		if (game->player->y > game->enemy->y)
 		{
