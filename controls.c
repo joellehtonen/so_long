@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:04 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/24 14:55:05 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/25 11:46:16 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	move_up(t_game *game, int movement)
 	frame = game->player->frame;
 	x = game->player->animation[frame]->instances[0].x;
  	new_y = game->player->animation[frame]->instances[0].y - MOVE_SPEED;
-	ghost_box = (t_box){x, new_y, TILE_SIZE, TILE_SIZE};
+	ghost_box = (t_box){x, new_y, MOVE_SIZE, MOVE_SIZE};
 	if (is_wall(game, ghost_box.x, ghost_box.y) == FALSE
 		&& is_wall(game, ghost_box.x + MOVE_SIZE, ghost_box.y) == FALSE)
 	{
@@ -30,7 +30,7 @@ static int	move_up(t_game *game, int movement)
 		game->player->y -= MOVE_SPEED;
 		game->move_count++;
 		//movement = 0;
-		if ((game->move_count % 4 == 0 || game->move_count < 4) && movement < 2)
+		if ((game->move_count % 3 == 0 || game->move_count < 4) && movement < 2)
 		 	update_player_animation(game, frame);
 		return (1);
 	}
@@ -47,7 +47,7 @@ static int	move_down(t_game *game, int movement)
 	frame = game->player->frame;
 	x = game->player->animation[frame]->instances[0].x;
  	new_y = game->player->animation[frame]->instances[0].y + MOVE_SPEED;
-	ghost_box = (t_box){x, new_y, TILE_SIZE, TILE_SIZE};
+	ghost_box = (t_box){x, new_y, MOVE_SIZE, MOVE_SIZE};
 	if (is_wall(game, ghost_box.x, ghost_box.y + MOVE_SIZE) == FALSE
 		&& is_wall(game, ghost_box.x + MOVE_SIZE, ghost_box.y + MOVE_SIZE) == FALSE)
 	{
@@ -55,7 +55,7 @@ static int	move_down(t_game *game, int movement)
 		game->player->y += MOVE_SPEED;
 		game->move_count++;
 		//movement = 0;
-		if ((game->move_count % 4 == 0 || game->move_count < 4) && movement < 2)
+		if ((game->move_count % 3 == 0 || game->move_count < 4) && movement < 2)
 		 	update_player_animation(game, frame);
 		return (1);
 	}
@@ -73,7 +73,7 @@ static int	move_left(t_game *game, int movement)
 	frame = game->player->frame;
 	y = game->player->animation[frame]->instances[0].y;
  	new_x = game->player->animation[frame]->instances[0].x - MOVE_SPEED;
-	ghost_box = (t_box){new_x, y, TILE_SIZE, TILE_SIZE};
+	ghost_box = (t_box){new_x, y, MOVE_SIZE, MOVE_SIZE};
 	if (is_wall(game, ghost_box.x, ghost_box.y) == FALSE
 		&& is_wall(game, ghost_box.x, ghost_box.y + MOVE_SIZE) == FALSE)
 	{
@@ -81,7 +81,7 @@ static int	move_left(t_game *game, int movement)
 		game->player->x -= MOVE_SPEED;
 		game->move_count++;
 		//movement = 0;
-		if ((game->move_count % 4 == 0 || game->move_count < 4) && movement < 2)
+		if ((game->move_count % 3 == 0 || game->move_count < 4) && movement < 2)
 		 	update_player_animation(game, frame);
 		return (1);
 	}
@@ -99,7 +99,7 @@ static int	move_right(t_game *game, int movement)
 	frame = game->player->frame;
 	y = game->player->animation[frame]->instances[0].y;
  	new_x = game->player->animation[frame]->instances[0].x + MOVE_SPEED;
-	ghost_box = (t_box){new_x, y, TILE_SIZE, TILE_SIZE};
+	ghost_box = (t_box){new_x, y, MOVE_SIZE, MOVE_SIZE};
 	if (is_wall(game, ghost_box.x + MOVE_SIZE, ghost_box.y) == FALSE
 		&& is_wall(game, ghost_box.x + MOVE_SIZE, ghost_box.y + MOVE_SIZE) == FALSE)
 	{
@@ -107,7 +107,7 @@ static int	move_right(t_game *game, int movement)
 		game->player->x += MOVE_SPEED;
 		game->move_count++;\
 		//movement = 0;
-		if ((game->move_count % 4 == 0 || game->move_count < 4) && movement < 2)
+		if ((game->move_count % 3 == 0 || game->move_count < 4) && movement < 2)
 		 	update_player_animation(game, frame);
 		return (1);
 	}
@@ -134,8 +134,8 @@ void controls(void *content)
 		movement += move_right(game, movement);
 	//ft_printf("movement is %d\n", movement);
 	//ft_printf("player's location is %d,%d\n", game->player->x, game->player->y);
-	//else
-	//	idle_animation(game);
+	if (movement == 0)
+		idle_animation(game);
 	if (movement > 0)
 		collect_stuff(game);
 	enemy_appears(game);

@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 09:48:25 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/24 15:03:13 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/25 09:28:20 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,33 +41,37 @@ const char **textures_chicken(void)
 
 const char **textures_fox(void)
 {
-	static const char *textures_fox[9];
+	static const char *textures_fox[10];
 
-	textures_fox[0] = "textures/fox_idle1.png";
-	textures_fox[1] = "textures/fox_idle2.png";
-	textures_fox[2] = "textures/fox_run1.png";
-	textures_fox[3] = "textures/fox_run2.png";
-	textures_fox[4] = "textures/fox_run3.png";
-	textures_fox[5] = "textures/fox_run4.png";
-	textures_fox[6] = "textures/fox_die1.png";
-	textures_fox[7] = "textures/fox_die2.png";
-	textures_fox[8] = NULL;
+	textures_fox[0] = "textures/fox_run1.png";
+	textures_fox[1] = "textures/fox_run2.png";
+	textures_fox[2] = "textures/fox_run3.png";
+	textures_fox[3] = "textures/fox_run4.png";
+	textures_fox[4] = "textures/fox_run5.png";
+	textures_fox[5] = "textures/fox_run6.png";
+	textures_fox[6] = "textures/fox_run7.png";
+	textures_fox[7] = "textures/fox_run8.png";
+	textures_fox[8] = "textures/fox_idle1.png";
+	textures_fox[9] = NULL;
 	return (textures_fox);
 }
 
 const char **textures_dog(void)
 {
-	static const char *textures_dog[10];
+	static const char *textures_dog[13];
 
 	textures_dog[0] = "textures/dog_run1.png";
 	textures_dog[1] = "textures/dog_run2.png";
 	textures_dog[2] = "textures/dog_run3.png";
 	textures_dog[3] = "textures/dog_run4.png";
-	textures_dog[4] = "textures/dog_attack1.png";
-	textures_dog[5] = "textures/dog_attack2.png";
-	textures_dog[6] = "textures/dog_attack3.png";
-	textures_dog[7] = "textures/dog_die1.png";
-	textures_dog[8] = "textures/dog_die2.png";
-	textures_dog[9] = NULL;
+	textures_dog[4] = "textures/dog_run5.png";
+	textures_dog[5] = "textures/dog_run6.png";
+	textures_dog[6] = "textures/dog_run7.png";
+	textures_dog[7] = "textures/dog_run8.png";
+	textures_dog[8] = "textures/dog_die1.png";
+	textures_dog[9] = "textures/dog_die2.png";
+	textures_dog[10] = "textures/dog_die3.png";
+	textures_dog[11] = "textures/dog_die4.png";
+	textures_dog[12] = NULL;
 	return (textures_dog);
 }

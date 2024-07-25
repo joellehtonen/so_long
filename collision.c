@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:28:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/24 15:57:07 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/25 12:03:00 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void collectable_collision(t_game *game, t_box player, int x, int y)
 			collectable = (t_box){x, y, TILE_SIZE, TILE_SIZE};
 			if (check_collision(player, collectable) == TRUE)
 			{
-				//game->chicken->animation[0]->instances[i].enabled = false;
-				update_chicken_animation(game, i);
+				update_chicken_animation(game, i);	
 				game->collected++;
+				ft_printf("collected: %d\n", game->collected);
 			}
 		}
 		i++;

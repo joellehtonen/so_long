@@ -6,11 +6,28 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:35:53 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/24 15:52:30 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/25 10:22:28 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+// void	set_depths(t_game *game)
+// {
+// 	int i;
+
+// 	i = 0;
+// 	while ()
+// 		mlx_set_instance_depth(&game->world->image[1]->instances[0], 1);
+// }
+
+void	update_locations(t_game *game, int x, int y)
+{
+	game->player->x = x * TILE_SIZE;
+	game->player->y = y * TILE_SIZE;
+	game->enemy->x = game->player->x;
+	game->enemy->y = game->player->y;
+}
 
 void get_images_world(t_game *game, const char **textures_world)
 {
@@ -49,8 +66,8 @@ void	insert_images_to_map(t_game *game, int x, int y)
 		{
 			if (game->map[y][x] == '1')
 			{
-				//wall_randomizer(game, x, y);
-				mlx_image_to_window(game->mlx, game->world->image[1], x * TILE_SIZE, y * TILE_SIZE);
+				wall_randomizer(game, x, y);
+				//mlx_image_to_window(game->mlx, game->world->image[1], x * TILE_SIZE, y * TILE_SIZE);
 			}
 			else if (game->map[y][x] == 'e')
 			{
@@ -91,6 +108,7 @@ void	add_graphics(t_game *game)
 	get_images_dog(game, textures_dog());
 	mlx_image_to_window(game->mlx, game->world->image[0], 0, 0);
 	insert_images_to_map(game, x, y);
+	//set_depths(game);
 }
 
 // void	get_textures(t_game *game)

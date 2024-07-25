@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/24 15:22:25 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/25 11:05:11 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,11 @@ void	initialize_variables(t_game *game)
 	game->enemy->frame = 0;
 	game->enemy->dying = 0;
 	game->enemy->animation_timer = 0;
+	game->enemy->move_count = 0;
 	game->player->animation_timer = 0;
-	//game->player->dying = 0;
-	//game->chicken->dying = 0;
+	game->chicken->animation_timer = 0;
+	game->player->dying = 0;
+	game->chicken->dying = 0;
 }
 
 void	initialize_game(t_game *game)

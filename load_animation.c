@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:17:27 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/24 16:03:58 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/25 10:09:29 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,10 @@ void	upload_player_and_enemy_animations(t_game *game, int x, int y)
 	count = 0;
 	while(game->player->animation[count] != NULL)
 		count++;
-	//ft_printf("player count is %d\n", count);
 	while (i < count)
 	{
 		mlx_image_to_window(game->mlx, game->player->animation[i], x * TILE_SIZE, y * TILE_SIZE);
 		game->player->animation[i]->instances[0].enabled = false;
-		//ft_printf("Uploaded player animation %d at (%d, %d)\n", i, x * TILE_SIZE, y * TILE_SIZE);
 		i++;
 	}
 	game->player->animation[0]->instances[0].enabled = true;
@@ -121,12 +119,11 @@ void	upload_player_and_enemy_animations(t_game *game, int x, int y)
 	count = 0;
 	while(game->enemy->animation[count] != NULL)
 		count++;
-	//ft_printf("enemy count is %d\n", count);
 	while (i < count)
 	{
 		mlx_image_to_window(game->mlx, game->enemy->animation[i], x * TILE_SIZE, y * TILE_SIZE);
+		//mlx_set_instance_depth(&game->enemy->animation[1]->instances[0], 2);
 		game->enemy->animation[i]->instances[0].enabled = false;
-		//ft_printf("Uploaded enemy animation %d at (%d, %d)\n", i, x * TILE_SIZE, y * TILE_SIZE);
 		i++;
 	}
 }

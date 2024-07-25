@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/24 15:58:14 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/25 12:06:37 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_box
 typedef struct s_chicken
 {
 	int	dying;
+	double animation_timer;
 	mlx_image_t **animation;
 }	t_chicken;
 
@@ -56,7 +57,9 @@ typedef struct s_enemy
 	int	frame;
 	int	dying;
 	int animation_timer;
+	int move_count;
 	mlx_image_t **animation;
+	mlx_image_t **flipped_animation;
 }	t_enemy;
 
 typedef struct s_player
@@ -67,6 +70,7 @@ typedef struct s_player
 	int	dying;
 	int	animation_timer;
 	mlx_image_t **animation;
+	mlx_image_t **flipped_animation;
 }	t_player;
 
 typedef struct s_world
@@ -125,6 +129,7 @@ void 	free_and_exit(t_game *game, int error);
 void	enemy_appears(t_game *game);
 void	update_player_animation(t_game *game, int frame);
 void	update_chicken_animation(t_game *game, int number);
+void	update_enemy_animation(t_game *game, int frame);
 void	idle_animation(t_game *game);
 
 #endif
