@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:17:27 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/25 15:27:59 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/26 11:40:17 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	upload_player_and_enemy_animations_reverse(t_game *game, int x, int y)
 	
 	i = 0;
 	count = 0;
-	while(game->player->reverse_animation[count] != NULL)
+	while (game->player->reverse_animation[count] != NULL)
 		count++;
 	while (i < count)
 	{
@@ -29,7 +29,7 @@ void	upload_player_and_enemy_animations_reverse(t_game *game, int x, int y)
 	}
 	i = 0;
 	count = 0;
-	while(game->enemy->reverse_animation[count] != NULL)
+	while (game->enemy->reverse_animation[count] != NULL)
 		count++;
 	while (i < count)
 	{
@@ -46,7 +46,7 @@ void	upload_player_and_enemy_animations(t_game *game, int x, int y)
 	
 	i = 0;
 	count = 0;
-	while(game->player->animation[count] != NULL)
+	while (game->player->animation[count] != NULL)
 		count++;
 	while (i < count)
 	{
@@ -57,7 +57,7 @@ void	upload_player_and_enemy_animations(t_game *game, int x, int y)
 	game->player->animation[0]->instances[0].enabled = true;
 	i = 0;
 	count = 0;
-	while(game->enemy->animation[count] != NULL)
+	while (game->enemy->animation[count] != NULL)
 		count++;
 	while (i < count)
 	{
@@ -75,7 +75,7 @@ void	upload_chicken_animations(t_game *game, int x, int y, int number)
 	
 	i = 0;
 	count = 0;
-	while(game->chicken->animation[count] != NULL)
+	while (game->chicken->animation[count] != NULL)
 		count++;
 	while (i < count)
 	{

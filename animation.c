@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 12:38:44 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/25 15:37:35 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/26 12:08:51 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	update_player_animation(t_game *game, int frame)
 		game->player->reverse_animation[i]->instances[0].enabled = false;
 		game->player->reverse_animation[i]->instances[0].x = game->player->x;
    		game->player->reverse_animation[i]->instances[0].y = game->player->y;
-		mlx_set_instance_depth(&game->player->animation[i]->instances[0], 3);
-		mlx_set_instance_depth(&game->player->reverse_animation[i]->instances[0], 3);
+		mlx_set_instance_depth(&game->player->animation[i]->instances[0], 5);
+		mlx_set_instance_depth(&game->player->reverse_animation[i]->instances[0], 5);
 		i++;
 	}
 	if (game->player->left == 0)
@@ -51,8 +51,8 @@ void	update_enemy_animation(t_game *game, int frame)
 		game->enemy->reverse_animation[i]->instances[0].enabled = false;
 		game->enemy->reverse_animation[i]->instances[0].x = game->enemy->x;
    		game->enemy->reverse_animation[i]->instances[0].y = game->enemy->y;
-		mlx_set_instance_depth(&game->enemy->animation[i]->instances[0], 2);
-		mlx_set_instance_depth(&game->enemy->reverse_animation[i]->instances[0], 2);
+		mlx_set_instance_depth(&game->enemy->animation[i]->instances[0], 3);
+		mlx_set_instance_depth(&game->enemy->reverse_animation[i]->instances[0], 3);
 		i++;
 	}
 	if (game->enemy->left == 0)

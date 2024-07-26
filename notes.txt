@@ -2,7 +2,7 @@ could the game crash if move_count goes above int_max?
 
 add limit that the map doesnt expand too much (more than screen size)
 
-checker to check if input characters are valid (maybe during inputting graphics)
+DONE checker to check if input characters are valid (maybe during inputting graphics)
 
 move_count updates but doesnt display if pressing 2 keys and hitting wall in one direction
 
@@ -39,6 +39,12 @@ check min size and max size for map
 FIX FT_REALLOC
 
 add reverse death animation for dog
+
+map minimum height 3
+
+remove boolean
+
+chicken and enemy images clash each time a chicken is collected
 
 /**
  * Sets the size limits of the specified window.

@@ -6,57 +6,11 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/25 16:40:16 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/26 12:21:28 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	free_and_exit(t_game *game, int error)
-{
-	int	i;
-
-	i = 0;
-	//ft_printf("FREEING AND EXITING\n");
-	//REMEMBER TO FREE THE LINES OF GNL!!
-	if (game->image_content == 1)
-	{
-		while (i++ < 7)
-			free(game->world->image[i]);
-		while (i++ < 4)
-			free(game->chicken->animation[i]);
-		while (i++ < 8)
-			free(game->player->animation[i]);
-		while (i++ < 9)
-			free(game->enemy->animation[i]);
-	}
-	// while (game->map[i])
-	// {
-	// 	free(game->map[i]);
-	// 	i++;
-	// }
-	free(game->map);
-	//mlx_terminate(game->mlx); //THIS CAUSES SEGFAULT
-	if (error == 1)
-	{
-		ft_putstr_fd("Error\n", 1);
-		exit(1);
-	}
-	exit(0);
-}
-
-void	display_error(t_game *game, int e)
-{
-	if (e == 1)
-		ft_printf("The map must be closed/surrounded by walls.\n");
-	if (e == 2)
-		ft_printf("The map must be rectangular.\n");
-	if (e == 3)
-		ft_printf("Invalid characters OR invalid amount of characters.\n");
-	if (e == 4)
-		ft_printf("No valid path in the map.\n");
-	free_and_exit(game, 1);
-}
 
 void	initialize_variables(t_game *game)
 {
@@ -68,6 +22,12 @@ void	initialize_variables(t_game *game)
 	game->start = 0;
 	game->move_count = 0;
 	game->map = NULL;
+	// game->world->image = NULL;
+	// game->player->animation = NULL;
+	// game->enemy->animation = NULL;
+	// game->chicken->animation = NULL;
+	// game->player->reverse_animation = NULL;
+	// game->enemy->reverse_animation = NULL;
 	game->image_content = 0;
 	game->enemy->active = 0;
 	game->frame = 0;
@@ -82,6 +42,7 @@ void	initialize_variables(t_game *game)
 	game->chicken->dying = 0;
 	game->player->left = 0;
 	game->enemy->left = 0;
+	game->world->image_count = 0;
 }
 
 void	initialize_game(t_game *game)

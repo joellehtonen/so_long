@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/25 16:33:15 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/26 14:35:54 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_player
 
 typedef struct s_world
 {
+	//int image_count;
 	mlx_image_t **image;
 }	t_world;
 
@@ -137,5 +138,6 @@ void	update_player_animation(t_game *game, int frame);
 void	update_chicken_animation(t_game *game, int number);
 void	update_enemy_animation(t_game *game, int frame);
 void	idle_animation(t_game *game);
+void	free_map(t_game *game);
 
 #endif

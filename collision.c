@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:28:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/25 12:03:00 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/26 13:09:35 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,13 @@ void exit_collision(t_game *game, t_box player, int x, int y)
 	x = game->world->image[5]->instances[0].x;
 	y = game->world->image[5]->instances[0].y;
 	exit = (t_box){x, y, MOVE_SIZE, MOVE_SIZE};
-	if (check_collision(player, exit) == TRUE)
+	if (game->collected == game->collectables)
 	{
-		if (game->collected == game->collectables)
+		if (check_collision(player, exit) == TRUE)
+		{
+			ft_printf("YOU WIN! (the fox says thank you)\n");
 			free_and_exit(game, 0);
+		}
 	}
 }
 

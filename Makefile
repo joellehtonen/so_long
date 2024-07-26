@@ -8,6 +8,7 @@ PRINTF		= ./library/printf
 HEADERS		= -I ./include -I $(LIBMLX)/include -I $(LIBFT) -I $(GNL) -I $(PRINTF)
 LIBS		= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm -L$(LIBFT) -lft -L$(GNL) -lgnl -L$(PRINTF) -lftprintf
 SRCS 		= main.c \
+				free.c \
 				check_path.c \
 				collecting.c \
 				collision.c \
