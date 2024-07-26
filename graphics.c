@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:35:53 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/26 14:34:09 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/26 14:46:24 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,11 @@ void get_images_world(t_game *game, const char **textures_world)
 {
 	int	i;
 	int image_count;
-	int count;
 	mlx_texture_t *texture;
 
 	image_count = 0;
-	// count = 0;
-	// while (game->world->image[count])
-	// {	
-	// 	ft_printf("count is %d\n", count);
-	// 	count++;
-	// }
 	while(textures_world[image_count])
 		image_count++;
-	ft_printf("amount of textures: %d\n", image_count);
 	game->world->image = malloc(sizeof(mlx_image_t *) * image_count);
 	if (game->world->image == NULL)
 		free_and_exit(game, 1);
@@ -47,17 +39,8 @@ void get_images_world(t_game *game, const char **textures_world)
 		game->world->image[i] = mlx_texture_to_image(game->mlx, texture);
 		mlx_resize_image(game->world->image[i], TILE_SIZE * 1, TILE_SIZE * 1);
 		mlx_delete_texture(texture);
-		ft_printf("i is %d\n", i);
 		i++;
 	}
-	count = 0;
-	while (game->world->image[count])
-	{	
-		ft_printf("count is %d\n", count);
-		count++;
-	}
-	ft_printf("amount of images: %d\n", count);
-	//ft_printf("world images got\n");
 }
 
 void	insert_images_to_map(t_game *game, int x, int y, int i)

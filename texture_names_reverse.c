@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 09:48:25 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/25 15:33:05 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/26 15:27:36 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ const char **textures_dog_reverse(void)
 	textures_dog_reverse[5] = "textures/dog_run6_r.png";
 	textures_dog_reverse[6] = "textures/dog_run7_r.png";
 	textures_dog_reverse[7] = "textures/dog_run8_r.png";
-	textures_dog_reverse[8] = "textures/dog_die1.png";
-	textures_dog_reverse[9] = "textures/dog_die2.png";
-	textures_dog_reverse[10] = "textures/dog_die3.png";
-	textures_dog_reverse[11] = "textures/dog_die4.png";
+	textures_dog_reverse[8] = "textures/dog_die1_r.png";
+	textures_dog_reverse[9] = "textures/dog_die2_r.png";
+	textures_dog_reverse[10] = "textures/dog_die3_r.png";
+	textures_dog_reverse[11] = "textures/dog_die4_r.png";
 	textures_dog_reverse[12] = NULL;
 	return (textures_dog_reverse);
 }

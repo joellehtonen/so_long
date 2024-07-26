@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/26 14:35:54 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/26 16:03:49 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ typedef struct s_game
 	struct s_enemy *enemy;
 	struct s_chicken *chicken;
 	int		frame;
-	int		image_content;
 	int 	width;
 	int 	height;
 	int 	collectables;
@@ -134,6 +133,7 @@ void	initialize_game(t_game *game);
 void 	free_and_exit(t_game *game, int error);
 void	display_error(t_game *game, int e);
 void	enemy_appears(t_game *game);
+void	enemy_death(t_game *game);
 void	update_player_animation(t_game *game, int frame);
 void	update_chicken_animation(t_game *game, int number);
 void	update_enemy_animation(t_game *game, int frame);

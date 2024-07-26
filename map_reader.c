@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:57:03 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/26 14:26:30 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/26 14:59:29 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	check_map_format(t_game *game, char *argv)
 	char	*end;
 	int 	i;
 
-	ft_printf("argv is %s\n", argv);
+	//ft_printf("argv is %s\n", argv);
 	end = ft_strrchr(argv, '.');
 	i = ft_strncmp(end, ".ber\0", 5);
 	if (i == 0)
@@ -52,8 +52,7 @@ void	map_reader(t_game *game, char **argv)
 {
 	int 	fd;
 	char	*line;
-	char	**temp;
-
+	
 	check_map_format(game, argv[1]);
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
@@ -67,13 +66,12 @@ void	map_reader(t_game *game, char **argv)
 	game->width = ft_strlen(line) - 1;
 	while (line != NULL)
 	{
-		temp = ft_realloc(game->map, (sizeof(char *) * game->height + 1));
-		if (temp == NULL)
+		game->map = realloc(game->map, (sizeof(char *) * game->height + 1)); //ft_realloc
+		if (game->map == NULL)
 		{
 			free(line);
 			free_and_exit(game, 1);
 		}
-		game->map = temp;
 		game->map[game->height] = line;
 		//free(line);
 		line = get_next_line(fd);

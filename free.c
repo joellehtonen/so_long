@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 10:06:37 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/26 14:43:08 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/26 15:24:14 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	free_and_exit(t_game *game, int error)
 	// free_images(game->player->reverse_animation);
 	// free_images(game->enemy->animation);
 	// free_images(game->enemy->reverse_animation);
+	if (game->mlx->window)
+		mlx_close_window(game->mlx);
 	mlx_terminate(game->mlx);
 	if (error == 1)
 	{

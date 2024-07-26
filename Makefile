@@ -6,7 +6,7 @@ LIBFT	 	= ./library/libft/
 GNL			= ./library/get_next_line/
 PRINTF		= ./library/printf
 HEADERS		= -I ./include -I $(LIBMLX)/include -I $(LIBFT) -I $(GNL) -I $(PRINTF)
-LIBS		= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm -L$(LIBFT) -lft -L$(GNL) -lgnl -L$(PRINTF) -lftprintf
+LIBS		= $(LIBMLX)/build/libmlx42.a -g -ldl -lglfw -pthread -lm -L$(LIBFT) -lft -L$(GNL) -lgnl -L$(PRINTF) -lftprintf
 SRCS 		= main.c \
 				free.c \
 				check_path.c \
@@ -21,6 +21,7 @@ SRCS 		= main.c \
 				texture_names.c \
 				texture_names_reverse.c \
 				enemy.c \
+				enemy_death.c \
 				animation.c \
 				load_animation.c \
 				wall_randomizer.c
