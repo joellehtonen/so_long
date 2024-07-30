@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:19:11 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/25 16:39:14 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:41:21 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ static int	check_walls_vertical(t_game *game, int x, int y)
 	return (1);
 }
 
-static int check_rectangular(t_game *game, int y)
+static int	check_rectangular(t_game *game, int y)
 {
 	int	len;
 	int compare;
-	
+
 	len = game->width + 1;
 	while (y > game->height - 1)
 	{
@@ -71,7 +71,7 @@ static int check_rectangular(t_game *game, int y)
 
 static int	check_count(t_game *game, int x, int y)
 {
-	int invalid_char;
+	int	invalid_char;
 
 	invalid_char = 0;
 	while (y < game->height - 1)
@@ -91,26 +91,27 @@ static int	check_count(t_game *game, int x, int y)
 		}
 		y++;
 	}
-	if  (game->exit != 1 || game->start != 1 || game->collectables == 0
+	if (game->exit != 1 || game->start != 1 || game->collectables == 0
 		|| invalid_char > 0)
 		return (0);
 	else
 		return (1);
 }
 
-void map_checker(t_game *game)
+void	map_checker(t_game *game)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 0;
 	y = 0;
-	if (!check_walls_horizontal(game, x, y) || !check_walls_vertical(game, x, y))
-		display_error(game, 1);
+	if (!check_walls_horizontal(game, x, y)
+		|| !check_walls_vertical(game, x, y))
+		display_error(game, "The map must be closed/surrounded by walls");
 	if (!check_rectangular(game, y))
-		display_error(game, 2);
+		display_error(game, "The map must be rectangular");
 	if (!check_count(game, x, y))
-		display_error(game, 3);
+		display_error(game, "Invalid characters OR invalid amount of characters");
 	if (!check_path(game, x, y))
-		display_error(game, 4);
+		display_error(game, "No valid path in the map");
 }

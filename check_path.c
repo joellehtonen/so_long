@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:11:05 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/25 16:40:01 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:51:57 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static void	flood_fill(t_game *game, int y, int x)
 {
-	if (game->map[y][x] == '1' || game->map[y][x] == 'p' || game->map[y][x] == 'c' || game->map[y][x] == 'e' || game->map[y][x] == 'o')
+	if (game->map[y][x] == '1' || game->map[y][x] == 'p'
+		|| game->map[y][x] == 'c' || game->map[y][x] == 'e'
+		|| game->map[y][x] == 'o')
 		return ;
 	else if (game->map[y][x] == 'P')
 		game->map[y][x] = 'p';
@@ -30,10 +32,10 @@ static void	flood_fill(t_game *game, int y, int x)
 	flood_fill(game, y, x - 1);
 }
 
-static int *find_start(t_game *game, int x, int y)
+static int	*find_start(t_game *game, int x, int y)
 {
-	int *start;
-	
+	int	*start;
+
 	start = ft_calloc(2, sizeof(int));
 	while (game->map[y])
 	{
@@ -53,9 +55,9 @@ static int *find_start(t_game *game, int x, int y)
 	return (start);
 }
 
-int check_path(t_game *game, int x, int y)
+int	check_path(t_game *game, int x, int y)
 {
-	int *start;
+	int	*start;
 
 	start = find_start(game, x, y);
 	flood_fill(game, start[0], start[1]);
@@ -65,12 +67,12 @@ int check_path(t_game *game, int x, int y)
 		x = 0;
 		while (x < game->width - 1)
 		{
-			if (game->map[y][x] == 'C' || game->map[y][x] == 'P' || game->map[y][x] == 'E')
+			if (game->map[y][x] == 'P' || game->map[y][x] == 'E'
+				|| game->map[y][x] == 'C')
 				return (0);
 			x++;
 		}
 		y++;
 	}
-	//ft_printf("path checked\n");
 	return (1);
 }

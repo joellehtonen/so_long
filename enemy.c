@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:13:17 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/26 15:59:53 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/30 10:05:20 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,32 @@ static void enemy_collision(t_game *game, t_box enemy)
 		//play animation 
 		free_and_exit(game, 0);
 	}
+}
+
+void	update_enemy_animation(t_game *game, int frame)
+{
+	int i;
+	
+	i = 0;
+	while (game->enemy->animation[i])
+	{
+		game->enemy->animation[i]->instances[0].enabled = false;
+		game->enemy->animation[i]->instances[0].x = game->enemy->x;
+   		game->enemy->animation[i]->instances[0].y = game->enemy->y;
+		game->enemy->reverse_animation[i]->instances[0].enabled = false;
+		game->enemy->reverse_animation[i]->instances[0].x = game->enemy->x;
+   		game->enemy->reverse_animation[i]->instances[0].y = game->enemy->y;
+		mlx_set_instance_depth(&game->enemy->animation[i]->instances[0], 3);
+		mlx_set_instance_depth(&game->enemy->reverse_animation[i]->instances[0], 3);
+		i++;
+	}
+	if (game->enemy->left == 0)
+		game->enemy->animation[frame]->instances[0].enabled = true;
+	else
+		game->enemy->reverse_animation[frame]->instances[0].enabled = true;
+	game->enemy->frame++;
+	if (game->enemy->frame > 7)
+		game->enemy->frame = 0;
 }
 
 static void	chase_player(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:13:17 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/26 16:15:03 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:27:30 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,27 @@
 static void	enemy_death_animation_left(t_game *game, int frame)
 {
 	double	time;
-	
-	game->enemy->reverse_animation[frame]->instances[0].enabled = true;
+
+	game->enemy->rev_anim[frame]->instances[0].enabled = true;
 	time = mlx_get_time();
 	if (time > game->enemy->animation_timer + 0.5)
 	{
-		game->enemy->reverse_animation[frame]->instances[0].enabled = false;
+		game->enemy->rev_anim[frame]->instances[0].enabled = false;
 		frame++;
-		game->enemy->reverse_animation[frame]->instances[0].enabled = true;
+		game->enemy->rev_anim[frame]->instances[0].enabled = true;
 	}
 	if (time > game->enemy->animation_timer + 0.6)
 	{
-		game->enemy->reverse_animation[frame]->instances[0].enabled = false;
+		game->enemy->rev_anim[frame]->instances[0].enabled = false;
 		frame++;
-		game->enemy->reverse_animation[frame]->instances[0].enabled = true;
+		game->enemy->rev_anim[frame]->instances[0].enabled = true;
 	}
 	if (time > game->enemy->animation_timer + 0.7)
 	{
-		game->enemy->reverse_animation[frame]->instances[0].enabled = false;
+		game->enemy->rev_anim[frame]->instances[0].enabled = false;
 		frame++;
-		game->enemy->reverse_animation[frame]->instances[0].enabled = true;
-		mlx_set_instance_depth(&game->enemy->reverse_animation[frame]->instances[0], 3);
+		game->enemy->rev_anim[frame]->instances[0].enabled = true;
+		mlx_set_instance_depth(&game->enemy->rev_anim[frame]->instances[0], 3);
 		game->enemy->active = 0;
 	}
 }
@@ -43,7 +43,7 @@ static void	enemy_death_animation_left(t_game *game, int frame)
 static void	enemy_death_animation(t_game *game, int frame)
 {
 	double	time;
-	
+
 	game->enemy->animation[frame]->instances[0].enabled = true;
 	time = mlx_get_time();
 	if (time > game->enemy->animation_timer + 0.5)

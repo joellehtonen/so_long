@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 10:06:37 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/26 15:24:14 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:13:12 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,56 +28,60 @@ void	free_map(t_game *game)
 	game->map = NULL;
 }
 
-// void	free_images(mlx_image_t **image)
-// {
-// 	int	i;
-// 	int count;
+void	free_images(mlx_image_t **image)
+{
+	int	i;
+	int	count;
 
-// 	i = 0;
-// 	count = 0;
-// 	if (image == NULL)
-// 		return ;
-// 	while (image[count] != NULL)
-// 		count++;
-// 	while (i < count)
-// 	{
-// 		free(image[i]);
-// 		i++;
-// 	}
-// 	free(image);
-// }
+	i = 0;
+	count = 0;
+	if (image == NULL)
+		return ;
+	while (image[count] != NULL)
+		count++;
+	while (i < count)
+	{
+		free(image[i]);
+		i++;
+	}
+	free(image);
+}
 
 void	free_and_exit(t_game *game, int error)
 {
 	//ft_printf("FREEING AND EXITING\n");
 	//REMEMBER TO FREE THE LINES OF GNL!!
 	free_map(game);
-	// free_images(game->world->image);
-	// free_images(game->chicken->animation);
-	// free_images(game->player->animation);
-	// free_images(game->player->reverse_animation);
-	// free_images(game->enemy->animation);
-	// free_images(game->enemy->reverse_animation);
+	if (game->player)
+	{
+		//free_images(game->player->animation);
+		//free_images(game->player->reverse_animation);
+		free(game->player);
+	}
+	if (game->enemy)
+	{
+		//free_images(game->enemy->animation);
+		//free_images(game->enemy->reverse_animation);
+		free(game->enemy);
+	}
+	if (game->chicken)
+	{
+		//free_images(game->chicken->animation);
+		free(game->chicken);
+	}
+	//if (game->window == 1)
 	if (game->mlx->window)
 		mlx_close_window(game->mlx);
-	mlx_terminate(game->mlx);
+	if (game->mlx)
+		mlx_terminate(game->mlx);
 	if (error == 1)
-	{
-		ft_putstr_fd("Error\n", 1);
 		exit(1);
-	}
 	exit(0);
 }
 
-void	display_error(t_game *game, int e)
+void	display_error(t_game *game, char *string)
 {
-	if (e == 1)
-		ft_printf("The map must be closed/surrounded by walls\n");
-	if (e == 2)
-		ft_printf("The map must be rectangular\n");
-	if (e == 3)
-		ft_printf("Invalid characters OR invalid amount of characters\n");
-	if (e == 4)
-		ft_printf("No valid path in the map\n");
+	ft_printf("ERROR\n");
+	ft_printf("%s\n", string);
 	free_and_exit(game, 1);
 }

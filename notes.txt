@@ -2,25 +2,13 @@ could the game crash if move_count goes above int_max?
 
 add limit that the map doesnt expand too much (more than screen size)
 
-DONE checker to check if input characters are valid (maybe during inputting graphics)
-
 move_count updates but doesnt display if pressing 2 keys and hitting wall in one direction
 
 refactor x and y coordinates of player (since its now stored in a struct)
 
-add different walls and way to randomize between them
-
-make different error messages
-
-DONE enemy needs alternative moves in case of a collision
-
 possible leak if player clicks on x in window
 
-DONE enemy "dies" if it hits wall?
-
 add a check in case image loading fails
-
-DONE make a program that flips the images when left was the last key that was pressed
 
 do textures need to be static?
 
@@ -38,13 +26,17 @@ check min size and max size for map
 
 FIX FT_REALLOC
 
-add reverse death animation for dog
-
-map minimum height 3
-
 remove boolean
 
 chicken and enemy images clash each time a chicken is collected
+
+replace error numbers with messages defined in h
+
+put bonus to different files??? (maybe just enemy stuff)
+
+MLX_TERMINATE segfaults for some reason
+
+fix idle animation
 
 /**
  * Sets the size limits of the specified window.
@@ -59,6 +51,7 @@ chicken and enemy images clash each time a chicken is collected
  * @param[in] min_h The min height of the window.
  * @param[in] max_h The max height of the window.
  */
+
 void mlx_set_window_limit(mlx_t* mlx, int32_t min_w, int32_t min_h, int32_t max_w, int32_t max_h);
 
 

@@ -13,7 +13,6 @@ SRCS 		= main.c \
 				collecting.c \
 				collision.c \
 				controls.c \
-				ft_realloc.c \
 				graphics.c \
 				get_images.c \
 				map_checker.c \

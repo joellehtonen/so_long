@@ -6,85 +6,98 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:57:03 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/26 14:59:29 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:40:13 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// void	check_map_format(t_game *game, char *argv)
-// {
-// 	int len;
-// 	char *c;
-
-// 	len = ft_strlen(argv) + 1;
-// 	ft_printf("argv is %s\n", argv);
-// 	ft_printf("len is %d\n", len);
-// 	c = ft_strnstr(argv, ".ber\0", len);
-// 	ft_printf("c is %s\n", c);
-// 	if (c == NULL)
-// 	{
-// 		ft_printf("The map format must be *.ber\n");
-// 		free_and_exit(game, 1);
-// 	}
-// 	else
-// 		return ;
-// }
+static void	check_map_size(t_game *game)
+{
+	//ft_printf("map height is %d\n", game->height);
+	//ft_printf("map width is %d\n", game->width);
+	if (game->height > (MAX_HEIGHT / TILE_SIZE)
+		|| game->width > (MAX_WIDTH / TILE_SIZE))
+	{
+		display_error(game, "The map is too big");
+	}
+	if (game->height < 3 || game->width < 5)
+		display_error(game, "The map is too small");
+}
 
 void	check_map_format(t_game *game, char *argv)
 {
 	char	*end;
-	int 	i;
+	int		i;
 
 	//ft_printf("argv is %s\n", argv);
 	end = ft_strrchr(argv, '.');
+	if (end == NULL)
+		display_error(game, "The argument is in a wrong format");
 	i = ft_strncmp(end, ".ber\0", 5);
 	if (i == 0)
 		return ;
 	else
-	{
-		ft_printf("The map format must be *.ber\n");
-		free_and_exit(game, 1);
-	}
+		display_error(game, "The map format must be *.ber");
 }
 
-void	map_reader(t_game *game, char **argv)
+static void	get_map_size(t_game *game, char **argv)
 {
-	int 	fd;
+	int		fd;
 	char	*line;
-	
-	check_map_format(game, argv[1]);
+
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		exit(1);
+		display_error(game, "Unable to read the file");
 	line = get_next_line(fd);
-	if (line == NULL)
-	{
-		close(fd);
-		exit(1);
-	}
 	game->width = ft_strlen(line) - 1;
 	while (line != NULL)
 	{
-		game->map = realloc(game->map, (sizeof(char *) * game->height + 1)); //ft_realloc
-		if (game->map == NULL)
-		{
-			free(line);
-			free_and_exit(game, 1);
-		}
-		game->map[game->height] = line;
-		//free(line);
+		free(line);
 		line = get_next_line(fd);
 		game->height++;
 	}
 	close(fd);
-	//FOR PRINTING THE MAP
+}
+
+void	map_reader(t_game *game, char **argv)
+{
+	int		fd;
+	char	*line;
+	int		i;
+	
+	get_map_size(game, argv);
+	fd = open(argv[1], O_RDONLY);
+	if (fd < 0)
+		display_error(game, "Unable to read the file");
+	game->map = malloc(sizeof(char *) * (game->height + 1));
+	if (game->map == NULL)
+		display_error(game, "Malloc failed");
+	line = get_next_line(fd);
+	if (line == NULL)
+	{
+		close(fd);
+		display_error(game, "The file is empty");
+	}
+	i = 0;
+	while (line != NULL)
+	{
+		game->map[i] = line;
+		line = get_next_line(fd);
+		i++;
+	}
+	game->map[i] = NULL;
+	close(fd);
+	check_map_size(game);
+	mlx_set_window_limit(game->mlx, TILE_SIZE * 5, TILE_SIZE * 3, 3800, 2100);
+}
+
+	// // FOR PRINTING THE MAP
 	// ft_printf("map: \n");
-	// int i = 0;
+	// i = 0;
 	// while (i < game->height)
 	// {
 	// 	ft_printf("%s", game->map[i]);
 	// 	i++;
-	// }`
+	// }
 	// ft_printf("\n");
-}

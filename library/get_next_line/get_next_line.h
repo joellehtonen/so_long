@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:16:06 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/11 13:40:25 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:12:45 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,5 @@ size_t	find_newline(char *pile);
 char	*free_and_null(char *str);
 size_t	ft_strlen_gnl(const char *s);
 char	*ft_strchr(char *s, int c);
-
 
 #endif

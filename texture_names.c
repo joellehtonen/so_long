@@ -6,13 +6,13 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 09:48:25 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/25 16:52:51 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:30:26 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-const char **textures_world(void)
+const char	**textures_world(void)
 {
 	static const char *textures_world[8];
 	
@@ -27,7 +27,7 @@ const char **textures_world(void)
 	return (textures_world);
 }
 
-const char **textures_chicken(void)
+const char	**textures_chicken(void)
 {
 	static const char *textures_chicken[5];
 
@@ -39,7 +39,7 @@ const char **textures_chicken(void)
 	return (textures_chicken);
 }
 
-const char **textures_fox(void)
+const char	**textures_fox(void)
 {
 	static const char *textures_fox[10];
 
@@ -56,7 +56,7 @@ const char **textures_fox(void)
 	return (textures_fox);
 }
 
-const char **textures_dog(void)
+const char	**textures_dog(void)
 {
 	static const char *textures_dog[13];
 

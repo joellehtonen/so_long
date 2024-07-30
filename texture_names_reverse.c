@@ -6,13 +6,13 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 09:48:25 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/26 15:27:36 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:30:47 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-const char **textures_fox_reverse(void)
+const char	**textures_fox_reverse(void)
 {
 	static const char *textures_fox_reverse[10];
 
@@ -29,7 +29,7 @@ const char **textures_fox_reverse(void)
 	return (textures_fox_reverse);
 }
 
-const char **textures_dog_reverse(void)
+const char	**textures_dog_reverse(void)
 {
 	static const char *textures_dog_reverse[13];
 

@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/26 16:03:49 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:49:37 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,87 +25,84 @@
 //define error messages here
 
 # define TILE_SIZE 64
-# define MOVE_SIZE (TILE_SIZE * 0.9)
+# define MOVE_SIZE (64 * 0.9)
 # define MOVE_SPEED 4
+# define MAX_HEIGHT 2100
+# define MAX_WIDTH 3800
 
-typedef enum e_bool
-{
-	TRUE = 1,
-	FALSE = 0
-}	t_bool;
+// typedef enum e_bool
+// {
+// 	TRUE = 1,
+// 	FALSE = 0
+// }	t_bool;
 
 typedef struct s_box
 {	
-	int x;
-	int y;
-	int width;
-	int height;
+	int	x;
+	int	y;
+	int	width;
+	int	height;
 }	t_box;
 
 typedef struct s_chicken
 {
-	int	dying;
-	double animation_timer;
-	mlx_image_t **animation;
+	int			dying;
+	double		animation_timer;
+	mlx_image_t	**animation;
 }	t_chicken;
 
 typedef struct s_enemy
 {
-	int	x;
-	int	y;
-	int active;
-	int	frame;
-	int	dying;
-	int animation_timer;
-	int move_count;
-	int	left;
-	mlx_image_t **animation;
-	mlx_image_t **reverse_animation;
+	int			x;
+	int			y;
+	int			active;
+	int			frame;
+	int			dying;
+	int			animation_timer;
+	int			move_count;
+	int			left;
+	mlx_image_t	**animation;
+	mlx_image_t	**rev_anim;
 }	t_enemy;
 
 typedef struct s_player
 {
-	int	x;
-	int y;
-	int	frame;
-	int	dying;
-	int	animation_timer;
-	int	left;
-	mlx_image_t **animation;
-	mlx_image_t **reverse_animation;
+	int			x;
+	int			y;
+	int			frame;
+	int			dying;
+	int			animation_timer;
+	int			left;
+	mlx_image_t	**animation;
+	mlx_image_t	**rev_anim;
 }	t_player;
-
-typedef struct s_world
-{
-	//int image_count;
-	mlx_image_t **image;
-}	t_world;
 
 typedef struct s_game
 {
-	struct s_world *world;
-	struct s_player *player;
-	struct s_enemy *enemy;
-	struct s_chicken *chicken;
-	int		frame;
-	int 	width;
-	int 	height;
-	int 	collectables;
-	int		collected;
-	int		exit;
-	int		start;
-	int		move_count;
-	char	**map;
-	mlx_t	*mlx;
+	struct s_player		*player;
+	struct s_enemy		*enemy;
+	struct s_chicken	*chicken;
+	mlx_image_t 		**world;
+	mlx_t				*mlx;
+	char				**map;
+	int					frame;
+	int 				width;
+	int 				height;
+	int 				collectables;
+	int					collected;
+	int					exit;
+	int					start;
+	int					move_count;
+	int					window;
 }	t_game;
 
 void	controls(void *content);
 int 	check_path(t_game *game, int x, int y);
 void	collect_stuff(t_game *game);
-t_bool	is_wall(t_game *game, int x, int y);
+int		is_wall(t_game *game, int x, int y);
 void	collectable_collision(t_game *game, t_box player, int x, int y);
 void	exit_collision(t_game *game, t_box player, int x, int y);
-t_bool	check_collision(t_box a, t_box b);
+int		check_collision(t_box a, t_box b);
 void	*ft_realloc(void *old_ptr, size_t new_size);
 const char **textures_world(void);
 const char **textures_chicken(void);
@@ -131,7 +128,7 @@ void	map_reader(t_game *game, char **argv);
 void	initialize_variables(t_game *game);
 void	initialize_game(t_game *game);
 void 	free_and_exit(t_game *game, int error);
-void	display_error(t_game *game, int e);
+void	display_error(t_game *game, char *string);
 void	enemy_appears(t_game *game);
 void	enemy_death(t_game *game);
 void	update_player_animation(t_game *game, int frame);
@@ -139,5 +136,6 @@ void	update_chicken_animation(t_game *game, int number);
 void	update_enemy_animation(t_game *game, int frame);
 void	idle_animation(t_game *game);
 void	free_map(t_game *game);
+void	check_map_format(t_game *game, char *argv);
 
 #endif

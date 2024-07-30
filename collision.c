@@ -6,18 +6,18 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:28:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/26 13:09:35 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:50:27 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_bool is_wall(t_game *game, int x, int y)
+int is_wall(t_game *game, int x, int y)
 {
 	if (game->map[y / TILE_SIZE][x / TILE_SIZE] == '1')
-		return (TRUE);
+		return (1);
 	else
-		return (FALSE);
+		return (0);
 }
 
 void collectable_collision(t_game *game, t_box player, int x, int y)
@@ -37,13 +37,14 @@ void collectable_collision(t_game *game, t_box player, int x, int y)
 			{
 				update_chicken_animation(game, i);	
 				game->collected++;
-				ft_printf("collected: %d\n", game->collected);
+				ft_printf("Chickens left to eat: %d\n", 
+					game->collectables - game->collected);
 			}
 		}
 		i++;
 	}
 	if (game->collectables == game->collected)
-		game->world->image[6]->instances[0].enabled = false;
+		game->world[6]->instances[0].enabled = false;
 	return ;
 }
 
@@ -51,32 +52,36 @@ void exit_collision(t_game *game, t_box player, int x, int y)
 {
 	t_box exit;
 	
-	x = game->world->image[5]->instances[0].x;
-	y = game->world->image[5]->instances[0].y;
+	x = game->world[5]->instances[0].x;
+	y = game->world[5]->instances[0].y;
 	exit = (t_box){x, y, MOVE_SIZE, MOVE_SIZE};
-	if (game->collected == game->collectables)
+	if (check_collision(player, exit) == TRUE)
 	{
-		if (check_collision(player, exit) == TRUE)
+		if (game->collected == game->collectables)
 		{
 			ft_printf("YOU WIN! (the fox says thank you)\n");
 			free_and_exit(game, 0);
 		}
+		else
+		{
+			//ft_printf("The fox is still hungry...\n");
+		}
 	}
 }
 
-t_bool check_collision(t_box a, t_box b)
+int	check_collision(t_box a, t_box b)
 {
-	t_bool not_left;
-	t_bool not_right;
-	t_bool not_above;
-	t_bool not_below;
+	int not_left;
+	int not_right;
+	int not_above;
+	int not_below;
 
 	not_left = a.x < b.x + b.width;
 	not_right = a.x + a.width > b.x;
 	not_above = a.y < b.y + b.height;
 	not_below = a.y + a.height > b.y;
 	if (not_left && not_right && not_above && not_below)
-		return (TRUE);
+		return (1);
 	else
-		return (FALSE);
+		return (0);
 }
