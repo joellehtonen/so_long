@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:13:17 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/31 09:27:14 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 11:02:47 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	enemy_death_animation(t_game *game, int frame)
 	}
 }
 
-void	enemy_death(t_game *game)
+void	enemy_dies(t_game *game)
 {
 	int		i;
 	int		frame;
@@ -83,7 +83,7 @@ void	enemy_death(t_game *game)
 	while (game->enemy->animation[i])
 	{
 		game->enemy->animation[i]->instances[0].enabled = false;
-		game->enemy->reverse_animation[i]->instances[0].enabled = false;
+		game->enemy->rev_anim[i]->instances[0].enabled = false;
 		i++;
 	}
 	frame = 8;

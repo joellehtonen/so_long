@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 10:06:37 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/31 10:42:12 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 10:54:18 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ void	free_and_exit(t_game *game, int error)
 	if (game->player)
 	{
 		free_images(game->player->animation);
-		free_images(game->player->reverse_animation);
+		free_images(game->player->rev_anim);
 		free(game->player);
 	}
 	if (game->enemy)
 	{
 		free_images(game->enemy->animation);
-		free_images(game->enemy->reverse_animation);
+		free_images(game->enemy->rev_anim);
 		free(game->enemy);
 	}
 	if (game->chicken)

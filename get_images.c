@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:17:27 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/31 09:41:56 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 10:58:48 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	get_images_fox_reverse(t_game *game, const char **textures_fox_reverse)
 		mlx_delete_texture(texture);
 		i++;
 	}
-	game->player->reverse_animation[i] = NULL;
+	game->player->rev_anim[i] = NULL;
 	//ft_printf("reverse fox images got\n");
 }
 
@@ -147,6 +147,6 @@ void	get_images_dog_reverse(t_game *game, const char **textures_dog_reverse)
 		mlx_delete_texture(texture);
 		i++;
 	}
-	game->enemy->reverse_animation[i] = NULL;
+	game->enemy->rev_anim[i] = NULL;
 	//ft_printf("reverse dog images got\n");
 }

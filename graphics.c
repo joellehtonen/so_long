@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:35:53 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/31 10:29:25 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 10:57:54 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,35 @@ static void	put_exit(t_game *game, int x, int y)
 		x * TILE_SIZE, y * TILE_SIZE);
 	mlx_image_to_window(game->mlx, game->world[6],
 		x * TILE_SIZE, y * TILE_SIZE);
+}
+
+static void	insert_images_to_map(t_game *game, int x, int y, int i)
+{
+	while (y < game->height)
+	{
+		x = 0;
+		while (x < game->width)
+		{
+			if (game->map[y][x] == '1')
+				wall_randomizer(game, x, y);
+			else if (game->map[y][x] == 'e')
+			{
+				put_exit(game, x, y);
+			}
+			else if (game->map[y][x] == 'c')
+			{
+				upload_chicken_animations(game, x, y, i);
+				i++;
+			}
+			else if (game->map[y][x] == 'p')
+			{
+				upload_player_animations(game, x, y);
+				upload_enemy_animations(game, x, y);
+			}
+			x++;
+		}
+		y++;
+	}
 }
 
 static void	get_images_world(t_game *game, const char **textures_world)
@@ -40,35 +69,6 @@ static void	get_images_world(t_game *game, const char **textures_world)
 		mlx_resize_image(game->world[i], TILE_SIZE * 1, TILE_SIZE * 1);
 		mlx_delete_texture(texture);
 		i++;
-	}
-}
-
-void	insert_images_to_map(t_game *game, int x, int y, int i)
-{
-	while (y < game->height)
-	{
-		x = 0;
-		while (x < game->width)
-		{
-			if (game->map[y][x] == '1')
-				wall_randomizer(game, x, y);
-			else if (game->map[y][x] == 'e')
-			{
-				put_exit(x, y);
-			}
-			else if (game->map[y][x] == 'c')
-			{
-				upload_chicken_animations(game, x, y, i);
-				i++;
-			}
-			else if (game->map[y][x] == 'p')
-			{
-				upload_player_animations(game, x, y);
-				upload_enemy_animations(game, x, y);
-			}
-			x++;
-		}
-		y++;
 	}
 }
 

@@ -6,13 +6,13 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:57:03 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/31 10:37:20 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 10:59:52 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	check_map_size(t_game *game)
+void	check_map_size(t_game *game)
 {
 	//ft_printf("map height is %d\n", game->height);
 	//ft_printf("map width is %d\n", game->width);
@@ -41,7 +41,7 @@ void	check_map_format(t_game *game, char *argv)
 		display_error(game, "The map format must be *.ber");
 }
 
-static void	get_map_size(t_game *game, char **argv)
+void	get_map_size(t_game *game, char **argv)
 {
 	int		fd;
 	char	*line;

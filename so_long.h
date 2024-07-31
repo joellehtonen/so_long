@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/31 10:47:05 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 11:02:15 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,15 @@ typedef struct s_game
 	int					window;
 }	t_game;
 
-// initialization functions
+// initialization and freeing functions
 void		initialize_game(t_game *game);
 void		check_map_format(t_game *game, char *argv);
+void		check_map_size(t_game *game);
+void		get_map_size(t_game *game, char **argv);
 void		map_reader(t_game *game, char **argv);
 void		map_checker(t_game *game);
 int			check_path(t_game *game, int x, int y);
 void		add_graphics(t_game *game);
-void		insert_images_to_map(t_game *game, int x, int y, int i);
 void		wall_randomizer(t_game *game, int x, int y);
 void		display_error(t_game *game, char *string);
 void		free_and_exit(t_game *game, int error);
@@ -119,19 +120,16 @@ void		get_images_fox(t_game *game, const char **textures_fox);
 void		get_images_fox_reverse(t_game *game,
 				const char **textures_fox_reverse);
 void		get_images_chicken(t_game *game, const char **textures_chicken);
-void		get_images_world(t_game *game, const char **textures_world);
 void		upload_player_animations(t_game *game, int x, int y);
 void		upload_chicken_animations(t_game *game, int x, int y, int number);
 void		update_player_animation(t_game *game, int frame);
 void		update_chicken_animation(t_game *game, int number);
-void		update_enemy_animation(t_game *game, int frame);
 void		idle_animation(t_game *game);
 // enemy functions
 void		get_images_dog(t_game *game, const char **textures_dog);
 void		get_images_dog_reverse(t_game *game,
 				const char **textures_dog_reverse);
-void		upload_enemy_animations(t_game *game, int x, int y);
 void		enemy_appears(t_game *game);
-void		enemy_death(t_game *game);
+void		enemy_dies(t_game *game);
 
 #endif

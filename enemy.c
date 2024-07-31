@@ -6,13 +6,13 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:13:17 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/31 10:21:04 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 11:02:01 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	enemy_collision(t_game *game, t_box enemy)
+static void	enemy_collision(t_game *game)
 {
 	t_box	enemy;
 	t_box	player;
@@ -25,7 +25,7 @@ static void	enemy_collision(t_game *game, t_box enemy)
 		|| is_wall(game, game->enemy->x + MOVE_SIZE,
 			game->enemy->y + MOVE_SIZE))
 	{
-		enemy_death(game);
+		enemy_dies(game);
 	}
 	if (check_collision(player, enemy))
 	{
@@ -101,7 +101,7 @@ static void	chase_player(t_game *game)
 		if (game->enemy->move_count % 3 == 0)
 			update_enemy_animation(game, frame);
 	}
-	enemy_collision(game, enemy);
+	enemy_collision(game);
 }
 
 void	enemy_appears(t_game *game)
