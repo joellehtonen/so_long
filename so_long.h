@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/30 15:49:37 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 10:47:05 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,11 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-//define error messages here
-
 # define TILE_SIZE 64
-# define MOVE_SIZE (64 * 0.9)
+# define MOVE_SIZE 56
 # define MOVE_SPEED 4
 # define MAX_HEIGHT 2100
 # define MAX_WIDTH 3800
-
-// typedef enum e_bool
-// {
-// 	TRUE = 1,
-// 	FALSE = 0
-// }	t_bool;
 
 typedef struct s_box
 {	
@@ -82,13 +74,13 @@ typedef struct s_game
 	struct s_player		*player;
 	struct s_enemy		*enemy;
 	struct s_chicken	*chicken;
-	mlx_image_t 		**world;
+	mlx_image_t			**world;
 	mlx_t				*mlx;
 	char				**map;
 	int					frame;
-	int 				width;
-	int 				height;
-	int 				collectables;
+	int					width;
+	int					height;
+	int					collectables;
 	int					collected;
 	int					exit;
 	int					start;
@@ -96,46 +88,50 @@ typedef struct s_game
 	int					window;
 }	t_game;
 
-void	controls(void *content);
-int 	check_path(t_game *game, int x, int y);
-void	collect_stuff(t_game *game);
-int		is_wall(t_game *game, int x, int y);
-void	collectable_collision(t_game *game, t_box player, int x, int y);
-void	exit_collision(t_game *game, t_box player, int x, int y);
-int		check_collision(t_box a, t_box b);
-void	*ft_realloc(void *old_ptr, size_t new_size);
-const char **textures_world(void);
-const char **textures_chicken(void);
-const char **textures_fox(void);
-const char **textures_dog(void);
-const char **textures_fox_reverse(void);
-const char **textures_dog_reverse(void);
-void	get_images_dog(t_game *game, const char **textures_dog);
-void	get_images_dog_reverse(t_game *game, const char **textures_dog_reverse);
-void 	get_images_fox(t_game *game, const char **textures_fox);
-void 	get_images_fox_reverse(t_game *game, const char **textures_fox_reverse);
-void 	get_images_chicken(t_game *game, const char **textures_chicken);
-void	get_images_world(t_game *game, const char **textures_world);
-void	insert_images_to_map(t_game *game, int x, int y, int i);
-void 	wall_randomizer(t_game *game, int x, int y);
-void	upload_player_and_enemy_animations(t_game *game, int x, int y);
-void	upload_player_and_enemy_animations_reverse(t_game *game, int x, int y);
-void	upload_chicken_animations(t_game *game, int x, int y, int number);
-void	update_locations(t_game *game, int x, int y);
-void	add_graphics(t_game *game);
-void	map_checker(t_game *game);
-void	map_reader(t_game *game, char **argv);
-void	initialize_variables(t_game *game);
-void	initialize_game(t_game *game);
-void 	free_and_exit(t_game *game, int error);
-void	display_error(t_game *game, char *string);
-void	enemy_appears(t_game *game);
-void	enemy_death(t_game *game);
-void	update_player_animation(t_game *game, int frame);
-void	update_chicken_animation(t_game *game, int number);
-void	update_enemy_animation(t_game *game, int frame);
-void	idle_animation(t_game *game);
-void	free_map(t_game *game);
-void	check_map_format(t_game *game, char *argv);
+// initialization functions
+void		initialize_game(t_game *game);
+void		check_map_format(t_game *game, char *argv);
+void		map_reader(t_game *game, char **argv);
+void		map_checker(t_game *game);
+int			check_path(t_game *game, int x, int y);
+void		add_graphics(t_game *game);
+void		insert_images_to_map(t_game *game, int x, int y, int i);
+void		wall_randomizer(t_game *game, int x, int y);
+void		display_error(t_game *game, char *string);
+void		free_and_exit(t_game *game, int error);
+void		free_map(t_game *game);
+// gameplay functions
+void		controls(void *content);
+void		collect_stuff(t_game *game);
+void		collectable_collision(t_game *game, t_box player, int x, int y);
+void		exit_collision(t_game *game, t_box player, int x, int y);
+int			check_collision(t_box a, t_box b);
+int			is_wall(t_game *game, int x, int y);
+// texture functions
+const char	**textures_world(void);
+const char	**textures_chicken(void);
+const char	**textures_fox(void);
+const char	**textures_dog(void);
+const char	**textures_fox_reverse(void);
+const char	**textures_dog_reverse(void);
+// animation functions
+void		get_images_fox(t_game *game, const char **textures_fox);
+void		get_images_fox_reverse(t_game *game,
+				const char **textures_fox_reverse);
+void		get_images_chicken(t_game *game, const char **textures_chicken);
+void		get_images_world(t_game *game, const char **textures_world);
+void		upload_player_animations(t_game *game, int x, int y);
+void		upload_chicken_animations(t_game *game, int x, int y, int number);
+void		update_player_animation(t_game *game, int frame);
+void		update_chicken_animation(t_game *game, int number);
+void		update_enemy_animation(t_game *game, int frame);
+void		idle_animation(t_game *game);
+// enemy functions
+void		get_images_dog(t_game *game, const char **textures_dog);
+void		get_images_dog_reverse(t_game *game,
+				const char **textures_dog_reverse);
+void		upload_enemy_animations(t_game *game, int x, int y);
+void		enemy_appears(t_game *game);
+void		enemy_death(t_game *game);
 
 #endif

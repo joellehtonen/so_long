@@ -38,6 +38,8 @@ MLX_TERMINATE segfaults for some reason
 
 fix idle animation
 
+remove unnecessary variables from structs
+
 /**
  * Sets the size limits of the specified window.
  * Will force the window to not be resizable past or below the given values.

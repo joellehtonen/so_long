@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/30 15:42:53 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 10:37:34 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,20 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (0);
 	check_map_format(&game, argv[1]);
+	get_map_size(game, argv);
 	initialize_game(&game);
 	map_reader(&game, argv);
+	check_map_size(game);
 	map_checker(&game);
 	game.mlx = mlx_init(game.width * TILE_SIZE,
-		game.height * TILE_SIZE, "FOX", true);
+			game.height * TILE_SIZE, "FOX", true);
 	if ((!game.mlx))
 		free_and_exit(&game, 1);
 	image = mlx_new_image(game.mlx, game.width * TILE_SIZE,
-		game.height * TILE_SIZE);
+			game.height * TILE_SIZE);
 	add_graphics(&game);
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
-	//mlx_set_setting(MLX_MAXIMIZED, 1);
-	//mlx_set_setting(MLX_DECORATED, 0);
 	mlx_image_to_window(game.mlx, image, 0, 0);
-	game.window = 1;
 	mlx_loop_hook(game.mlx, &controls, &game);
 	mlx_loop(game.mlx);
 	free_and_exit(&game, 0);

@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:17:27 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/30 15:24:05 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 09:41:56 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,16 @@ void	get_images_chicken(t_game *game, const char **textures_chicken)
 	{
 		texture = mlx_load_png(textures_chicken[i]);
 		game->chicken->animation[i] = mlx_texture_to_image(game->mlx, texture);
-		mlx_resize_image(game->chicken->animation[i], TILE_SIZE * 1.5, TILE_SIZE);
+		mlx_resize_image(game->chicken->animation[i],
+			TILE_SIZE * 1.5, TILE_SIZE);
 		mlx_delete_texture(texture);
 		i++;
 	}
-	 game->chicken->animation[i] = NULL;
+	game->chicken->animation[i] = NULL;
 	//ft_printf("chicken images got\n");
 }
 
-void get_images_fox(t_game *game, const char **textures_fox)
+void	get_images_fox(t_game *game, const char **textures_fox)
 {
 	mlx_texture_t	*texture;
 	int				count;
@@ -58,7 +59,8 @@ void get_images_fox(t_game *game, const char **textures_fox)
 	{
 		texture = mlx_load_png(textures_fox[i]);
 		game->player->animation[i] = mlx_texture_to_image(game->mlx, texture);
-		mlx_resize_image(game->player->animation[i], TILE_SIZE * 1.5, TILE_SIZE);
+		mlx_resize_image(game->player->animation[i],
+			TILE_SIZE * 1.5, TILE_SIZE);
 		mlx_delete_texture(texture);
 		i++;
 	}
@@ -66,17 +68,17 @@ void get_images_fox(t_game *game, const char **textures_fox)
 	//ft_printf("fox images got\n");
 }
 
-void get_images_fox_reverse(t_game *game, const char **textures_fox_reverse)
+void	get_images_fox_reverse(t_game *game, const char **textures_fox_reverse)
 {
 	mlx_texture_t	*texture;
 	int				count;
-	int				i;i;
+	int				i;
 
 	count = 0;
 	while (textures_fox_reverse[count])
 		count++;
-	game->player->reverse_animation = malloc(sizeof(mlx_image_t *) * (count + 1));
-	if (game->player->reverse_animation == NULL)
+	game->player->rev_anim = malloc(sizeof(mlx_image_t *) * (count + 1));
+	if (game->player->rev_anim == NULL)
 	{
 		display_error(game, "Malloc for images failed");
 	}
@@ -84,8 +86,9 @@ void get_images_fox_reverse(t_game *game, const char **textures_fox_reverse)
 	while (i < count)
 	{
 		texture = mlx_load_png(textures_fox_reverse[i]);
-		game->player->reverse_animation[i] = mlx_texture_to_image(game->mlx, texture);
-		mlx_resize_image(game->player->reverse_animation[i], TILE_SIZE * 1.5, TILE_SIZE);
+		game->player->rev_anim[i] = mlx_texture_to_image(game->mlx, texture);
+		mlx_resize_image(game->player->rev_anim[i],
+			TILE_SIZE * 1.5, TILE_SIZE);
 		mlx_delete_texture(texture);
 		i++;
 	}
@@ -93,11 +96,11 @@ void get_images_fox_reverse(t_game *game, const char **textures_fox_reverse)
 	//ft_printf("reverse fox images got\n");
 }
 
-void get_images_dog(t_game *game, const char **textures_dog)
+void	get_images_dog(t_game *game, const char **textures_dog)
 {
 	mlx_texture_t	*texture;
 	int				count;
-	int				i;;
+	int				i;
 
 	count = 0;
 	while (textures_dog[count])
@@ -112,7 +115,8 @@ void get_images_dog(t_game *game, const char **textures_dog)
 	{
 		texture = mlx_load_png(textures_dog[i]);
 		game->enemy->animation[i] = mlx_texture_to_image(game->mlx, texture);
-		mlx_resize_image(game->enemy->animation[i], TILE_SIZE * 1.5, TILE_SIZE);
+		mlx_resize_image(game->enemy->animation[i],
+			TILE_SIZE * 1.5, TILE_SIZE);
 		mlx_delete_texture(texture);
 		i++;
 	}
@@ -120,7 +124,7 @@ void get_images_dog(t_game *game, const char **textures_dog)
 	//ft_printf("dog images got\n");
 }
 
-void get_images_dog_reverse(t_game *game, const char **textures_dog_reverse)
+void	get_images_dog_reverse(t_game *game, const char **textures_dog_reverse)
 {
 	mlx_texture_t	*texture;
 	int				count;
@@ -129,8 +133,8 @@ void get_images_dog_reverse(t_game *game, const char **textures_dog_reverse)
 	count = 0;
 	while (textures_dog_reverse[count])
 		count++;
-	game->enemy->reverse_animation = malloc(sizeof(mlx_image_t *) * (count + 1));
-	if (game->enemy->reverse_animation == NULL)
+	game->enemy->rev_anim = malloc(sizeof(mlx_image_t *) * (count + 1));
+	if (game->enemy->rev_anim == NULL)
 	{
 		display_error(game, "Malloc for images failed");
 	}
@@ -138,8 +142,8 @@ void get_images_dog_reverse(t_game *game, const char **textures_dog_reverse)
 	while (i < count)
 	{
 		texture = mlx_load_png(textures_dog_reverse[i]);
-		game->enemy->reverse_animation[i] = mlx_texture_to_image(game->mlx, texture);
-		mlx_resize_image(game->enemy->reverse_animation[i], TILE_SIZE * 1.5, TILE_SIZE);
+		game->enemy->rev_anim[i] = mlx_texture_to_image(game->mlx, texture);
+		mlx_resize_image(game->enemy->rev_anim[i], TILE_SIZE * 1.5, TILE_SIZE);
 		mlx_delete_texture(texture);
 		i++;
 	}

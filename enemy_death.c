@@ -6,13 +6,13 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:13:17 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/30 15:27:30 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 09:27:14 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	enemy_death_animation_left(t_game *game, int frame)
+static void	enemy_death_animation_reverse(t_game *game, int frame)
 {
 	double	time;
 
@@ -90,5 +90,5 @@ void	enemy_death(t_game *game)
 	if (game->enemy->left == 0)
 		enemy_death_animation(game, frame);
 	else
-		enemy_death_animation_left(game, frame);
+		enemy_death_animation_reverse(game, frame);
 }

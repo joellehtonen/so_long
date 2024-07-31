@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 12:38:44 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/30 15:32:13 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 10:15:17 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void	update_player_animation(t_game *game, int frame)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (game->player->animation[i])
 	{
 		game->player->animation[i]->instances[0].enabled = false;
 		game->player->animation[i]->instances[0].x = game->player->x;
-   		game->player->animation[i]->instances[0].y = game->player->y;
+		game->player->animation[i]->instances[0].y = game->player->y;
 		game->player->rev_anim[i]->instances[0].enabled = false;
 		game->player->rev_anim[i]->instances[0].x = game->player->x;
-   		game->player->rev_anim[i]->instances[0].y = game->player->y;
+		game->player->rev_anim[i]->instances[0].y = game->player->y;
 		mlx_set_instance_depth(&game->player->animation[i]->instances[0], 5);
 		mlx_set_instance_depth(&game->player->rev_anim[i]->instances[0], 5);
 		i++;
@@ -40,9 +40,9 @@ void	update_player_animation(t_game *game, int frame)
 
 void	update_chicken_animation(t_game *game, int number)
 {
-	int i;
-	double time;
-	
+	int		i;
+	double	time;
+
 	i = 0;
 	if (game->chicken->dying == 0)
 	{
@@ -67,20 +67,19 @@ void	update_chicken_animation(t_game *game, int number)
 	//}
 }
 
-void idle_animation(t_game *game)
+void	idle_animation(t_game *game)
 {
-	int i;
-	//int time;
+	int	i;
 
 	i = 0;
 	while (game->player->animation[i])
 	{
 		game->player->animation[i]->instances[0].enabled = false;
 		game->player->animation[i]->instances[0].x = game->player->x;
-   		game->player->animation[i]->instances[0].y = game->player->y;
+		game->player->animation[i]->instances[0].y = game->player->y;
 		game->player->rev_anim[i]->instances[0].enabled = false;
 		game->player->rev_anim[i]->instances[0].x = game->player->x;
-   		game->player->rev_anim[i]->instances[0].y = game->player->y;
+		game->player->rev_anim[i]->instances[0].y = game->player->y;
 		i++;
 	}
 	if (game->player->left == 0)

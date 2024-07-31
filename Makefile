@@ -10,7 +10,6 @@ LIBS		= $(LIBMLX)/build/libmlx42.a -g -ldl -lglfw -pthread -lm -L$(LIBFT) -lft -
 SRCS 		= main.c \
 				free.c \
 				check_path.c \
-				collecting.c \
 				collision.c \
 				controls.c \
 				graphics.c \
@@ -18,12 +17,13 @@ SRCS 		= main.c \
 				map_checker.c \
 				map_reader.c \
 				texture_names.c \
-				texture_names_reverse.c \
-				enemy.c \
-				enemy_death.c \
 				animation.c \
 				load_animation.c \
-				wall_randomizer.c
+				wall_randomizer.c \
+				enemy.c \
+				enemy_death.c \
+				enemy_animation.c \
+				enemy_textures.c
 OBJS		= $(SRCS:.c=.o)
 
 GREEN    	= \033[1;32m

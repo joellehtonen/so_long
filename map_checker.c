@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:19:11 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/30 15:41:21 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 10:05:58 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	check_walls_vertical(t_game *game, int x, int y)
 static int	check_rectangular(t_game *game, int y)
 {
 	int	len;
-	int compare;
+	int	compare;
 
 	len = game->width + 1;
 	while (y > game->height - 1)
@@ -111,7 +111,7 @@ void	map_checker(t_game *game)
 	if (!check_rectangular(game, y))
 		display_error(game, "The map must be rectangular");
 	if (!check_count(game, x, y))
-		display_error(game, "Invalid characters OR invalid amount of characters");
+		display_error(game, "Invalid characters OR invalid # of characters");
 	if (!check_path(game, x, y))
 		display_error(game, "No valid path in the map");
 }

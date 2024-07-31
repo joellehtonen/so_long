@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:57:03 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/30 15:40:13 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 10:37:20 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ void	map_reader(t_game *game, char **argv)
 	int		fd;
 	char	*line;
 	int		i;
-	
-	get_map_size(game, argv);
+
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		display_error(game, "Unable to read the file");
@@ -88,8 +87,6 @@ void	map_reader(t_game *game, char **argv)
 	}
 	game->map[i] = NULL;
 	close(fd);
-	check_map_size(game);
-	mlx_set_window_limit(game->mlx, TILE_SIZE * 5, TILE_SIZE * 3, 3800, 2100);
 }
 
 	// // FOR PRINTING THE MAP

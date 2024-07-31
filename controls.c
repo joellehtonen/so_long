@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:04 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/30 15:48:51 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 10:31:36 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ static int	move_up(t_game *game)
 {
 	t_box	ghost_box;
 	int		x;
- 	int		new_y;
+	int		new_y;
 	int		frame;
-	
+
 	frame = game->player->frame;
 	x = game->player->x;
- 	new_y = game->player->y - MOVE_SPEED;
+	new_y = game->player->y - MOVE_SPEED;
 	ghost_box = (t_box){x, new_y, MOVE_SIZE, MOVE_SIZE};
 	if (!is_wall(game, ghost_box.x, ghost_box.y)
 		&& !is_wall(game, ghost_box.x + MOVE_SIZE, ghost_box.y))
@@ -39,12 +39,12 @@ static int	move_down(t_game *game)
 {
 	t_box	ghost_box;
 	int		x;
- 	int		new_y;
+	int		new_y;
 	int		frame;
-	
+
 	frame = game->player->frame;
 	x = game->player->x;
- 	new_y = game->player->y + MOVE_SPEED;
+	new_y = game->player->y + MOVE_SPEED;
 	ghost_box = (t_box){x, new_y, MOVE_SIZE, MOVE_SIZE};
 	if (!is_wall(game, ghost_box.x, ghost_box.y + MOVE_SIZE)
 		&& !is_wall(game, ghost_box.x + MOVE_SIZE, ghost_box.y + MOVE_SIZE))
@@ -62,13 +62,13 @@ static int	move_left(t_game *game)
 {
 	t_box	ghost_box;
 	int		new_x;
- 	int		y;
+	int		y;
 	int		frame;
-	
+
 	game->player->left = 1;
 	frame = game->player->frame;
 	y = game->player->y;
- 	new_x = game->player->x - MOVE_SPEED;
+	new_x = game->player->x - MOVE_SPEED;
 	ghost_box = (t_box){new_x, y, MOVE_SIZE, MOVE_SIZE};
 	if (!is_wall(game, ghost_box.x, ghost_box.y)
 		&& !is_wall(game, ghost_box.x, ghost_box.y + MOVE_SIZE))
@@ -86,13 +86,13 @@ static int	move_right(t_game *game)
 {
 	t_box	ghost_box;
 	int		new_x;
- 	int		y;
+	int		y;
 	int		frame;
-	
+
 	game->player->left = 0;
 	frame = game->player->frame;
 	y = game->player->y;
- 	new_x = game->player->x + MOVE_SPEED;
+	new_x = game->player->x + MOVE_SPEED;
 	ghost_box = (t_box){new_x, y, MOVE_SIZE, MOVE_SIZE};
 	if (!is_wall(game, ghost_box.x + MOVE_SIZE, ghost_box.y)
 		&& !is_wall(game, ghost_box.x + MOVE_SIZE, ghost_box.y + MOVE_SIZE))

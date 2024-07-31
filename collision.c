@@ -6,13 +6,13 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:28:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/30 15:50:27 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 10:30:39 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int is_wall(t_game *game, int x, int y)
+int	is_wall(t_game *game, int x, int y)
 {
 	if (game->map[y / TILE_SIZE][x / TILE_SIZE] == '1')
 		return (1);
@@ -20,11 +20,11 @@ int is_wall(t_game *game, int x, int y)
 		return (0);
 }
 
-void collectable_collision(t_game *game, t_box player, int x, int y)
+void	collectable_collision(t_game *game, t_box player, int x, int y)
 {
 	t_box	collectable;
 	int		i;
-	
+
 	i = 0;
 	while (i < game->collectables)
 	{
@@ -35,9 +35,9 @@ void collectable_collision(t_game *game, t_box player, int x, int y)
 			collectable = (t_box){x, y, TILE_SIZE, TILE_SIZE};
 			if (check_collision(player, collectable) == TRUE)
 			{
-				update_chicken_animation(game, i);	
+				update_chicken_animation(game, i);
 				game->collected++;
-				ft_printf("Chickens left to eat: %d\n", 
+				ft_printf("Chickens left to eat: %d\n",
 					game->collectables - game->collected);
 			}
 		}
@@ -48,10 +48,10 @@ void collectable_collision(t_game *game, t_box player, int x, int y)
 	return ;
 }
 
-void exit_collision(t_game *game, t_box player, int x, int y)
+void	exit_collision(t_game *game, t_box player, int x, int y)
 {
-	t_box exit;
-	
+	t_box	exit;
+
 	x = game->world[5]->instances[0].x;
 	y = game->world[5]->instances[0].y;
 	exit = (t_box){x, y, MOVE_SIZE, MOVE_SIZE};
@@ -62,19 +62,15 @@ void exit_collision(t_game *game, t_box player, int x, int y)
 			ft_printf("YOU WIN! (the fox says thank you)\n");
 			free_and_exit(game, 0);
 		}
-		else
-		{
-			//ft_printf("The fox is still hungry...\n");
-		}
 	}
 }
 
 int	check_collision(t_box a, t_box b)
 {
-	int not_left;
-	int not_right;
-	int not_above;
-	int not_below;
+	int	not_left;
+	int	not_right;
+	int	not_above;
+	int	not_below;
 
 	not_left = a.x < b.x + b.width;
 	not_right = a.x + a.width > b.x;
@@ -84,4 +80,16 @@ int	check_collision(t_box a, t_box b)
 		return (1);
 	else
 		return (0);
+}
+
+void	collect_stuff(t_game *game)
+{
+	t_box	player;
+	int		frame;
+
+	ft_printf("MOVES: %d\n", game->move_count);
+	frame = game->player->frame;
+	player = (t_box){game->player->x, game->player->y, TILE_SIZE, TILE_SIZE};
+	collectable_collision(game, player, game->player->x, game->player->y);
+	exit_collision(game, player, game->player->x, game->player->y);
 }
