@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/31 10:54:01 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 11:06:09 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (0);
 	check_map_format(&game, argv[1]);
-	get_map_size(&game, argv);
 	initialize_game(&game);
+	get_map_size(&game, argv);
 	map_reader(&game, argv);
 	check_map_size(&game);
 	map_checker(&game);
