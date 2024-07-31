@@ -5,39 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 09:48:25 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/31 10:09:54 by jlehtone         ###   ########.fr       */
+/*   Created: 2024/07/31 15:23:09 by jlehtone          #+#    #+#             */
+/*   Updated: 2024/07/31 15:25:39 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-const char	**textures_world(void)
-{
-	static const char	*textures_world[8];
-
-	textures_world[0] = "textures/green.png";
-	textures_world[1] = "textures/wall_1.png";
-	textures_world[2] = "textures/wall_2.png";
-	textures_world[3] = "textures/wall_3.png";
-	textures_world[4] = "textures/wall_4.png";
-	textures_world[5] = "textures/exit_green-ish.png";
-	textures_world[6] = "textures/exit_yellow.png";
-	textures_world[7] = NULL;
-	return (textures_world);
-}
-
-const char	**textures_chicken(void)
-{
-	static const char	*textures_chicken[5];
-
-	textures_chicken[0] = "textures/chicken_sit1.png";
-	textures_chicken[1] = "textures/chicken_sit2.png";
-	textures_chicken[2] = "textures/chicken_die1.png";
-	textures_chicken[3] = "textures/chicken_die2.png";
-	textures_chicken[4] = NULL;
-	return (textures_chicken);
-}
 
 const char	**textures_fox(void)
 {
@@ -71,4 +44,16 @@ const char	**textures_fox_reverse(void)
 	textures_fox_reverse[8] = "textures/fox_idle1_r.png";
 	textures_fox_reverse[9] = NULL;
 	return (textures_fox_reverse);
+}
+
+const char	**textures_chicken(void)
+{
+	static const char	*textures_chicken[5];
+
+	textures_chicken[0] = "textures/chicken_sit1.png";
+	textures_chicken[1] = "textures/chicken_sit2.png";
+	textures_chicken[2] = "textures/chicken_die1.png";
+	textures_chicken[3] = "textures/chicken_die2.png";
+	textures_chicken[4] = NULL;
+	return (textures_chicken);
 }

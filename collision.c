@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:28:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/31 10:54:38 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 14:41:28 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,10 @@ void	collect_stuff(t_game *game)
 	t_box	player;
 	int		frame;
 
+	if (game->move_count == INT_MAX - 1)
+		game->move_count = 1;
 	ft_printf("MOVES: %d\n", game->move_count);
+	write_moves_to_window(game);
 	frame = game->player->frame;
 	player = (t_box){game->player->x, game->player->y, TILE_SIZE, TILE_SIZE};
 	collectable_collision(game, player, game->player->x, game->player->y);

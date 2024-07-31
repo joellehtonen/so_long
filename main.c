@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/31 11:06:09 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 15:45:00 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int argc, char **argv)
 	if ((!game.mlx))
 		free_and_exit(&game, 1);
 	image = mlx_new_image(game.mlx, game.width * TILE_SIZE,
-			game.height * TILE_SIZE);
+			(game.height + 1) * TILE_SIZE);
 	add_graphics(&game);
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	mlx_image_to_window(game.mlx, image, 0, 0);

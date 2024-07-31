@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 10:06:37 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/31 10:54:18 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 14:14:24 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,17 @@ void	free_map(t_game *game)
 	game->map = NULL;
 }
 
-void	free_images(mlx_image_t **image)
+void	free_images(mlx_image_t ***image_ptr)
 {
-	int	i;
-	int	count;
+	int			i;
+	int			count;
+	mlx_image_t	**image;
 
+	if (image_ptr == NULL || *image_ptr == NULL)
+		return ;
 	i = 0;
 	count = 0;
-	if (image == NULL)
-		return ;
+	image = *image_ptr;
 	while (image[count] != NULL)
 		count++;
 	while (i < count)
@@ -45,37 +47,34 @@ void	free_images(mlx_image_t **image)
 		i++;
 	}
 	free(image);
-	image = NULL;
+	*image_ptr = NULL;
 }
 
 void	free_and_exit(t_game *game, int error)
 {
-	//ft_printf("FREEING AND EXITING\n");
 	free_map(game);
 	if (game->player)
 	{
-		free_images(game->player->animation);
-		free_images(game->player->rev_anim);
+		free_images(&game->player->animation);
+		free_images(&game->player->rev_anim);
 		free(game->player);
 	}
 	if (game->enemy)
 	{
-		free_images(game->enemy->animation);
-		free_images(game->enemy->rev_anim);
+		free_images(&game->enemy->animation);
+		free_images(&game->enemy->rev_anim);
 		free(game->enemy);
 	}
 	if (game->chicken)
 	{
-		free_images(game->chicken->animation);
+		free_images(&game->chicken->animation);
 		free(game->chicken);
 	}
 	if (game->mlx->window)
 		mlx_close_window(game->mlx);
 	if (game->mlx)
 		mlx_terminate(game->mlx);
-	if (error == 1)
-		exit(1);
-	exit(0);
+	exit(error);
 }
 
 void	display_error(t_game *game, char *string)

@@ -1,14 +1,4 @@
-could the game crash if move_count goes above int_max?
-
-add limit that the map doesnt expand too much (more than screen size)
-
-move_count updates but doesnt display if pressing 2 keys and hitting wall in one direction
-
-refactor x and y coordinates of player (since its now stored in a struct)
-
 possible leak if player clicks on x in window
-
-add a check in case image loading fails
 
 do textures need to be static?
 
@@ -18,19 +8,7 @@ make sure that dog cannot die by hitting edge walls (only inner ones)
 
 with make, mlx42 rebuilds every time
 
-only approve if map ends with .ber\0 (add function for this check)
-
-use memset to init all variables to 0
-
-check min size and max size for map
-
-FIX FT_REALLOC
-
-remove boolean
-
 chicken and enemy images clash each time a chicken is collected
-
-replace error numbers with messages defined in h
 
 put bonus to different files??? (maybe just enemy stuff)
 
@@ -39,6 +17,8 @@ MLX_TERMINATE segfaults for some reason
 fix idle animation
 
 remove unnecessary variables from structs
+
+should one newline at the end of the map be accepted
 
 /**
  * Sets the size limits of the specified window.

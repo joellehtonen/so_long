@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:35:53 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/31 10:57:54 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 15:15:57 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,21 @@ static void	insert_images_to_map(t_game *game, int x, int y, int i)
 	}
 }
 
+const char	**textures_world(void)
+{
+	static const char	*textures_world[8];
+
+	textures_world[0] = "textures/green.png";
+	textures_world[1] = "textures/wall_1.png";
+	textures_world[2] = "textures/wall_2.png";
+	textures_world[3] = "textures/wall_3.png";
+	textures_world[4] = "textures/wall_4.png";
+	textures_world[5] = "textures/exit_green-ish.png";
+	textures_world[6] = "textures/exit_yellow.png";
+	textures_world[7] = NULL;
+	return (textures_world);
+}
+
 static void	get_images_world(t_game *game, const char **textures_world)
 {
 	int				i;
@@ -66,10 +81,14 @@ static void	get_images_world(t_game *game, const char **textures_world)
 	{
 		texture = mlx_load_png(textures_world[i]);
 		game->world[i] = mlx_texture_to_image(game->mlx, texture);
+		if (!game->world[i])
+			display_error(game, "Failed to load image");
 		mlx_resize_image(game->world[i], TILE_SIZE * 1, TILE_SIZE * 1);
 		mlx_delete_texture(texture);
 		i++;
 	}
+	mlx_resize_image(game->world[0], TILE_SIZE * game->width,
+		TILE_SIZE * game->height);
 }
 
 void	add_graphics(t_game *game)
@@ -82,12 +101,10 @@ void	add_graphics(t_game *game)
 	y = 0;
 	i = 0;
 	get_images_world(game, textures_world());
-	mlx_resize_image(game->world[0], TILE_SIZE * game->width,
-		TILE_SIZE * game->height);
 	get_images_chicken(game, textures_chicken());
 	get_images_fox(game, textures_fox());
-	get_images_dog(game, textures_dog());
 	get_images_fox_reverse(game, textures_fox_reverse());
+	get_images_dog(game, textures_dog());
 	get_images_dog_reverse(game, textures_dog_reverse());
 	mlx_image_to_window(game->mlx, game->world[0], 0, 0);
 	insert_images_to_map(game, x, y, i);

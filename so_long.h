@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/31 11:02:15 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 16:08:14 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_game
 	struct s_enemy		*enemy;
 	struct s_chicken	*chicken;
 	mlx_image_t			**world;
+	mlx_image_t			*moves;
 	mlx_t				*mlx;
 	char				**map;
 	int					frame;
@@ -129,7 +130,9 @@ void		idle_animation(t_game *game);
 void		get_images_dog(t_game *game, const char **textures_dog);
 void		get_images_dog_reverse(t_game *game,
 				const char **textures_dog_reverse);
+void		upload_enemy_animations(t_game *game, int x, int y);
 void		enemy_appears(t_game *game);
 void		enemy_dies(t_game *game);
+void		write_moves_to_window(t_game *game);
 
 #endif

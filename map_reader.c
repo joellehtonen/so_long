@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:57:03 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/31 10:59:52 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/07/31 15:37:08 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	check_map_size(t_game *game)
 {
-	//ft_printf("map height is %d\n", game->height);
-	//ft_printf("map width is %d\n", game->width);
 	if (game->height > (MAX_HEIGHT / TILE_SIZE)
 		|| game->width > (MAX_WIDTH / TILE_SIZE))
 	{
@@ -30,10 +28,9 @@ void	check_map_format(t_game *game, char *argv)
 	char	*end;
 	int		i;
 
-	//ft_printf("argv is %s\n", argv);
 	end = ft_strrchr(argv, '.');
 	if (end == NULL)
-		display_error(game, "The argument is in a wrong format");
+		display_error(game, "The argument is in wrong format");
 	i = ft_strncmp(end, ".ber\0", 5);
 	if (i == 0)
 		return ;
@@ -69,7 +66,7 @@ void	map_reader(t_game *game, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		display_error(game, "Unable to read the file");
-	game->map = malloc(sizeof(char *) * (game->height + 1));
+	game->map = malloc(sizeof(char *) * (game->height + 1 + 1));
 	if (game->map == NULL)
 		display_error(game, "Malloc failed");
 	line = get_next_line(fd);
@@ -85,7 +82,7 @@ void	map_reader(t_game *game, char **argv)
 		line = get_next_line(fd);
 		i++;
 	}
-	game->map[i] = NULL;
+	game->map[++i] = NULL;
 	close(fd);
 }
 
