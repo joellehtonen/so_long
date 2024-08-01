@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write_moves_bonus.c                                :+:      :+:    :+:   */
+/*   load_animation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/31 14:34:40 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 12:37:50 by jlehtone         ###   ########.fr       */
+/*   Created: 2024/07/22 15:17:27 by jlehtone          #+#    #+#             */
+/*   Updated: 2024/08/01 12:58:17 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
-void	write_moves_to_window(t_game *game)
+void	upload_player_animations(t_game *game, int x, int y)
 {
-	char 		*str;
-	mlx_image_t	*image;
-	
-	if (game->moves)
-		mlx_delete_image(game->mlx, game->moves);
-	str = ft_itoa(game->move_count);
-	str = ft_strjoin("MOVES: ", str);
-	if (str == NULL)
-		return ;
-	image = mlx_put_string(game->mlx, str, game->player->x - 128, game->player->y);
-	game->moves = image;
-	free(str);
+
+	mlx_image_to_window(game->mlx, game->player->animation[0],
+			x * TILE_SIZE, y * TILE_SIZE);
+	game->player->animation[0]->instances[0].enabled = true;
+	game->player->x = x * TILE_SIZE;
+	game->player->y = y * TILE_SIZE;
 }

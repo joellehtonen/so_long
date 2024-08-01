@@ -10,17 +10,18 @@ BONUS_DIR	= ./bonus/
 HEADER			= -I ./include -I $(LIBMLX)/include -I $(LIBFT) -I $(GNL) -I $(PRINTF)
 BONUS_HEADER	= -I $(BONUS_DIR) -I $(LIBMLX)/include -I $(LIBFT) -I $(GNL) -I $(PRINTF)
 LIBS		= $(LIBMLX)/build/libmlx42.a -g -ldl -lglfw -pthread -lm -L$(LIBFT) -lft -L$(GNL) -lgnl -L$(PRINTF) -lftprintf
-MAIN_SRCS 	= 	check_path.c \
-				map_checker.c \
-				map_reader.c \
-				wall_randomizer.c
 BASIC_SRCS	= 	main.c \
+				check_path.c \
 				collision.c \
 				controls.c \
 				free.c \
 				get_images.c \
-				graphics.c
-BONUS_SRCS	= $(wildcard $(BONUS_DIR)/*.c)
+				graphics.c \
+				load_animation.c \
+				map_checker.c \
+				map_reader.c \
+				wall_randomizer.c
+BONUS_SRCS	= $(wildcard $(BONUS_DIR)*_bonus.c)
 MAIN_OBJS	= $(MAIN_SRCS:.c=.o)
 BASIC_OBJS	= $(BASIC_SRCS:.c=.o)
 BONUS_OBJS	= $(BONUS_SRCS:.c=.o)

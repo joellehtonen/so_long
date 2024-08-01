@@ -6,11 +6,11 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:13:17 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 10:57:26 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/01 12:42:24 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static void	enemy_collision(t_game *game)
 {
@@ -106,7 +106,7 @@ static void	chase_player(t_game *game)
 
 void	enemy_appears(t_game *game)
 {
-	if (game->move_count > 100 && game->enemy->active == 0)
+	if (game->move_count == 100 && game->enemy->active == 0)
 	{
 		game->enemy->animation[0]->instances[0].enabled = true;
 		game->enemy->active = 1;

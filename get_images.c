@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:28:25 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 11:21:52 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/01 13:00:10 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	get_images_fox(t_game *game)
 	game->player->animation = malloc(sizeof(mlx_image_t *));
 	if (game->player->animation == NULL)
 		display_error(game, "Malloc for images failed");
-	texture = mlx_load_png("textures/fox_run1.png");
+	texture = mlx_load_png("textures/fox_idle1.png");
 	game->player->animation[0] = mlx_texture_to_image(game->mlx, texture);
 	if (!game->player->animation[0])
 		display_error(game, "Failed to load image");

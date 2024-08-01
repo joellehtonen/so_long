@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:35:53 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 11:18:52 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/01 12:59:23 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ static void	insert_images_to_map(t_game *game, int x, int y)
 			}
 			else if (game->map[y][x] == 'p')
 			{
-				mlx_image_to_window(game->mlx, game->player->animation[0],
-					x * TILE_SIZE, y * TILE_SIZE);
+				upload_player_animations(game, x, y);
 			}
 			x++;
 		}

@@ -6,17 +6,17 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 11:14:55 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/01 12:39:07 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
-# include "MLX42/include/MLX42/MLX42.h"
-# include "library/libft/libft.h"
-# include "library/printf/ft_printf.h"
-# include "library/get_next_line/get_next_line.h"
+# include "../MLX42/include/MLX42/MLX42.h"
+# include "../library/libft/libft.h"
+# include "../library/printf/ft_printf.h"
+# include "../library/get_next_line/get_next_line.h"
 # include <stdlib.h>
 # include <stdbool.h>
 # include <fcntl.h>
