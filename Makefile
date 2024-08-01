@@ -35,20 +35,28 @@ all: libft gnl printf libmlx $(NAME)
 
 bonus: libft gnl printf libmlx $(NAME_BONUS)
 
-libmlx:
+libmlx: $(LIBMLX)/build/libmlx42.a
+
+$(LIBMLX)/build/libmlx42.a:
 	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 	@echo "$(GREEN)MLX42 BUILT$(RESET)"
 
-libft:
+libft: $(LIBFT)/libft.a
+
+$(LIBFT)/libft.a:
 	@echo "$(YELLOW)BUILDING LIBFT (please be patient)$(RESET)"
 	@$(MAKE) -C $(LIBFT)
 	@echo "$(GREEN)LIBFT BUILT$(RESET)"
 
-gnl:
+gnl: $(GNL)/libgnl.a
+
+$(GNL)/libgnl.a:
 	@$(MAKE) -C $(GNL)
 	@echo "$(GREEN)GNL BUILT$(RESET)"
 
-printf:
+printf: $(PRINTF)/libftprintf.a
+
+$(PRINTF)/libftprintf.a:
 	@$(MAKE) -C $(PRINTF)
 	@echo "$(GREEN)PRINTF BUILT$(RESET)"
 
@@ -84,4 +92,4 @@ fclean: clean
 re: fclean all
 	@echo "$(CYAN)REBUILDING COMPLETE$(RESET)"
 
-.PHONY: all, bonus, clean, fclean, re, libmlx, libft, gnl, ftprintf
+.PHONY: all bonus clean fclean re libmlx libft gnl printf

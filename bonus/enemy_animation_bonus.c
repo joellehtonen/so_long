@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 09:23:10 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 15:47:25 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:59:06 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void	get_images_dog_reverse(t_game *game, const char **textures_dog_reverse)
 			display_error(game, "Failed to load image");
 		mlx_resize_image(game->enemy->rev_anim[i], TILE_SIZE * 1.5, TILE_SIZE);
 		mlx_delete_texture(texture);
+		i++;
 	}
 	game->enemy->rev_anim[i] = NULL;
 }
