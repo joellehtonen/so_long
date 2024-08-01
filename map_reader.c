@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:57:03 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/31 15:37:08 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/01 09:36:21 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	map_reader(t_game *game, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
 		display_error(game, "Unable to read the file");
-	game->map = malloc(sizeof(char *) * (game->height + 1 + 1));
+	game->map = malloc(sizeof(char *) * (game->height + 1));
 	if (game->map == NULL)
 		display_error(game, "Malloc failed");
 	line = get_next_line(fd);
@@ -82,7 +82,7 @@ void	map_reader(t_game *game, char **argv)
 		line = get_next_line(fd);
 		i++;
 	}
-	game->map[++i] = NULL;
+	game->map[i] = NULL;
 	close(fd);
 }
 

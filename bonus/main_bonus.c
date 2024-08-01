@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 11:11:03 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/01 09:36:43 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ void	initialize_game(t_game *game)
 	if (game->player == NULL)
 		display_error(game, "Malloc failed");
 	ft_memset(game->player, 0, sizeof(t_player));
+	game->enemy = malloc(sizeof(t_enemy));
+	if (game->enemy == NULL)
+		display_error(game, "Malloc failed");
+	ft_memset(game->enemy, 0, sizeof(t_enemy));
 	game->chicken = malloc(sizeof(t_chicken));
 	if (game->chicken == NULL)
 		display_error(game, "Malloc failed");

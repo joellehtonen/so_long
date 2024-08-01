@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:19:11 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/31 10:05:58 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/01 09:19:40 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static int	check_walls_horizontal(t_game *game, int x, int y)
 			return (0);
 		x++;
 	}
-	//ft_printf("horizontal walls\n");
 	return (1);
 }
 
@@ -48,7 +47,6 @@ static int	check_walls_vertical(t_game *game, int x, int y)
 			return (0);
 		y++;
 	}
-	//ft_printf("vertical walls\n");
 	return (1);
 }
 
@@ -65,7 +63,6 @@ static int	check_rectangular(t_game *game, int y)
 			return (0);
 		y++;
 	}
-	//ft_printf("rectangle squared\n");
 	return (1);
 }
 

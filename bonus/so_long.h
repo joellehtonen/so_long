@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 11:13:57 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/01 11:14:55 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,44 @@ typedef struct s_box
 
 typedef struct s_chicken
 {
+	int			dying;
+	double		animation_timer;
 	mlx_image_t	**animation;
 }	t_chicken;
 
+typedef struct s_enemy
+{
+	int			x;
+	int			y;
+	int			active;
+	int			frame;
+	int			dying;
+	int			animation_timer;
+	int			move_count;
+	int			left;
+	mlx_image_t	**animation;
+	mlx_image_t	**rev_anim;
+}	t_enemy;
 
 typedef struct s_player
 {
 	int			x;
 	int			y;
+	int			frame;
+	int			dying;
+	int			animation_timer;
+	int			left;
 	mlx_image_t	**animation;
+	mlx_image_t	**rev_anim;
 }	t_player;
 
 typedef struct s_game
 {
 	struct s_player		*player;
+	struct s_enemy		*enemy;
 	struct s_chicken	*chicken;
 	mlx_image_t			**world;
+	mlx_image_t			*moves;
 	mlx_t				*mlx;
 	char				**map;
 	int					frame;
@@ -86,14 +108,30 @@ void		collectable_collision(t_game *game, t_box player, int x, int y);
 void		exit_collision(t_game *game, t_box player, int x, int y);
 int			check_collision(t_box a, t_box b);
 int			is_wall(t_game *game, int x, int y);
+void		write_moves_to_window(t_game *game);
 // texture functions
 const char	**textures_world(void);
+const char	**textures_chicken(void);
+const char	**textures_fox(void);
+const char	**textures_fox_reverse(void);
+const char	**textures_dog(void);
+const char	**textures_dog_reverse(void);
 // animation functions
-void		get_images_fox(t_game *game);
-void		get_images_chicken(t_game *game);
+void		get_images_fox(t_game *game, const char **textures_fox);
+void		get_images_fox_reverse(t_game *game,
+				const char **textures_fox_reverse);
+void		get_images_dog(t_game *game, const char **textures_dog);
+void		get_images_dog_reverse(t_game *game,
+				const char **textures_dog_reverse);
+void		get_images_chicken(t_game *game, const char **textures_chicken);
 void		upload_player_animations(t_game *game, int x, int y);
 void		upload_chicken_animations(t_game *game, int x, int y, int number);
+void		upload_enemy_animations(t_game *game, int x, int y);
 void		update_player_animation(t_game *game, int frame);
 void		update_chicken_animation(t_game *game, int number);
+void		idle_animation(t_game *game);
+// enemy functions
+void		enemy_appears(t_game *game);
+void		enemy_dies(t_game *game);
 
 #endif

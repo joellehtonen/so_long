@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphics.c                                         :+:      :+:    :+:   */
+/*   graphics_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:35:53 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 11:18:52 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/01 10:57:16 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	put_exit(t_game *game, int x, int y)
 		x * TILE_SIZE, y * TILE_SIZE);
 }
 
-static void	insert_images_to_map(t_game *game, int x, int y)
+static void	insert_images_to_map(t_game *game, int x, int y, int i)
 {
 	while (y < game->height)
 	{
@@ -35,13 +35,13 @@ static void	insert_images_to_map(t_game *game, int x, int y)
 			}
 			else if (game->map[y][x] == 'c')
 			{
-				mlx_image_to_window(game->mlx, game->chicken->animation[0],
-					x * TILE_SIZE, y * TILE_SIZE);
+				upload_chicken_animations(game, x, y, i);
+				i++;
 			}
 			else if (game->map[y][x] == 'p')
 			{
-				mlx_image_to_window(game->mlx, game->player->animation[0],
-					x * TILE_SIZE, y * TILE_SIZE);
+				upload_player_animations(game, x, y);
+				upload_enemy_animations(game, x, y);
 			}
 			x++;
 		}
@@ -95,12 +95,17 @@ void	add_graphics(t_game *game)
 {
 	int	x;
 	int	y;
+	int	i;
 
 	x = 0;
 	y = 0;
+	i = 0;
 	get_images_world(game, textures_world());
-	get_images_chicken(game);
-	get_images_fox(game);
+	get_images_chicken(game, textures_chicken());
+	get_images_fox(game, textures_fox());
+	get_images_fox_reverse(game, textures_fox_reverse());
+	get_images_dog(game, textures_dog());
+	get_images_dog_reverse(game, textures_dog_reverse());
 	mlx_image_to_window(game->mlx, game->world[0], 0, 0);
-	insert_images_to_map(game, x, y);
+	insert_images_to_map(game, x, y, i);
 }

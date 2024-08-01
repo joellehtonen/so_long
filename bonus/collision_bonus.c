@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   collision.c                                        :+:      :+:    :+:   */
+/*   collision_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:28:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 11:12:40 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/01 10:57:39 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	collectable_collision(t_game *game, t_box player, int x, int y)
 			collectable = (t_box){x, y, TILE_SIZE, TILE_SIZE};
 			if (check_collision(player, collectable))
 			{
-				game->chicken->animation[0]->instances[i].enabled = false;
+				update_chicken_animation(game, i);
 				game->collected++;
 				ft_printf("Chickens left to eat: %d\n",
 					game->collectables - game->collected);
@@ -85,10 +85,13 @@ int	check_collision(t_box a, t_box b)
 void	collect_stuff(t_game *game)
 {
 	t_box	player;
+	int		frame;
 
 	if (game->move_count == INT_MAX - 1)
 		game->move_count = 1;
-	ft_printf("MOVES: %d\n", game->move_count);
+	enemy_appears(game);
+	write_moves_to_window(game);
+	frame = game->player->frame;
 	player = (t_box){game->player->x, game->player->y, TILE_SIZE, TILE_SIZE};
 	collectable_collision(game, player, game->player->x, game->player->y);
 	exit_collision(game, player, game->player->x, game->player->y);

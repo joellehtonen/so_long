@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enemy.c                                            :+:      :+:    :+:   */
+/*   enemy_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:13:17 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/31 11:02:01 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/01 10:57:26 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,7 @@ static void	chase_player(t_game *game)
 
 void	enemy_appears(t_game *game)
 {
-	double	time;
-
-	time = mlx_get_time();
-	if (time > 4 && time < 5 && game->enemy->active == 0)
+	if (game->move_count > 100 && game->enemy->active == 0)
 	{
 		game->enemy->animation[0]->instances[0].enabled = true;
 		game->enemy->active = 1;

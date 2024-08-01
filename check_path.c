@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:11:05 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/31 16:11:14 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/01 09:21:38 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	flood_fill(t_game *game, int y, int x)
 static int	*find_start(t_game *game, int x, int y)
 {
 	int	*start;
-
+	
 	start = malloc(sizeof(int) * 2);
 	if (!start)
 		display_error(game, "Malloc failed");
