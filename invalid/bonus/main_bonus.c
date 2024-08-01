@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 16:32:53 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:57:22 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static void	close_func(void *param)
 {
@@ -28,18 +28,21 @@ static void	validate_map(t_game *game, char**argv)
 	map_checker(game);
 }
 
-static void	initialize_game(t_game *game)
+void	initialize_game(t_game *game)
 {
 	ft_memset(game, 0, sizeof(t_game));
 	game->player = malloc(sizeof(t_player));
 	if (game->player == NULL)
 		display_error(game, "Malloc failed");
 	ft_memset(game->player, 0, sizeof(t_player));
+	game->enemy = malloc(sizeof(t_enemy));
+	if (game->enemy == NULL)
+		display_error(game, "Malloc failed");
+	ft_memset(game->enemy, 0, sizeof(t_enemy));
 	game->chicken = malloc(sizeof(t_chicken));
 	if (game->chicken == NULL)
 		display_error(game, "Malloc failed");
 	ft_memset(game->chicken, 0, sizeof(t_chicken));
-	game->map = NULL;
 }
 
 int	main(int argc, char **argv)
@@ -67,7 +70,6 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(game.mlx, &controls, &game);
 	mlx_close_hook(game.mlx, close_func, &game);
 	mlx_loop(game.mlx);
-	if (game.mlx)
-		mlx_terminate(game.mlx);
+	mlx_terminate(game.mlx);
 	return (1);
 }

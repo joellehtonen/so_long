@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   free_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 10:06:37 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 16:32:28 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:42:47 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	free_map(t_game *game)
 {
@@ -58,13 +58,9 @@ void	free_and_exit(t_game *game)
 		free_images(game, &game->chicken->animation);
 		free(game->chicken);
 	}
-	if (game->mlx)
-	{
-		if (game->mlx->window)
-			mlx_close_window(game->mlx);
-	}
-	if (game->mlx)
-		mlx_terminate(game->mlx);
+	if (game->mlx->window)
+		mlx_close_window(game->mlx);
+	return ;
 }
 
 void	display_error(t_game *game, char *string)
