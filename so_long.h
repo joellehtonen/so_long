@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 11:13:57 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:07:44 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_game
 	struct s_chicken	*chicken;
 	mlx_image_t			**world;
 	mlx_t				*mlx;
+	int					images_nbr;
 	char				**map;
 	int					frame;
 	int					width;
@@ -67,7 +68,6 @@ typedef struct s_game
 }	t_game;
 
 // initialization and freeing functions
-void		initialize_game(t_game *game);
 void		check_map_format(t_game *game, char *argv);
 void		check_map_size(t_game *game);
 void		get_map_size(t_game *game, char **argv);
@@ -77,7 +77,7 @@ int			check_path(t_game *game, int x, int y);
 void		add_graphics(t_game *game);
 void		wall_randomizer(t_game *game, int x, int y);
 void		display_error(t_game *game, char *string);
-void		free_and_exit(t_game *game, int error);
+void		free_and_exit(t_game *game);
 void		free_map(t_game *game);
 // gameplay functions
 void		controls(void *content);

@@ -6,11 +6,27 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 12:38:14 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:14:56 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
+
+static void	close_func(void *param)
+{
+	t_game	*game;
+	
+	game = (t_game *)param;
+	free_and_exit(game);
+}
+
+static void	validate_map(t_game *game, char**argv)
+{
+	get_map_size(game, argv);
+	map_reader(game, argv);
+	check_map_size(game);
+	map_checker(game);
+}
 
 void	initialize_game(t_game *game)
 {
@@ -38,21 +54,22 @@ int	main(int argc, char **argv)
 		return (0);
 	check_map_format(&game, argv[1]);
 	initialize_game(&game);
-	get_map_size(&game, argv);
-	map_reader(&game, argv);
-	check_map_size(&game);
-	map_checker(&game);
+	validate_map(&game, argv);
 	game.mlx = mlx_init(game.width * TILE_SIZE,
 			game.height * TILE_SIZE, "FOX", true);
 	if ((!game.mlx))
-		free_and_exit(&game, 1);
+	{
+		free_and_exit(&game);
+		mlx_terminate(game.mlx);
+	}
 	image = mlx_new_image(game.mlx, game.width * TILE_SIZE,
 			game.height * TILE_SIZE);
 	add_graphics(&game);
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 	mlx_image_to_window(game.mlx, image, 0, 0);
 	mlx_loop_hook(game.mlx, &controls, &game);
+	mlx_close_hook(game.mlx, close_func, &game);
 	mlx_loop(game.mlx);
-	free_and_exit(&game, 0);
+	mlx_terminate(game.mlx);
 	return (1);
 }

@@ -20,6 +20,8 @@ remove unnecessary variables from structs
 
 should one newline at the end of the map be accepted
 
+leaks when pressed esc
+
 /**
  * Sets the size limits of the specified window.
  * Will force the window to not be resizable past or below the given values.

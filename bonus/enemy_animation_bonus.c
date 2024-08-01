@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 09:23:10 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 12:38:28 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:47:25 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,13 @@ void	get_images_dog(t_game *game, const char **textures_dog)
 		count++;
 	game->enemy->animation = malloc(sizeof(mlx_image_t *) * (count + 1));
 	if (game->enemy->animation == NULL)
-		display_error(game, "Malloc for images failed");
+		display_error(game, "Malloc failed");
 	i = 0;
 	while (i < count)
 	{
 		texture = mlx_load_png(textures_dog[i]);
+		if (texture == NULL)
+			display_error(game, "Failed to load texture");
 		game->enemy->animation[i] = mlx_texture_to_image(game->mlx, texture);
 		if (!game->enemy->animation[i])
 			display_error(game, "Failed to load image");
@@ -90,17 +92,18 @@ void	get_images_dog_reverse(t_game *game, const char **textures_dog_reverse)
 		count++;
 	game->enemy->rev_anim = malloc(sizeof(mlx_image_t *) * (count + 1));
 	if (game->enemy->rev_anim == NULL)
-		display_error(game, "Malloc for images failed");
+		display_error(game, "Malloc failed");
 	i = 0;
 	while (i < count)
 	{
 		texture = mlx_load_png(textures_dog_reverse[i]);
+		if (texture == NULL)
+			display_error(game, "Failed to load texture");
 		game->enemy->rev_anim[i] = mlx_texture_to_image(game->mlx, texture);
 		if (!game->enemy->rev_anim[i])
 			display_error(game, "Failed to load image");
 		mlx_resize_image(game->enemy->rev_anim[i], TILE_SIZE * 1.5, TILE_SIZE);
 		mlx_delete_texture(texture);
-		i++;
 	}
 	game->enemy->rev_anim[i] = NULL;
 }

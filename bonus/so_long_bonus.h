@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 12:39:07 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:48:57 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int			check_path(t_game *game, int x, int y);
 void		add_graphics(t_game *game);
 void		wall_randomizer(t_game *game, int x, int y);
 void		display_error(t_game *game, char *string);
-void		free_and_exit(t_game *game, int error);
+void		free_and_exit(t_game *game);
 void		free_map(t_game *game);
 // gameplay functions
 void		controls(void *content);

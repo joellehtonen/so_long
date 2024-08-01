@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:04 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 13:00:33 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:03:14 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	controls(void *content)
 	game = (t_game *)content;
 	movement = 0;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(game->mlx);
+		free_and_exit(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_UP))
 		movement += move_up(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_DOWN))

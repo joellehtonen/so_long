@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:35:53 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 12:59:23 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:45:26 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,22 +63,22 @@ const char	**textures_world(void)
 	return (textures_world);
 }
 
-static void	get_images_world(t_game *game, const char **textures_world)
+static void	get_images_world(t_game *game, const char **textures_world, int i)
 {
-	int				i;
 	int				count;
 	mlx_texture_t	*texture;
 
 	count = 0;
 	while (textures_world[count])
 		count++;
-	game->world = malloc(sizeof(mlx_image_t *) * count);
+	game->world = malloc(sizeof(mlx_image_t *) * (count + 1));
 	if (game->world == NULL)
 		display_error(game, "Malloc failed");
-	i = 0;
 	while (i < count)
 	{
 		texture = mlx_load_png(textures_world[i]);
+		if (texture == NULL)
+			display_error(game, "Failed to load texture");
 		game->world[i] = mlx_texture_to_image(game->mlx, texture);
 		if (!game->world[i])
 			display_error(game, "Failed to load image");
@@ -88,16 +88,19 @@ static void	get_images_world(t_game *game, const char **textures_world)
 	}
 	mlx_resize_image(game->world[0], TILE_SIZE * game->width,
 		TILE_SIZE * game->height);
+	game->world[i] = NULL;
 }
 
 void	add_graphics(t_game *game)
 {
 	int	x;
 	int	y;
+	int	i;
 
 	x = 0;
 	y = 0;
-	get_images_world(game, textures_world());
+	i = 0;
+	get_images_world(game, textures_world(), i);
 	get_images_chicken(game);
 	get_images_fox(game);
 	mlx_image_to_window(game->mlx, game->world[0], 0, 0);

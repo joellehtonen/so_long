@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:28:25 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 12:38:19 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:50:20 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,13 @@ void	get_images_chicken(t_game *game, const char **textures_chicken)
 		count++;
 	game->chicken->animation = malloc(sizeof(mlx_image_t *) * (count + 1));
 	if (game->chicken->animation == NULL)
-		display_error(game, "Malloc for images failed");
+		display_error(game, "Malloc failed");
 	i = 0;
 	while (i < count)
 	{
 		texture = mlx_load_png(textures_chicken[i]);
+		if (texture == NULL)
+			display_error(game, "Failed to load texture");
 		game->chicken->animation[i] = mlx_texture_to_image(game->mlx, texture);
 		if (!game->chicken->animation[i])
 			display_error(game, "Failed to load image");
@@ -50,11 +52,13 @@ void	get_images_fox(t_game *game, const char **textures_fox)
 		count++;
 	game->player->animation = malloc(sizeof(mlx_image_t *) * (count + 1));
 	if (game->player->animation == NULL)
-		display_error(game, "Malloc for images failed");
+		display_error(game, "Malloc failed");
 	i = 0;
 	while (i < count)
 	{
 		texture = mlx_load_png(textures_fox[i]);
+		if (texture == NULL)
+			display_error(game, "Failed to load texture");
 		game->player->animation[i] = mlx_texture_to_image(game->mlx, texture);
 		if (!game->player->animation[i])
 			display_error(game, "Failed to load image");
@@ -77,11 +81,13 @@ void	get_images_fox_reverse(t_game *game, const char **textures_fox_reverse)
 		count++;
 	game->player->rev_anim = malloc(sizeof(mlx_image_t *) * (count + 1));
 	if (game->player->rev_anim == NULL)
-		display_error(game, "Malloc for images failed");
+		display_error(game, "Malloc failed");
 	i = 0;
 	while (i < count)
 	{
 		texture = mlx_load_png(textures_fox_reverse[i]);
+		if (texture == NULL)
+			display_error(game, "Failed to load texture");
 		game->player->rev_anim[i] = mlx_texture_to_image(game->mlx, texture);
 		if (!game->player->rev_anim[i])
 			display_error(game, "Failed to load image");
