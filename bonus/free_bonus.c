@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 10:06:37 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/02 10:25:55 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/02 11:09:22 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	free_and_exit(t_game *game, int error)
 
 void	display_error(t_game *game, char *string)
 {
-	ft_printf("ERROR\n");
+	ft_printf("Error\n");
 	ft_printf("%s\n", string);
 	free_and_exit(game, 1);
 }

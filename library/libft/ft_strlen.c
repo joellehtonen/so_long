@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 10:38:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/15 09:56:25 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/02 11:41:10 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
+	if (!s || !*s)
+		return (0);
 	i = 0;
 	while (s[i] != '\0')
 		i++;

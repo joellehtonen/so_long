@@ -85,6 +85,7 @@ clean:
 
 fclean: clean
 	@rm -rf $(NAME) $(NAME_BONUS)
+	@rm -rf libmlx42.a
 	@$(MAKE) -C $(LIBFT) fclean
 	@$(MAKE) -C $(GNL) fclean
 	@$(MAKE) -C $(PRINTF) fclean

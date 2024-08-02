@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:28:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/02 09:54:41 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/02 11:10:13 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ void	collect_stuff(t_game *game)
 
 	if (game->move_count == INT_MAX - 1)
 		game->move_count = 1;
-	enemy_appears(game);
 	write_moves_to_window(game);
 	frame = game->player->frame;
 	player = (t_box){game->player->x, game->player->y, TILE_SIZE, TILE_SIZE};

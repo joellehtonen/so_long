@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:13:17 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/02 09:54:58 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/02 11:18:24 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ static void	chase_player(t_game *game)
 
 void	enemy_appears(t_game *game)
 {
-	if (game->move_count == 100 && game->enemy->active == 0)
+	if (game->move_count > 100 && game->move_count < 110
+		&& game->enemy->active == 0)
 	{
 		game->enemy->animation[0]->instances[0].enabled = true;
 		game->enemy->active = 1;

@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:41:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/07/31 10:14:54 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/02 11:20:48 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void	wall_randomizer(t_game *game, int x, int y)
 	value = (x * y + x) % (x + y + 1);
 	random_index = get_random_index(&value);
 	mlx_image_to_window(game->mlx, game->world[random_index],
-		x * TILE_SIZE + 8, y * TILE_SIZE);
+		x * TILE_SIZE + 12, y * TILE_SIZE + 12);
 	mlx_set_instance_depth(&game->world[random_index]->instances[0], 1);
 }

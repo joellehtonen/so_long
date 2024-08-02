@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:19:11 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 09:19:40 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/02 11:34:32 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	check_rectangular(t_game *game, int y)
 	int	compare;
 
 	len = game->width + 1;
-	while (y > game->height - 1)
+	while (y < game->height)
 	{
 		compare = ft_strlen(game->map[y]);
 		if (compare != len)

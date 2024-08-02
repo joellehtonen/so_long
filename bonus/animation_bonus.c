@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 12:38:44 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 12:38:35 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/02 11:23:39 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	update_chicken_animation(t_game *game, int number)
 		i++;
 	}
 	game->chicken->animation[3]->instances[number].enabled = true;
-	mlx_set_instance_depth(&game->chicken->animation[3]->instances[number], 1);
+	mlx_set_instance_depth(&game->chicken->animation[3]->instances[number], 2);
 	time = mlx_get_time();
 	// if (time > game->chicken->animation_timer + 0.5)
 	// {

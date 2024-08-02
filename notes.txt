@@ -8,6 +8,12 @@ fix idle animation
 
 remove unnecessary variables from structs
 
+if lib.mlx exists, shouldnt make it 
+fclean removes lib.mlx
+
+chicks and dogs clip
+
+conditional jump if unable to access image due to chmod
 
 /**
  * Sets the size limits of the specified window.

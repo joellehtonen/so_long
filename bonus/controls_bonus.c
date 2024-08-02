@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:04 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/02 09:54:48 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/02 11:10:19 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,4 +129,5 @@ void	controls(void *content)
 		idle_animation(game);
 	if (movement > 0)
 		collect_stuff(game);
+	enemy_appears(game);
 }
