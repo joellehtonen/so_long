@@ -39,8 +39,12 @@ bonus: libft gnl printf libmlx $(NAME_BONUS)
 libmlx: $(LIBMLX)/build/libmlx42.a
 
 $(LIBMLX)/build/libmlx42.a:
-	@cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
-	@echo "$(GREEN)MLX42 BUILT$(RESET)"
+	@if [ ! -f $@ ]; then \
+		cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4 && \
+		echo "$(GREEN)MLX42 BUILT$(RESET)"; \
+	else \
+		echo "$(YELLOW)MLX42 ALREADY EXISTS$(RESET)"; \
+	fi
 
 libft: $(LIBFT)/libft.a
 
