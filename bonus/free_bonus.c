@@ -6,13 +6,13 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 10:06:37 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 15:42:47 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/02 10:25:55 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	free_map(t_game *game)
+static void	free_map(t_game *game)
 {
 	int	i;
 
@@ -43,29 +43,50 @@ static void	free_images(t_game *game, mlx_image_t ***image_ptr)
 	*image_ptr = NULL;
 }
 
-void	free_and_exit(t_game *game)
+static void	free_enemy_assets(t_game *game)
+{
+	if (game->enemy)
+	{
+		if (game->enemy->animation)
+			free_images(game, &game->enemy->animation);
+		if (game->enemy->rev_anim)
+			free_images(game, &game->enemy->rev_anim);
+		free(game->enemy);
+	}
+}
+
+void	free_and_exit(t_game *game, int error)
 {
 	free_map(game);
 	if (game->world)
 		free_images(game, &game->world);
 	if (game->player)
 	{
-		free_images(game, &game->player->animation);
+		if (game->player->animation)
+			free_images(game, &game->player->animation);
+		if (game->player->rev_anim)
+			free_images(game, &game->player->rev_anim);
 		free(game->player);
 	}
 	if (game->chicken)
 	{
-		free_images(game, &game->chicken->animation);
+		if (game->chicken->animation)
+			free_images(game, &game->chicken->animation);
 		free(game->chicken);
 	}
-	if (game->mlx->window)
-		mlx_close_window(game->mlx);
-	return ;
+	free_enemy_assets(game);
+	if (game->mlx)
+	{
+		if (game->mlx->window)
+			mlx_close_window(game->mlx);
+		mlx_terminate(game->mlx);
+	}
+	exit(error);
 }
 
 void	display_error(t_game *game, char *string)
 {
 	ft_printf("ERROR\n");
 	ft_printf("%s\n", string);
-	free_and_exit(game);
+	free_and_exit(game, 1);
 }

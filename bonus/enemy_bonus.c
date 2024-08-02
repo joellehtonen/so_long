@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:13:17 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 13:35:59 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/02 09:54:58 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	enemy_collision(t_game *game)
 	if (check_collision(player, enemy))
 	{
 		ft_printf("PLAYER CAUGHT! (the dog is grateful)\n");
-		free_and_exit(game);
+		free_and_exit(game, 0);
 	}
 }
 

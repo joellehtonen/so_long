@@ -6,28 +6,17 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:57:03 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 09:36:21 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/02 10:16:25 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	check_map_size(t_game *game)
-{
-	if (game->height > (MAX_HEIGHT / TILE_SIZE)
-		|| game->width > (MAX_WIDTH / TILE_SIZE))
-	{
-		display_error(game, "The map is too big");
-	}
-	if (game->height < 3 || game->width < 5)
-		display_error(game, "The map is too small");
-}
-
 void	check_map_format(t_game *game, char *argv)
 {
 	char	*end;
 	int		i;
-
+	
 	end = ft_strrchr(argv, '.');
 	if (end == NULL)
 		display_error(game, "The argument is in wrong format");
@@ -55,6 +44,13 @@ void	get_map_size(t_game *game, char **argv)
 		game->height++;
 	}
 	close(fd);
+	if (game->height > (MAX_HEIGHT / TILE_SIZE)
+		|| game->width > (MAX_WIDTH / TILE_SIZE))
+	{
+		display_error(game, "The map is too big");
+	}
+	if (game->height < 3 || game->width < 5)
+		display_error(game, "The map is too small");
 }
 
 void	map_reader(t_game *game, char **argv)
