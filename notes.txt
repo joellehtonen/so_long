@@ -1,26 +1,13 @@
-possible leak if player clicks on x in window
-
 do textures need to be static?
 
 make a separate function for allocating memory
 
 make sure that dog cannot die by hitting edge walls (only inner ones)
 
-with make, mlx42 rebuilds every time
-
-chicken and enemy images clash each time a chicken is collected
-
-put bonus to different files??? (maybe just enemy stuff)
-
-MLX_TERMINATE segfaults for some reason
-
 fix idle animation
 
 remove unnecessary variables from structs
 
-should one newline at the end of the map be accepted
-
-segfaults with invalid map
 
 /**
  * Sets the size limits of the specified window.

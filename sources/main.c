@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/02 10:37:09 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/02 10:44:07 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 static void	close_func(void *param)
 {
@@ -28,21 +28,18 @@ static void	validate_map(t_game *game, char**argv)
 	map_checker(game);
 }
 
-void	initialize_game(t_game *game)
+static void	initialize_game(t_game *game)
 {
 	ft_memset(game, 0, sizeof(t_game));
 	game->player = malloc(sizeof(t_player));
 	if (game->player == NULL)
 		display_error(game, "Malloc failed");
 	ft_memset(game->player, 0, sizeof(t_player));
-	game->enemy = malloc(sizeof(t_enemy));
-	if (game->enemy == NULL)
-		display_error(game, "Malloc failed");
-	ft_memset(game->enemy, 0, sizeof(t_enemy));
 	game->chicken = malloc(sizeof(t_chicken));
 	if (game->chicken == NULL)
 		display_error(game, "Malloc failed");
 	ft_memset(game->chicken, 0, sizeof(t_chicken));
+	game->map = NULL;
 }
 
 int	main(int argc, char **argv)
