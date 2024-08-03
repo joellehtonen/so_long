@@ -2,14 +2,9 @@ do textures need to be static?
 
 make a separate function for allocating memory
 
-make sure that dog cannot die by hitting edge walls (only inner ones)
-
 fix idle animation
 
 remove unnecessary variables from structs
-
-if lib.mlx exists, shouldnt make it 
-fclean removes lib.mlx
 
 chicks and dogs clip
 

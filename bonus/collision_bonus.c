@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:28:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/02 11:10:13 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/03 11:29:42 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,15 @@ void	collectable_collision(t_game *game, t_box player, int x, int y)
 	i = 0;
 	while (i < game->collectables)
 	{
-		if (game->chicken->animation[0]->instances[i].enabled)
+		if (game->chicken->animation[0]->instances[i].enabled
+			|| game->chicken->animation[1]->instances[i].enabled)
 		{
 			x = game->chicken->animation[0]->instances[i].x;
 			y = game->chicken->animation[0]->instances[i].y;
 			collectable = (t_box){x, y, TILE_SIZE, TILE_SIZE};
 			if (check_collision(player, collectable))
 			{
-				update_chicken_animation(game, i);
+				chicken_dies_animation(game, i);
 				game->collected++;
 				ft_printf("Chickens left to eat: %d\n",
 					game->collectables - game->collected);

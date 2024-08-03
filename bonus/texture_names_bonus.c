@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:23:09 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/02 10:36:57 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/03 11:29:34 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,11 @@ const char	**textures_fox_reverse(void)
 
 const char	**textures_chicken(void)
 {
-	static const char	*textures_chicken[5];
+	static const char	*textures_chicken[4];
 
-	textures_chicken[0] = "textures/chicken_sit1.png";
-	textures_chicken[1] = "textures/chicken_sit2.png";
-	textures_chicken[2] = "textures/chicken_die1.png";
-	textures_chicken[3] = "textures/chicken_die2.png";
-	textures_chicken[4] = NULL;
+	textures_chicken[0] = "textures/chicken_sit.png";
+	textures_chicken[1] = "textures/chicken_scared.png";
+	textures_chicken[2] = "textures/chicken_dead.png";
+	textures_chicken[3] = NULL;
 	return (textures_chicken);
 }

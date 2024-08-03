@@ -6,13 +6,13 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 12:38:44 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/02 11:23:39 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/03 12:00:56 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	update_player_animation(t_game *game, int frame)
+void	player_run_animation(t_game *game, int frame)
 {
 	int	i;
 
@@ -38,36 +38,49 @@ void	update_player_animation(t_game *game, int frame)
 		game->player->frame = 0;
 }
 
-void	update_chicken_animation(t_game *game, int number)
+void	chicken_dies_animation(t_game *game, int number)
 {
 	int		i;
-	double	time;
 
 	i = 0;
-	if (game->chicken->dying == 0)
-	{
-		game->chicken->animation_timer = mlx_get_time();
-		game->chicken->dying = 1;
-	}
 	while (game->chicken->animation[i])
 	{
 		game->chicken->animation[i]->instances[number].enabled = false;
 		i++;
 	}
-	game->chicken->animation[3]->instances[number].enabled = true;
-	mlx_set_instance_depth(&game->chicken->animation[3]->instances[number], 2);
-	time = mlx_get_time();
-	// if (time > game->chicken->animation_timer + 0.5)
-	// {
-	// 	game->chicken->animation[2]->instances[number].enabled = false;
-	// 	game->chicken->animation[3]->instances[number].enabled = true;
-	// 	mlx_set_instance_depth(&game->chicken->animation[3]->instances[number], 1);
-	// 	//break;
-	// }
-	//}
+	game->chicken->animation[2]->instances[number].enabled = true;
+	mlx_set_instance_depth(&game->chicken->animation[2]->instances[number], 2);
 }
 
-void	idle_animation(t_game *game)
+void	chicken_idle_animation(t_game *game)
+{
+	static double	last_time;
+	double			timer;
+	int				i;
+
+	timer = mlx_get_time();
+	if (timer - last_time > 0.5)
+	{
+		i = 0;
+		while (i < game->collectables)
+		{
+			if (game->chicken->animation[0]->instances[i].enabled)
+			{
+				game->chicken->animation[0]->instances[i].enabled = false;
+				game->chicken->animation[1]->instances[i].enabled = true;
+			}
+			else if (game->chicken->animation[1]->instances[i].enabled)
+			{
+				game->chicken->animation[1]->instances[i].enabled = false;
+				game->chicken->animation[0]->instances[i].enabled = true;
+			}
+			i++;
+		}
+		last_time = timer;
+	}
+}
+
+void	player_idle_animation(t_game *game)
 {
 	int	i;
 

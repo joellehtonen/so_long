@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:35:53 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 15:59:31 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/03 11:59:28 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ static void	insert_images_to_map(t_game *game, int x, int y, int i)
 			if (game->map[y][x] == '1')
 				wall_randomizer(game, x, y);
 			else if (game->map[y][x] == 'e')
-			{
 				put_exit(game, x, y);
-			}
 			else if (game->map[y][x] == 'c')
 			{
 				upload_chicken_animations(game, x, y, i);

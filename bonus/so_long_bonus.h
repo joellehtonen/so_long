@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/02 10:00:37 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/03 12:06:25 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ typedef struct s_box
 
 typedef struct s_chicken
 {
-	int			dying;
-	double		animation_timer;
 	mlx_image_t	**animation;
 }	t_chicken;
 
@@ -62,8 +60,6 @@ typedef struct s_player
 	int			x;
 	int			y;
 	int			frame;
-	int			dying;
-	int			animation_timer;
 	int			left;
 	mlx_image_t	**animation;
 	mlx_image_t	**rev_anim;
@@ -125,9 +121,10 @@ void		get_images_chicken(t_game *game, const char **textures_chicken);
 void		upload_player_animations(t_game *game, int x, int y);
 void		upload_chicken_animations(t_game *game, int x, int y, int number);
 void		upload_enemy_animations(t_game *game, int x, int y);
-void		update_player_animation(t_game *game, int frame);
-void		update_chicken_animation(t_game *game, int number);
-void		idle_animation(t_game *game);
+void		player_run_animation(t_game *game, int frame);
+void		player_idle_animation(t_game *game);
+void		chicken_idle_animation(t_game *game);
+void		chicken_dies_animation(t_game *game, int number);
 // enemy functions
 void		enemy_appears(t_game *game);
 void		enemy_dies(t_game *game);

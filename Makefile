@@ -2,15 +2,15 @@ NAME		= so_long
 NAME_BONUS	= so_long_bonus
 CC			= cc
 CFLAGS		= -Wextra -Wall -Werror -g
-LIBMLX		= ./MLX42
+MLX			= ./MLX42
 LIBFT	 	= ./library/libft/
 GNL			= ./library/get_next_line/
 PRINTF		= ./library/printf/
 SRCS_DIR 	= ./sources/
 BONUS_DIR	= ./bonus/
-HEADER			= -I ./include -I $(LIBMLX)/include -I $(LIBFT) -I $(GNL) -I $(PRINTF)
-BONUS_HEADER	= -I $(BONUS_DIR) -I $(LIBMLX)/include -I $(LIBFT) -I $(GNL) -I $(PRINTF)
-LIBS		= $(LIBMLX)/build/libmlx42.a -g -ldl -lglfw -pthread -lm -L$(LIBFT) -lft -L$(GNL) -lgnl -L$(PRINTF) -lftprintf
+HEADER			= -I ./include -I $(MLX)/include -I $(LIBFT) -I $(GNL) -I $(PRINTF)
+BONUS_HEADER	= -I $(BONUS_DIR) -I $(MLX)/include -I $(LIBFT) -I $(GNL) -I $(PRINTF)
+LIBS		= $(MLX)/build/libmlx42.a -g -ldl -lglfw -pthread -lm -L$(LIBFT) -lft -L$(GNL) -lgnl -L$(PRINTF) -lftprintf
 BASIC_SRCS	= 	$(SRCS_DIR)main.c \
 				$(SRCS_DIR)check_path.c \
 				$(SRCS_DIR)collision.c \
@@ -32,19 +32,15 @@ YELLOW      = \033[38;5;220m
 CYAN		= \033[0;36m
 RESET       = \033[0m
 
-all: libft gnl printf libmlx $(NAME)
+all: libft gnl printf mlx $(NAME)
 
-bonus: libft gnl printf libmlx $(NAME_BONUS)
+bonus: libft gnl printf mlx $(NAME_BONUS)
 
-libmlx: $(LIBMLX)/build/libmlx42.a
+mlx: $(MLX)/build/libmlx42.a
 
-$(LIBMLX)/build/libmlx42.a:
-	@if [ ! -f $@ ]; then \
-		cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4 && \
-		echo "$(GREEN)MLX42 BUILT$(RESET)"; \
-	else \
-		echo "$(YELLOW)MLX42 ALREADY EXISTS$(RESET)"; \
-	fi
+$(MLX)/build/libmlx42.a:
+	@cmake $(MLX) -B $(MLX)/build && make -C $(MLX)/build -j4
+	@echo "$(GREEN)MLX42 BUILT$(RESET)"
 
 libft: $(LIBFT)/libft.a
 
@@ -81,7 +77,6 @@ $(NAME_BONUS): $(MAIN_OBJS) $(BONUS_OBJS)
 
 clean:
 	@rm -rf $(MAIN_OBJS) $(BASIC_OBJS) $(BONUS_OBJS)
-	@rm -rf $(LIBMLX)/build
 	@$(MAKE) -C $(LIBFT) clean
 	@$(MAKE) -C $(GNL) clean
 	@$(MAKE) -C $(PRINTF) clean
@@ -89,7 +84,7 @@ clean:
 
 fclean: clean
 	@rm -rf $(NAME) $(NAME_BONUS)
-	@rm -rf libmlx42.a
+	@rm -rf $(MLX)/build/libmlx42.a
 	@$(MAKE) -C $(LIBFT) fclean
 	@$(MAKE) -C $(GNL) fclean
 	@$(MAKE) -C $(PRINTF) fclean

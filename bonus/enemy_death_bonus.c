@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 13:13:17 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/02 10:00:14 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/03 11:33:57 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	enemy_death_animation_reverse(t_game *game, int frame)
 		game->enemy->rev_anim[frame]->instances[0].enabled = false;
 		frame++;
 		game->enemy->rev_anim[frame]->instances[0].enabled = true;
-		mlx_set_instance_depth(&game->enemy->rev_anim[frame]->instances[0], 3);
+		mlx_set_instance_depth(&game->enemy->rev_anim[frame]->instances[0], 4);
 		game->enemy->active = 0;
 	}
 }
@@ -63,7 +63,7 @@ static void	enemy_death_animation(t_game *game, int frame)
 		game->enemy->animation[frame]->instances[0].enabled = false;
 		frame++;
 		game->enemy->animation[frame]->instances[0].enabled = true;
-		mlx_set_instance_depth(&game->enemy->animation[frame]->instances[0], 3);
+		mlx_set_instance_depth(&game->enemy->animation[frame]->instances[0], 4);
 		game->enemy->active = 0;
 	}
 }

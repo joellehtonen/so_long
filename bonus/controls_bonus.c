@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:04 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/02 11:10:19 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/03 10:49:53 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,10 +124,11 @@ void	controls(void *content)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		movement += move_right(game);
 	if (game->move_count % 3 == 0)
-		update_player_animation(game, game->player->frame);
+		player_run_animation(game, game->player->frame);
 	if (movement == 0)
-		idle_animation(game);
+		player_idle_animation(game);
 	if (movement > 0)
 		collect_stuff(game);
+	chicken_idle_animation(game);
 	enemy_appears(game);
 }
