@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:57:03 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/02 10:42:23 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/03 12:05:09 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	get_map_size(t_game *game, char **argv)
 		display_error(game, "The map is too big");
 	}
 	if (game->height < 3 || game->width < 5)
-		display_error(game, "The map is too small");
+		display_error(game, "The map is empty or too small");
 }
 
 void	map_reader(t_game *game, char **argv)

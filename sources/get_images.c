@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:28:25 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/02 10:43:37 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/03 11:47:31 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	get_images_chicken(t_game *game)
 	game->chicken->animation = malloc(2 * sizeof(mlx_image_t *));
 	if (game->chicken->animation == NULL)
 		display_error(game, "Malloc failed");
-	texture = mlx_load_png("textures/chicken_sit1.png");
+	texture = mlx_load_png("textures/chicken_sit.png");
 	if (texture == NULL)
 		display_error(game, "Failed to load texture");
 	game->chicken->animation[0] = mlx_texture_to_image(game->mlx, texture);
