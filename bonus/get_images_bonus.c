@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:28:25 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 15:50:20 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/05 12:50:59 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	get_images_chicken(t_game *game, const char **textures_chicken)
 {
-	mlx_texture_t	*texture;
 	int				count;
 	int				i;
 
@@ -27,15 +26,16 @@ void	get_images_chicken(t_game *game, const char **textures_chicken)
 	i = 0;
 	while (i < count)
 	{
-		texture = mlx_load_png(textures_chicken[i]);
-		if (texture == NULL)
+		game->texture = mlx_load_png(textures_chicken[i]);
+		if (game->texture == NULL)
 			display_error(game, "Failed to load texture");
-		game->chicken->animation[i] = mlx_texture_to_image(game->mlx, texture);
+		game->chicken->animation[i]
+			= mlx_texture_to_image(game->mlx, game->texture);
 		if (!game->chicken->animation[i])
 			display_error(game, "Failed to load image");
 		mlx_resize_image(game->chicken->animation[i],
 			TILE_SIZE * 1.5, TILE_SIZE);
-		mlx_delete_texture(texture);
+		mlx_delete_texture(game->texture);
 		i++;
 	}
 	game->chicken->animation[i] = NULL;
@@ -43,7 +43,6 @@ void	get_images_chicken(t_game *game, const char **textures_chicken)
 
 void	get_images_fox(t_game *game, const char **textures_fox)
 {
-	mlx_texture_t	*texture;
 	int				count;
 	int				i;
 
@@ -56,15 +55,16 @@ void	get_images_fox(t_game *game, const char **textures_fox)
 	i = 0;
 	while (i < count)
 	{
-		texture = mlx_load_png(textures_fox[i]);
-		if (texture == NULL)
+		game->texture = mlx_load_png(textures_fox[i]);
+		if (game->texture == NULL)
 			display_error(game, "Failed to load texture");
-		game->player->animation[i] = mlx_texture_to_image(game->mlx, texture);
+		game->player->animation[i]
+			= mlx_texture_to_image(game->mlx, game->texture);
 		if (!game->player->animation[i])
 			display_error(game, "Failed to load image");
 		mlx_resize_image(game->player->animation[i],
 			TILE_SIZE * 1.5, TILE_SIZE);
-		mlx_delete_texture(texture);
+		mlx_delete_texture(game->texture);
 		i++;
 	}
 	game->player->animation[i] = NULL;
@@ -72,7 +72,6 @@ void	get_images_fox(t_game *game, const char **textures_fox)
 
 void	get_images_fox_reverse(t_game *game, const char **textures_fox_reverse)
 {
-	mlx_texture_t	*texture;
 	int				count;
 	int				i;
 
@@ -85,15 +84,16 @@ void	get_images_fox_reverse(t_game *game, const char **textures_fox_reverse)
 	i = 0;
 	while (i < count)
 	{
-		texture = mlx_load_png(textures_fox_reverse[i]);
-		if (texture == NULL)
+		game->texture = mlx_load_png(textures_fox_reverse[i]);
+		if (game->texture == NULL)
 			display_error(game, "Failed to load texture");
-		game->player->rev_anim[i] = mlx_texture_to_image(game->mlx, texture);
+		game->player->rev_anim[i]
+			= mlx_texture_to_image(game->mlx, game->texture);
 		if (!game->player->rev_anim[i])
 			display_error(game, "Failed to load image");
 		mlx_resize_image(game->player->rev_anim[i],
 			TILE_SIZE * 1.5, TILE_SIZE);
-		mlx_delete_texture(texture);
+		mlx_delete_texture(game->texture);
 		i++;
 	}
 	game->player->rev_anim[i] = NULL;

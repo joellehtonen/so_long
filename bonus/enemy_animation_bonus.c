@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 09:23:10 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/01 15:59:06 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/05 12:51:51 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ const char	**textures_dog_reverse(void)
 
 void	get_images_dog(t_game *game, const char **textures_dog)
 {
-	mlx_texture_t	*texture;
 	int				count;
 	int				i;
 
@@ -67,15 +66,16 @@ void	get_images_dog(t_game *game, const char **textures_dog)
 	i = 0;
 	while (i < count)
 	{
-		texture = mlx_load_png(textures_dog[i]);
-		if (texture == NULL)
+		game->texture = mlx_load_png(textures_dog[i]);
+		if (game->texture == NULL)
 			display_error(game, "Failed to load texture");
-		game->enemy->animation[i] = mlx_texture_to_image(game->mlx, texture);
+		game->enemy->animation[i]
+			= mlx_texture_to_image(game->mlx, game->texture);
 		if (!game->enemy->animation[i])
 			display_error(game, "Failed to load image");
 		mlx_resize_image(game->enemy->animation[i],
 			TILE_SIZE * 1.5, TILE_SIZE);
-		mlx_delete_texture(texture);
+		mlx_delete_texture(game->texture);
 		i++;
 	}
 	game->enemy->animation[i] = NULL;
@@ -83,7 +83,6 @@ void	get_images_dog(t_game *game, const char **textures_dog)
 
 void	get_images_dog_reverse(t_game *game, const char **textures_dog_reverse)
 {
-	mlx_texture_t	*texture;
 	int				count;
 	int				i;
 
@@ -96,14 +95,15 @@ void	get_images_dog_reverse(t_game *game, const char **textures_dog_reverse)
 	i = 0;
 	while (i < count)
 	{
-		texture = mlx_load_png(textures_dog_reverse[i]);
-		if (texture == NULL)
+		game->texture = mlx_load_png(textures_dog_reverse[i]);
+		if (game->texture == NULL)
 			display_error(game, "Failed to load texture");
-		game->enemy->rev_anim[i] = mlx_texture_to_image(game->mlx, texture);
+		game->enemy->rev_anim[i]
+			= mlx_texture_to_image(game->mlx, game->texture);
 		if (!game->enemy->rev_anim[i])
 			display_error(game, "Failed to load image");
 		mlx_resize_image(game->enemy->rev_anim[i], TILE_SIZE * 1.5, TILE_SIZE);
-		mlx_delete_texture(texture);
+		mlx_delete_texture(game->texture);
 		i++;
 	}
 	game->enemy->rev_anim[i] = NULL;

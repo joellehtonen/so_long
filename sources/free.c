@@ -6,27 +6,11 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 10:06:37 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/02 10:19:02 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/05 12:53:55 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static void	free_map(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	if (game->map == NULL)
-		return ;
-	while (i < game->height)
-	{
-		free(game->map[i]);
-		i++;
-	}
-	free(game->map);
-	game->map = NULL;
-}
 
 static void	free_images(t_game *game, mlx_image_t ***image_ptr)
 {
@@ -46,6 +30,8 @@ static void	free_images(t_game *game, mlx_image_t ***image_ptr)
 void	free_and_exit(t_game *game, int error)
 {
 	free_map(game);
+	if (game->texture)
+		mlx_delete_texture(game->texture);
 	if (game->world)
 		free_images(game, &game->world);
 	if (game->player)

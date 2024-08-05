@@ -6,27 +6,11 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 10:06:37 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/02 11:09:22 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/05 12:54:45 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
-
-static void	free_map(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	if (game->map == NULL)
-		return ;
-	while (i < game->height)
-	{
-		free(game->map[i]);
-		i++;
-	}
-	free(game->map);
-	game->map = NULL;
-}
 
 static void	free_images(t_game *game, mlx_image_t ***image_ptr)
 {
@@ -41,6 +25,18 @@ static void	free_images(t_game *game, mlx_image_t ***image_ptr)
 		mlx_delete_image(game->mlx, image[i]);
 	free(image);
 	*image_ptr = NULL;
+}
+
+static void	free_player_assets(t_game *game)
+{
+	if (game->player)
+	{
+		if (game->player->animation)
+			free_images(game, &game->player->animation);
+		if (game->player->rev_anim)
+			free_images(game, &game->player->rev_anim);
+		free(game->player);
+	}
 }
 
 static void	free_enemy_assets(t_game *game)
@@ -58,22 +54,17 @@ static void	free_enemy_assets(t_game *game)
 void	free_and_exit(t_game *game, int error)
 {
 	free_map(game);
+	if (game->texture)
+		mlx_delete_texture(game->texture);
 	if (game->world)
 		free_images(game, &game->world);
-	if (game->player)
-	{
-		if (game->player->animation)
-			free_images(game, &game->player->animation);
-		if (game->player->rev_anim)
-			free_images(game, &game->player->rev_anim);
-		free(game->player);
-	}
 	if (game->chicken)
 	{
 		if (game->chicken->animation)
 			free_images(game, &game->chicken->animation);
 		free(game->chicken);
 	}
+	free_player_assets(game);
 	free_enemy_assets(game);
 	if (game->mlx)
 	{

@@ -6,11 +6,27 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:57:03 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/03 12:04:43 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/05 13:49:52 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
+
+void	free_map(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	if (game->map == NULL)
+		return ;
+	while (i < game->height)
+	{
+		free(game->map[i]);
+		i++;
+	}
+	free(game->map);
+	game->map = NULL;
+}
 
 void	check_map_format(t_game *game, char *argv)
 {
@@ -25,6 +41,32 @@ void	check_map_format(t_game *game, char *argv)
 		return ;
 	else
 		display_error(game, "The map format must be *.ber");
+}
+
+// static void	check_map_size(t_game *game)
+// {
+// 	int		monitor_width;
+// 	int		monitor_height;
+
+// 	mlx_get_monitor_size(0, &monitor_width, &monitor_height);
+// 	if (game->height > (monitor_height / TILE_SIZE)
+// 		|| game->width > (monitor_width / TILE_SIZE))
+// 	{
+// 		display_error(game, "The map is too big");
+// 	}
+// 	if (game->height < 3 || game->width < 5)
+// 		display_error(game, "The map is empty or too small");
+// }
+
+static void	check_map_size(t_game *game)
+{
+	if (game->height > (MAX_HEIGHT / TILE_SIZE)
+		|| game->width > (MAX_WIDTH / TILE_SIZE))
+	{
+		display_error(game, "The map is too big");
+	}
+	if (game->height < 3 || game->width < 5)
+		display_error(game, "The map is empty or too small");
 }
 
 void	get_map_size(t_game *game, char **argv)
@@ -44,13 +86,7 @@ void	get_map_size(t_game *game, char **argv)
 		game->height++;
 	}
 	close(fd);
-	if (game->height > (MAX_HEIGHT / TILE_SIZE)
-		|| game->width > (MAX_WIDTH / TILE_SIZE))
-	{
-		display_error(game, "The map is too big");
-	}
-	if (game->height < 3 || game->width < 5)
-		display_error(game, "The map is empty or too small");
+	check_map_size(game);
 }
 
 void	map_reader(t_game *game, char **argv)
