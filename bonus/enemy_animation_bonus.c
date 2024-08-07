@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 09:23:10 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/07 09:32:34 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/07 10:52:43 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,18 @@ void	get_images_dog(t_game *game, const char **textures_dog)
 	i = 0;
 	while (i < count)
 	{
-		game->text = mlx_load_png(textures_dog[i]);
-		if (game->text == NULL)
+		game->txt = mlx_load_png(textures_dog[i]);
+		if (game->txt == NULL)
 			display_error(game, "Failed to load texture");
-		game->enemy->anim[i] = mlx_texture_to_image(game->mlx, game->text);
+		game->enemy->anim[i] = mlx_texture_to_image(game->mlx, game->txt);
 		if (!game->enemy->anim[i])
 			display_error(game, "Failed to load image");
 		mlx_resize_image(game->enemy->anim[i],
 			TILE_SIZE * 1.5, TILE_SIZE);
-		mlx_delete_texture(game->text);
+		mlx_delete_texture(game->txt);
 		i++;
 	}
-	game->text = NULL;
+	game->txt = NULL;
 	game->enemy->anim[i] = NULL;
 }
 
@@ -95,18 +95,18 @@ void	get_images_dog_reverse(t_game *game, const char **textures_dog_reverse)
 	i = 0;
 	while (i < count)
 	{
-		game->text = mlx_load_png(textures_dog_reverse[i]);
-		if (game->text == NULL)
+		game->txt = mlx_load_png(textures_dog_reverse[i]);
+		if (game->txt == NULL)
 			display_error(game, "Failed to load texture");
 		game->enemy->rev_anim[i]
-			= mlx_texture_to_image(game->mlx, game->text);
+			= mlx_texture_to_image(game->mlx, game->txt);
 		if (!game->enemy->rev_anim[i])
 			display_error(game, "Failed to load image");
 		mlx_resize_image(game->enemy->rev_anim[i], TILE_SIZE * 1.5, TILE_SIZE);
-		mlx_delete_texture(game->text);
+		mlx_delete_texture(game->txt);
 		i++;
 	}
-	game->text = NULL;
+	game->txt = NULL;
 	game->enemy->rev_anim[i] = NULL;
 }
 

@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:28:25 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/07 09:43:42 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/07 10:52:56 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	get_images_fox(t_game *game, const char **textures_fox)
 		game->txt = mlx_load_png(textures_fox[i]);
 		if (game->txt == NULL)
 			display_error(game, "Failed to load texture");
-		game->player->anim[i] = mlx_texture_to_image(game->mlx, game->text);
+		game->player->anim[i] = mlx_texture_to_image(game->mlx, game->txt);
 		if (!game->player->anim[i])
 			display_error(game, "Failed to load image");
 		mlx_resize_image(game->player->anim[i],
