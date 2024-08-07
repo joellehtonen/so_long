@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:57:03 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/05 13:49:35 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/05 14:41:52 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,28 +42,6 @@ void	check_map_format(t_game *game, char *argv)
 	else
 		display_error(game, "The map format must be *.ber");
 }
-
-// static void	check_map_size(t_game *game)
-// {
-// 	int		monitor_width;
-// 	int		monitor_height;
-
-// 	mlx_get_monitor_size(0, &monitor_width, &monitor_height);
-// 	ft_printf("monitor width is %d\n", monitor_width);
-// 	ft_printf("monitor height is %d\n", monitor_height);
-// 	if (monitor_width == 0 || monitor_height == 0)
-// 	{
-// 		display_error(game, "Failed to retrieve monitor size");
-// 		return;
-// 	}
-// 	if (game->height > (monitor_height / TILE_SIZE)
-// 		|| game->width > (monitor_width / TILE_SIZE))
-// 	{
-// 		display_error(game, "The map is too big");
-// 	}
-// 	if (game->height < 3 || game->width < 5)
-// 		display_error(game, "The map is empty or too small");
-// }
 
 static void	check_map_size(t_game *game)
 {

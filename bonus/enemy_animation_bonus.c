@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 09:23:10 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/05 12:51:51 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/07 09:32:34 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,25 +60,25 @@ void	get_images_dog(t_game *game, const char **textures_dog)
 	count = 0;
 	while (textures_dog[count])
 		count++;
-	game->enemy->animation = malloc(sizeof(mlx_image_t *) * (count + 1));
-	if (game->enemy->animation == NULL)
+	game->enemy->anim = malloc(sizeof(mlx_image_t *) * (count + 1));
+	if (game->enemy->anim == NULL)
 		display_error(game, "Malloc failed");
 	i = 0;
 	while (i < count)
 	{
-		game->texture = mlx_load_png(textures_dog[i]);
-		if (game->texture == NULL)
+		game->text = mlx_load_png(textures_dog[i]);
+		if (game->text == NULL)
 			display_error(game, "Failed to load texture");
-		game->enemy->animation[i]
-			= mlx_texture_to_image(game->mlx, game->texture);
-		if (!game->enemy->animation[i])
+		game->enemy->anim[i] = mlx_texture_to_image(game->mlx, game->text);
+		if (!game->enemy->anim[i])
 			display_error(game, "Failed to load image");
-		mlx_resize_image(game->enemy->animation[i],
+		mlx_resize_image(game->enemy->anim[i],
 			TILE_SIZE * 1.5, TILE_SIZE);
-		mlx_delete_texture(game->texture);
+		mlx_delete_texture(game->text);
 		i++;
 	}
-	game->enemy->animation[i] = NULL;
+	game->text = NULL;
+	game->enemy->anim[i] = NULL;
 }
 
 void	get_images_dog_reverse(t_game *game, const char **textures_dog_reverse)
@@ -95,17 +95,18 @@ void	get_images_dog_reverse(t_game *game, const char **textures_dog_reverse)
 	i = 0;
 	while (i < count)
 	{
-		game->texture = mlx_load_png(textures_dog_reverse[i]);
-		if (game->texture == NULL)
+		game->text = mlx_load_png(textures_dog_reverse[i]);
+		if (game->text == NULL)
 			display_error(game, "Failed to load texture");
 		game->enemy->rev_anim[i]
-			= mlx_texture_to_image(game->mlx, game->texture);
+			= mlx_texture_to_image(game->mlx, game->text);
 		if (!game->enemy->rev_anim[i])
 			display_error(game, "Failed to load image");
 		mlx_resize_image(game->enemy->rev_anim[i], TILE_SIZE * 1.5, TILE_SIZE);
-		mlx_delete_texture(game->texture);
+		mlx_delete_texture(game->text);
 		i++;
 	}
+	game->text = NULL;
 	game->enemy->rev_anim[i] = NULL;
 }
 
@@ -116,13 +117,13 @@ void	upload_enemy_animations(t_game *game, int x, int y)
 
 	i = 0;
 	count = 0;
-	while (game->enemy->animation[count] != NULL)
+	while (game->enemy->anim[count] != NULL)
 		count++;
 	while (i < count)
 	{
-		mlx_image_to_window(game->mlx, game->enemy->animation[i],
+		mlx_image_to_window(game->mlx, game->enemy->anim[i],
 			x * TILE_SIZE, y * TILE_SIZE);
-		game->enemy->animation[i]->instances[0].enabled = false;
+		game->enemy->anim[i]->instances[0].enabled = false;
 		i++;
 	}
 	i = 0;

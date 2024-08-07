@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/05 12:53:32 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/07 09:43:13 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_box
 
 typedef struct s_chicken
 {
-	mlx_image_t	**animation;
+	mlx_image_t	**anim;
 }	t_chicken;
 
 typedef struct s_enemy
@@ -51,7 +51,7 @@ typedef struct s_enemy
 	int			animation_timer;
 	int			move_count;
 	int			left;
-	mlx_image_t	**animation;
+	mlx_image_t	**anim;
 	mlx_image_t	**rev_anim;
 }	t_enemy;
 
@@ -61,7 +61,7 @@ typedef struct s_player
 	int			y;
 	int			frame;
 	int			left;
-	mlx_image_t	**animation;
+	mlx_image_t	**anim;
 	mlx_image_t	**rev_anim;
 }	t_player;
 
@@ -71,7 +71,7 @@ typedef struct s_game
 	struct s_enemy		*enemy;
 	struct s_chicken	*chicken;
 	mlx_image_t			**world;
-	mlx_texture_t		*texture;
+	mlx_texture_t		*txt;
 	mlx_image_t			*moves;
 	mlx_t				*mlx;
 	char				**map;

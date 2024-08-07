@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:35:53 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/05 12:56:42 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/07 10:04:05 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,19 +74,19 @@ static void	get_images_world(t_game *game, const char **textures_world, int i)
 		display_error(game, "Malloc failed");
 	while (i < count)
 	{
-		game->texture = mlx_load_png(textures_world[i]);
-		if (!game->texture)
+		game->txt = mlx_load_png(textures_world[i]);
+		if (!game->txt)
 			display_error(game, "Failed to load texture");
-		game->world[i]
-			= mlx_texture_to_image(game->mlx, game->texture);
+		game->world[i] = mlx_texture_to_image(game->mlx, game->txt);
 		if (!game->world[i])
 			display_error(game, "Failed to load image");
 		mlx_resize_image(game->world[i], TILE_SIZE * 1, TILE_SIZE * 1);
-		mlx_delete_texture(game->texture);
+		mlx_delete_texture(game->txt);
 		i++;
 	}
-	mlx_resize_image(game->world[0], TILE_SIZE * game->width,
-		TILE_SIZE * game->height);
+	mlx_resize_image(game->world[0],
+		TILE_SIZE * game->width, TILE_SIZE * game->height);
+	game->txt = NULL;
 	game->world[i] = NULL;
 }
 

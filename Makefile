@@ -1,7 +1,7 @@
 NAME		= so_long
 NAME_BONUS	= so_long_bonus
 CC			= cc
-CFLAGS		= -Wextra -Wall -Werror
+CFLAGS		= -Wextra -Wall -Werror -g
 MLX			= ./MLX42
 LIBFT	 	= ./library/libft/
 GNL			= ./library/get_next_line/

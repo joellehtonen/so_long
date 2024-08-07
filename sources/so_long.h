@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/05 12:53:38 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/07 09:28:36 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_game
 	struct s_player		*player;
 	struct s_chicken	*chicken;
 	mlx_image_t			**world;
-	mlx_texture_t		*texture;
+	mlx_texture_t		*text;
 	mlx_t				*mlx;
 	int					images_nbr;
 	char				**map;

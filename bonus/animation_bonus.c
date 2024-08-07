@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 12:38:44 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/03 12:00:56 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/07 09:31:29 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,20 @@ void	player_run_animation(t_game *game, int frame)
 	int	i;
 
 	i = 0;
-	while (game->player->animation[i])
+	while (game->player->anim[i])
 	{
-		game->player->animation[i]->instances[0].enabled = false;
-		game->player->animation[i]->instances[0].x = game->player->x;
-		game->player->animation[i]->instances[0].y = game->player->y;
+		game->player->anim[i]->instances[0].enabled = false;
+		game->player->anim[i]->instances[0].x = game->player->x;
+		game->player->anim[i]->instances[0].y = game->player->y;
 		game->player->rev_anim[i]->instances[0].enabled = false;
 		game->player->rev_anim[i]->instances[0].x = game->player->x;
 		game->player->rev_anim[i]->instances[0].y = game->player->y;
-		mlx_set_instance_depth(&game->player->animation[i]->instances[0], 5);
+		mlx_set_instance_depth(&game->player->anim[i]->instances[0], 5);
 		mlx_set_instance_depth(&game->player->rev_anim[i]->instances[0], 5);
 		i++;
 	}
 	if (game->player->left == 0)
-		game->player->animation[frame]->instances[0].enabled = true;
+		game->player->anim[frame]->instances[0].enabled = true;
 	else
 		game->player->rev_anim[frame]->instances[0].enabled = true;
 	game->player->frame++;
@@ -43,13 +43,13 @@ void	chicken_dies_animation(t_game *game, int number)
 	int		i;
 
 	i = 0;
-	while (game->chicken->animation[i])
+	while (game->chicken->anim[i])
 	{
-		game->chicken->animation[i]->instances[number].enabled = false;
+		game->chicken->anim[i]->instances[number].enabled = false;
 		i++;
 	}
-	game->chicken->animation[2]->instances[number].enabled = true;
-	mlx_set_instance_depth(&game->chicken->animation[2]->instances[number], 2);
+	game->chicken->anim[2]->instances[number].enabled = true;
+	mlx_set_instance_depth(&game->chicken->anim[2]->instances[number], 2);
 }
 
 void	chicken_idle_animation(t_game *game)
@@ -64,15 +64,15 @@ void	chicken_idle_animation(t_game *game)
 		i = 0;
 		while (i < game->collectables)
 		{
-			if (game->chicken->animation[0]->instances[i].enabled)
+			if (game->chicken->anim[0]->instances[i].enabled)
 			{
-				game->chicken->animation[0]->instances[i].enabled = false;
-				game->chicken->animation[1]->instances[i].enabled = true;
+				game->chicken->anim[0]->instances[i].enabled = false;
+				game->chicken->anim[1]->instances[i].enabled = true;
 			}
-			else if (game->chicken->animation[1]->instances[i].enabled)
+			else if (game->chicken->anim[1]->instances[i].enabled)
 			{
-				game->chicken->animation[1]->instances[i].enabled = false;
-				game->chicken->animation[0]->instances[i].enabled = true;
+				game->chicken->anim[1]->instances[i].enabled = false;
+				game->chicken->anim[0]->instances[i].enabled = true;
 			}
 			i++;
 		}
@@ -85,11 +85,11 @@ void	player_idle_animation(t_game *game)
 	int	i;
 
 	i = 0;
-	while (game->player->animation[i])
+	while (game->player->anim[i])
 	{
-		game->player->animation[i]->instances[0].enabled = false;
-		game->player->animation[i]->instances[0].x = game->player->x;
-		game->player->animation[i]->instances[0].y = game->player->y;
+		game->player->anim[i]->instances[0].enabled = false;
+		game->player->anim[i]->instances[0].x = game->player->x;
+		game->player->anim[i]->instances[0].y = game->player->y;
 		game->player->rev_anim[i]->instances[0].enabled = false;
 		game->player->rev_anim[i]->instances[0].x = game->player->x;
 		game->player->rev_anim[i]->instances[0].y = game->player->y;
@@ -97,7 +97,7 @@ void	player_idle_animation(t_game *game)
 	}
 	if (game->player->left == 0)
 	{
-		game->player->animation[8]->instances[0].enabled = true;
+		game->player->anim[8]->instances[0].enabled = true;
 	}
 	else
 	{

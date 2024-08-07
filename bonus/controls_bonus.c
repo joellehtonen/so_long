@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 09:41:04 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/03 10:49:53 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/07 09:38:32 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	move_up(t_game *game)
 	if (!is_wall(game, ghost_box.x, ghost_box.y)
 		&& !is_wall(game, ghost_box.x + MOVE_SIZE, ghost_box.y))
 	{
-		game->player->animation[frame]->instances[0].y -= MOVE_SPEED;
+		game->player->anim[frame]->instances[0].y -= MOVE_SPEED;
 		game->player->y -= MOVE_SPEED;
 		game->move_count++;
 		return (1);
@@ -49,7 +49,7 @@ static int	move_down(t_game *game)
 	if (!is_wall(game, ghost_box.x, ghost_box.y + MOVE_SIZE)
 		&& !is_wall(game, ghost_box.x + MOVE_SIZE, ghost_box.y + MOVE_SIZE))
 	{
-		game->player->animation[frame]->instances[0].y += MOVE_SPEED;
+		game->player->anim[frame]->instances[0].y += MOVE_SPEED;
 		game->player->y += MOVE_SPEED;
 		game->move_count++;
 		return (1);
@@ -73,7 +73,7 @@ static int	move_left(t_game *game)
 	if (!is_wall(game, ghost_box.x, ghost_box.y)
 		&& !is_wall(game, ghost_box.x, ghost_box.y + MOVE_SIZE))
 	{
-		game->player->animation[frame]->instances[0].x -= MOVE_SPEED;
+		game->player->anim[frame]->instances[0].x -= MOVE_SPEED;
 		game->player->x -= MOVE_SPEED;
 		game->move_count++;
 		return (1);
@@ -97,7 +97,7 @@ static int	move_right(t_game *game)
 	if (!is_wall(game, ghost_box.x + MOVE_SIZE, ghost_box.y)
 		&& !is_wall(game, ghost_box.x + MOVE_SIZE, ghost_box.y + MOVE_SIZE))
 	{
-		game->player->animation[frame]->instances[0].x += MOVE_SPEED;
+		game->player->anim[frame]->instances[0].x += MOVE_SPEED;
 		game->player->x += MOVE_SPEED;
 		game->move_count++;
 		return (1);

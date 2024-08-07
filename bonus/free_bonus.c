@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 10:06:37 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/05 12:54:45 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/07 09:45:02 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static void	free_player_assets(t_game *game)
 {
 	if (game->player)
 	{
-		if (game->player->animation)
-			free_images(game, &game->player->animation);
+		if (game->player->anim)
+			free_images(game, &game->player->anim);
 		if (game->player->rev_anim)
 			free_images(game, &game->player->rev_anim);
 		free(game->player);
@@ -43,8 +43,8 @@ static void	free_enemy_assets(t_game *game)
 {
 	if (game->enemy)
 	{
-		if (game->enemy->animation)
-			free_images(game, &game->enemy->animation);
+		if (game->enemy->anim)
+			free_images(game, &game->enemy->anim);
 		if (game->enemy->rev_anim)
 			free_images(game, &game->enemy->rev_anim);
 		free(game->enemy);
@@ -54,14 +54,14 @@ static void	free_enemy_assets(t_game *game)
 void	free_and_exit(t_game *game, int error)
 {
 	free_map(game);
-	if (game->texture)
-		mlx_delete_texture(game->texture);
+	if (game->txt)
+		mlx_delete_texture(game->txt);
 	if (game->world)
 		free_images(game, &game->world);
 	if (game->chicken)
 	{
-		if (game->chicken->animation)
-			free_images(game, &game->chicken->animation);
+		if (game->chicken->anim)
+			free_images(game, &game->chicken->anim);
 		free(game->chicken);
 	}
 	free_player_assets(game);

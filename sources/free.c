@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 10:06:37 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/05 12:53:55 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/07 10:06:34 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static void	free_images(t_game *game, mlx_image_t ***image_ptr)
 void	free_and_exit(t_game *game, int error)
 {
 	free_map(game);
-	if (game->texture)
-		mlx_delete_texture(game->texture);
+	if (game->text)
+		mlx_delete_texture(game->text);
 	if (game->world)
 		free_images(game, &game->world);
 	if (game->player)
