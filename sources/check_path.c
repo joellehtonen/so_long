@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:11:05 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/02 10:43:21 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/08 12:01:18 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ int	check_path(t_game *game, int x, int y)
 		{
 			if (game->map[y][x] == 'P' || game->map[y][x] == 'E'
 				|| game->map[y][x] == 'C')
-				return (0);
+				return (FAILURE);
 			x++;
 		}
 		y++;
 	}
-	return (1);
+	return (SUCCESS);
 }

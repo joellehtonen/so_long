@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:28:31 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/07 09:38:08 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/08 12:02:37 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	is_wall(t_game *game, int x, int y)
 {
 	if (game->map[y / TILE_SIZE][x / TILE_SIZE] == '1')
-		return (1);
+		return (true);
 	else
-		return (0);
+		return (false);
 }
 
 void	collectable_collision(t_game *game, t_box player, int x, int y)
@@ -78,9 +78,9 @@ int	check_collision(t_box a, t_box b)
 	not_above = a.y < b.y + b.height;
 	not_below = a.y + a.height > b.y;
 	if (not_left && not_right && not_above && not_below)
-		return (1);
+		return (true);
 	else
-		return (0);
+		return (false);
 }
 
 void	collect_stuff(t_game *game)

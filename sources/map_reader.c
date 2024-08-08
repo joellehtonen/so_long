@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 09:57:03 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/07 10:46:07 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/08 11:49:57 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,27 +53,6 @@ static void	check_map_size(t_game *game)
 	if (game->height < 3 || game->width < 5)
 		display_error(game, "The map is empty or too small");
 }
-
-// static void	check_map_size(t_game *game)
-// {
-// 	int	monitor_height;
-// 	int	monitor_width;
-
-// 	monitor_height = 1;
-// 	monitor_width = 1;
-// 	ft_printf("BEFORE monitor height %d\n", monitor_height);
-// 	ft_printf("BEFORE monitor width %d\n", monitor_width);
-// 	mlx_get_monitor_size(0, &monitor_width, &monitor_height);
-// 	ft_printf("AFTER monitor height %d\n", monitor_height);
-// 	ft_printf("AFTER monitor width %d\n", monitor_width);
-// 	if (game->height > (monitor_height / TILE_SIZE)
-// 		|| game->width > (monitor_width / TILE_SIZE))
-// 	{
-// 		display_error(game, "The map is too big");
-// 	}
-// 	if (game->height < 3 || game->width < 5)
-// 		display_error(game, "The map is empty or too small");
-// }
 
 void	get_map_size(t_game *game, char **argv)
 {

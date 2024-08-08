@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:19:11 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/03 12:06:48 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/08 12:04:59 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	check_walls_horizontal(t_game *game, int x, int y)
 	while (x < game->width)
 	{
 		if (game->map[y][x] != '1')
-			return (0);
+			return (FAILURE);
 		x++;
 	}
 	x = 0;
@@ -25,10 +25,10 @@ static int	check_walls_horizontal(t_game *game, int x, int y)
 	while (x < game->width)
 	{
 		if (game->map[y][x] != '1')
-			return (0);
+			return (FAILURE);
 		x++;
 	}
-	return (1);
+	return (SUCCESS);
 }
 
 static int	check_walls_vertical(t_game *game, int x, int y)
@@ -36,7 +36,7 @@ static int	check_walls_vertical(t_game *game, int x, int y)
 	while (y < game->height - 1)
 	{
 		if (game->map[y][x] != '1')
-			return (0);
+			return (FAILURE);
 		y++;
 	}
 	x = game->width - 1;
@@ -44,10 +44,10 @@ static int	check_walls_vertical(t_game *game, int x, int y)
 	while (y < game->height)
 	{		
 		if (game->map[y][x] != '1')
-			return (0);
+			return (FAILURE);
 		y++;
 	}
-	return (1);
+	return (SUCCESS);
 }
 
 static int	check_rectangular(t_game *game, int y)
@@ -60,14 +60,14 @@ static int	check_rectangular(t_game *game, int y)
 	{
 		compare = ft_strlen(game->map[y]);
 		if (compare != len)
-			return (0);
+			return (FAILURE);
 		y++;
 	}
 	len = game->width;
 	compare = ft_strlen(game->map[y]);
 	if (compare != len)
-		return (0);
-	return (1);
+		return (FAILURE);
+	return (SUCCESS);
 }
 
 static int	check_count(t_game *game, int x, int y)
@@ -94,9 +94,9 @@ static int	check_count(t_game *game, int x, int y)
 	}
 	if (game->exit != 1 || game->start != 1 || game->collectables == 0
 		|| invalid_char > 0)
-		return (0);
+		return (FAILURE);
 	else
-		return (1);
+		return (SUCCESS);
 }
 
 void	map_checker(t_game *game)
@@ -106,13 +106,13 @@ void	map_checker(t_game *game)
 
 	x = 0;
 	y = 0;
-	if (!check_walls_horizontal(game, x, y)
-		|| !check_walls_vertical(game, x, y))
+	if (check_walls_horizontal(game, x, y)
+		|| check_walls_vertical(game, x, y))
 		display_error(game, "The map must be closed/surrounded by walls");
-	if (!check_rectangular(game, y))
+	if (check_rectangular(game, y))
 		display_error(game, "The map must be rectangular");
-	if (!check_count(game, x, y))
+	if (check_count(game, x, y))
 		display_error(game, "Invalid characters or invalid # of characters");
-	if (!check_path(game, x, y))
+	if (check_path(game, x, y))
 		display_error(game, "No valid path in the map");
 }

@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 17:00:52 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/07 10:47:42 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/08 11:48:57 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define MOVE_SPEED 4
 # define MAX_HEIGHT 2100
 # define MAX_WIDTH 3800
+# define SUCCESS 0
+# define FAILURE 1
 
 typedef struct s_box
 {	

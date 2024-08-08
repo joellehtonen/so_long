@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/02 10:44:07 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/08 11:51:28 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,5 @@ int	main(int argc, char **argv)
 	mlx_close_hook(game.mlx, close_func, &game);
 	mlx_loop(game.mlx);
 	free_and_exit(&game, 0);
-	return (1);
+	return (SUCCESS);
 }
