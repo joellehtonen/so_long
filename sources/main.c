@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:29:13 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/08 15:25:46 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:49:33 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static void	initialize_game(t_game *game)
 int	main(int argc, char **argv)
 {
 	t_game		game;
-	mlx_image_t	*image;
 
 	initialize_game(&game);
 	if (argc != 2)
@@ -55,13 +54,8 @@ int	main(int argc, char **argv)
 			game.height * TILE_SIZE, "FOX", true);
 	if ((!game.mlx))
 		display_error(&game, "Failed to initialize MLX");
-	image = mlx_new_image(game.mlx, game.width * TILE_SIZE,
-			game.height * TILE_SIZE);
-	if (!image)
-		display_error(&game, "Failed to create a new image");
 	add_graphics(&game);
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
-	mlx_image_to_window(game.mlx, image, 0, 0);
 	mlx_loop_hook(game.mlx, &controls, &game);
 	mlx_close_hook(game.mlx, close_func, &game);
 	mlx_loop(game.mlx);
