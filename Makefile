@@ -83,11 +83,11 @@ $(BONUS_DIR)%.o: $(BONUS_DIR)%.c
 	@$(CC) $(CFLAGS) -o $@ -c $< $(BONUS_HEADER)
 
 $(NAME): $(BASIC_OBJS)
-	@$(CC) $(CFLAGS) $(MAIN_OBJS) $(BASIC_OBJS) $(LIBS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(BASIC_OBJS) $(LIBS) -o $(NAME)
 	@echo "$(GREEN)$(NAME) CREATED (enjoy)$(RESET)"
 
 $(NAME_BONUS): $(BONUS_OBJS)
-	@$(CC) $(CFLAGS) $($(MAIN_OBJS)) $(BONUS_OBJS) $(LIBS) -o $(NAME_BONUS)
+	@$(CC) $(CFLAGS) $(BONUS_OBJS) $(LIBS) -o $(NAME_BONUS)
 	@echo "$(GREEN)$(NAME_BONUS) CREATED (enjoy)$(RESET)"
 
 clean:
