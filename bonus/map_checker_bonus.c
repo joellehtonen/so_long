@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:19:11 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/08 12:04:59 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/08 16:49:45 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	check_walls_horizontal(t_game *game, int x, int y)
 
 static int	check_walls_vertical(t_game *game, int x, int y)
 {
-	while (y < game->height - 1)
+	while (y < game->height)
 	{
 		if (game->map[y][x] != '1')
 			return (FAILURE);
@@ -75,10 +75,10 @@ static int	check_count(t_game *game, int x, int y)
 	int	invalid_char;
 
 	invalid_char = 0;
-	while (y < game->height - 1)
+	while (y < game->height)
 	{
 		x = 0;
-		while (x < game->width - 1)
+		while (x < game->width)
 		{
 			if (game->map[y][x] == 'C')
 				game->collectables++;

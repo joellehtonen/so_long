@@ -11,7 +11,7 @@ BONUS_DIR	= ./bonus/
 HEADER			= -I ./include -I $(MLX)/include -I $(LIBFT) -I $(GNL) -I $(PRINTF)
 BONUS_HEADER	= -I $(BONUS_DIR) -I $(MLX)/include -I $(LIBFT) -I $(GNL) -I $(PRINTF)
 LIBS		= $(MLX)/build/libmlx42.a -g -ldl -lglfw -pthread -lm -L$(LIBFT) -lft -L$(GNL) -lgnl -L$(PRINTF) -lftprintf
-BASIC_SRCS	= 	$(SRCS_DIR)main.c \
+BASIC_SRCS	= $(SRCS_DIR)main.c \
 				$(SRCS_DIR)check_path.c \
 				$(SRCS_DIR)collision.c \
 				$(SRCS_DIR)controls.c \

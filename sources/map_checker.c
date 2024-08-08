@@ -6,7 +6,7 @@
 /*   By: jlehtone <jlehtone@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:19:11 by jlehtone          #+#    #+#             */
-/*   Updated: 2024/08/08 11:51:16 by jlehtone         ###   ########.fr       */
+/*   Updated: 2024/08/08 16:48:32 by jlehtone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	check_walls_horizontal(t_game *game, int x, int y)
 
 static int	check_walls_vertical(t_game *game, int x, int y)
 {
-	while (y < game->height - 1)
+	while (y < game->height)
 	{
 		if (game->map[y][x] != '1')
 			return (FAILURE);
@@ -41,7 +41,7 @@ static int	check_walls_vertical(t_game *game, int x, int y)
 	}
 	x = game->width - 1;
 	y = 0;
-	while (y < game->height - 1)
+	while (y < game->height)
 	{		
 		if (game->map[y][x] != '1')
 			return (FAILURE);
@@ -67,7 +67,8 @@ static int	check_rectangular(t_game *game, int y)
 	compare = ft_strlen(game->map[y]);
 	if (compare != len)
 		return (FAILURE);
-	return (SUCCESS);
+	else
+		return (SUCCESS);
 }
 
 static int	check_count(t_game *game, int x, int y)
@@ -75,10 +76,10 @@ static int	check_count(t_game *game, int x, int y)
 	int	invalid_char;
 
 	invalid_char = 0;
-	while (y < game->height - 1)
+	while (y < game->height)
 	{
 		x = 0;
-		while (x < game->width - 1)
+		while (x < game->width)
 		{
 			if (game->map[y][x] == 'C')
 				game->collectables++;
