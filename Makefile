@@ -1,7 +1,7 @@
 NAME		= so_long
 NAME_BONUS	= so_long_bonus
 CC			= cc
-CFLAGS		= -Wextra -Wall -Werror -g
+CFLAGS		= -Wextra -Wall -Werror
 MLX			= ./MLX42
 LIBFT	 	= ./library/libft/
 GNL			= ./library/get_next_line/
@@ -91,15 +91,15 @@ $(NAME_BONUS): $(BONUS_OBJS)
 	@echo "$(GREEN)$(NAME_BONUS) CREATED (enjoy)$(RESET)"
 
 clean:
-	@rm -rf $(BASIC_OBJS) $(BONUS_OBJS)
+	@rm -f $(BASIC_OBJS) $(BONUS_OBJS)
 	@$(MAKE) -C $(LIBFT) clean
 	@$(MAKE) -C $(GNL) clean
 	@$(MAKE) -C $(PRINTF) clean
 	@echo "$(CYAN)CLEAN COMPLETE$(RESET)"
 
 fclean: clean
-	@rm -rf $(NAME) $(NAME_BONUS)
-	@rm -rf $(MLX)/build/libmlx42.a
+	@rm -f $(NAME) $(NAME_BONUS)
+	@rm -f $(MLX)/build/libmlx42.a
 	@$(MAKE) -C $(LIBFT) fclean
 	@$(MAKE) -C $(GNL) fclean
 	@$(MAKE) -C $(PRINTF) fclean
